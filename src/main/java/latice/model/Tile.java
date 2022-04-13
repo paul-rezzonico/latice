@@ -6,6 +6,4 @@ public class Tile {
 	public Tile(Shape shape) {
 		this.shape = shape;
 	}
-
-	
 }
