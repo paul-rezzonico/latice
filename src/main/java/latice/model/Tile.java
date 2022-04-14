@@ -1,10 +1,10 @@
 package latice.model;
 
 public class Tile {
-	private Shape shape;
+	private Symbol shape;
 	private Color color;
 
-	public Tile(Shape shape, Color color) {
+	public Tile(Symbol shape, Color color) {
 		this.shape = shape;
 		this.color = color;
 	}

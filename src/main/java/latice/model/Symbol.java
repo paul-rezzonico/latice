@@ -1,8 +1,10 @@
 package latice.model;
 
 public enum Symbol {
-	LOGO,
-	PENTAGON,
-	VOID,
-	
+	RIAS,
+	AKENO,
+	XENOVIA, 
+	IRINA, 
+	KONEKO,
+	ASIA,
 }
