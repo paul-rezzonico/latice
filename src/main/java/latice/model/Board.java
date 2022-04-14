@@ -1,5 +1,8 @@
 package latice.model;
 
-public class Board {
+import java.util.List;
 
+public class Board {
+	private List<Box> board;
+	
 }
