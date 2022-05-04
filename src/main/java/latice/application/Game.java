@@ -8,6 +8,19 @@ public class Game {
 
 	public static void main(String[] args) {
 		
+		launch();  
+
+	}
+
+	private static void launch() {
+		
+		ArrayList<Color> colorList = colorListCreation();
+		for (Color color : colorList) {
+			//TODO rajouter les instanciations
+		}
+	}
+
+	private static ArrayList<Color> colorListCreation() {
 		ArrayList<Color> colorList = new ArrayList<>();
 		colorList.add(Color.RED);
 		colorList.add(Color.BLUE);
@@ -15,11 +28,7 @@ public class Game {
 		colorList.add( Color.GREY);
 		colorList.add(Color.PINK);
 		colorList.add(Color.YELLOW);
-		
-		for (Color color : colorList) {
-			//TODO rajouter les instanciations
-		}
-
+		return colorList;
 	}
 
 }
