@@ -11,7 +11,6 @@ public class Game {
 	public static void main(String[] args) {
 		
 		launch();  
-
 	}
 
 	private static void launch() {
@@ -21,6 +20,7 @@ public class Game {
 		ArrayList<Tile> tileList = new ArrayList<>();
 		for (Color color : colorList) {
 			for (Symbol symbol : symbolList) {
+				tileList.add(new Tile(symbol,color));
 				tileList.add(new Tile(symbol,color));
 			}
 		}
