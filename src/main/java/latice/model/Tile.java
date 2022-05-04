@@ -25,5 +25,4 @@ public class Tile {
 		this.color = color;
 	}
 	
-	
 }
