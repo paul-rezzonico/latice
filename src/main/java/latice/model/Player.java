@@ -1,5 +1,6 @@
 package latice.model;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Player {
@@ -48,5 +49,17 @@ public class Player {
 		this.point = point;
 	}
 	
-
+	public List<Tile>fillRack(){
+		Collections.shuffle(stack);
+		for (int i = 0; i < 5; i++) {
+			if (rack.size()<5) {
+			rack.add(stack.get(i));
+			stack.remove(i);
+		}
+	 
+	}
+		return rack;
+	}
 }
+
+

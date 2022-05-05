@@ -2,8 +2,10 @@ package latice.application;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import latice.model.Color;
+import latice.model.Player;
 import latice.model.Symbol;
 import latice.model.Tile;
 
@@ -25,21 +27,24 @@ public class Game {
 				tileList.add(new Tile(symbol,color));
 			}
 		}
-		suffleAndDistribute(tileList);
-	}
-
-	private static void suffleAndDistribute(ArrayList<Tile> tileList) {
 		Collections.shuffle(tileList);
-		ArrayList <Tile> tileListJ1 = new ArrayList<>();
-		ArrayList <Tile> tileListJ2 = new ArrayList<>();
+		List <Tile> stackJ1 = new ArrayList<>();
+		List <Tile> stackJ2 = new ArrayList<>();
 		for (int i = 0; i <  tileList.size() ;i++) {
 			if (i<36) {
-				tileListJ1.add(tileList.get(i));
+				stackJ1.add(tileList.get(i));
 			}else {
-				tileListJ2.add(tileList.get(i));
+				stackJ2.add(tileList.get(i));
 			}
 		}
+		List<Tile> rackJ1 = new ArrayList<>();
+		List<Tile> rackJ2 = new ArrayList<>();
+		Player player1=new Player("Player1",rackJ1,stackJ1,0);
+		Player player2=new Player("Player2",rackJ2,stackJ2,0);
+		player1.fillRack();
+		player2.fillRack();
 	}
+
 	private static ArrayList<Color> colorListCreation() {
 		ArrayList<Color> colorList = new ArrayList<>();
 		colorList.add(Color.RED);
