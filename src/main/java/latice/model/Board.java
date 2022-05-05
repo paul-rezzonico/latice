@@ -17,5 +17,4 @@ public class Board {
 	public void setBoard(List<Box> board) {
 		this.board = board;
 	}
-	
 }
