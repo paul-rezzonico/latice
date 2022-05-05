@@ -1,6 +1,7 @@
 package latice.application;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import latice.model.Color;
 import latice.model.Symbol;
@@ -24,8 +25,21 @@ public class Game {
 				tileList.add(new Tile(symbol,color));
 			}
 		}
+		suffleAndDistribute(tileList);
 	}
 
+	private static void suffleAndDistribute(ArrayList<Tile> tileList) {
+		Collections.shuffle(tileList);
+		ArrayList <Tile> tileListJ1 = new ArrayList<>();
+		ArrayList <Tile> tileListJ2 = new ArrayList<>();
+		for (int i = 0; i <  tileList.size() ;i++) {
+			if (i<36) {
+				tileListJ1.add(tileList.get(i));
+			}else {
+				tileListJ2.add(tileList.get(i));
+			}
+		}
+	}
 	private static ArrayList<Color> colorListCreation() {
 		ArrayList<Color> colorList = new ArrayList<>();
 		colorList.add(Color.RED);
@@ -47,5 +61,6 @@ public class Game {
 		symbolList.add(Symbol.XENOVIA);
 		return symbolList;
 	}
-
+	
+	
 }
