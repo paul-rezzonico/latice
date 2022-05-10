@@ -11,11 +11,6 @@ import latice.model.Tile;
 
 public class Game {
 
-	public static void main(String[] args) {
-		
-		launch();  
-	}
-
 	private static void launch() {
 		
 		//Création des tuiles
@@ -26,6 +21,7 @@ public class Game {
 				tileList.add(new Tile(symbol,color));
 			}
 		}
+		
 		
 		//Mélange et séparation des tuiles
 		Collections.shuffle(tileList);
@@ -38,6 +34,7 @@ public class Game {
 				stackJ2.add(tileList.get(i));
 			}
 		}
+		
 		
 		//Création des tas 
 		List<Tile> rackJ1 = new ArrayList<>();
