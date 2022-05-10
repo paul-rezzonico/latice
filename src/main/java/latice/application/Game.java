@@ -3,6 +3,7 @@ package latice.application;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import latice.model.Color;
 import latice.model.Player;
@@ -10,10 +11,13 @@ import latice.model.Symbol;
 import latice.model.Tile;
 
 public class Game {
-
+	static boolean notWin;
+	static int turn;
+	
 	public static void main(String[] args) {
 		
 		launch();  
+		progress();
 	}
 
 	private static void launch() {
@@ -46,6 +50,26 @@ public class Game {
 		Player player2=new Player("Player2",rackJ2,stackJ2,0);
 		player1.fillRack();
 		player2.fillRack();
+	}
+	
+	private static void progress() {
+		Random random= new Random();
+		boolean PlayerTurn= random.nextBoolean();
+		System.out.println(PlayerTurn);
+		while (notWin!=true && turn!=20) {
+			if(PlayerTurn==true) {
+				PlayerTurn=false;
+			}else {
+				PlayerTurn=true;
+			}		
+			turn++;
+			System.out.println(turn);
+			System.out.println(PlayerTurn);
+		}
+		
+			
+		
+		
 	}
 	
 }
