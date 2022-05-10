@@ -63,8 +63,6 @@ public class Game {
 				PlayerTurn=true;
 			}		
 			turn++;
-			System.out.println(turn);
-			System.out.println(PlayerTurn);
 		}
 		
 			
