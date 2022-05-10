@@ -55,11 +55,16 @@ public class Game {
 	private static void progress() {
 		Random random= new Random();
 		boolean PlayerTurn= random.nextBoolean();
-		System.out.println(PlayerTurn);
 		while (notWin!=true && turn!=20) {
 			if(PlayerTurn==true) {
+				if(turn==1) {
+					System.out.println("C'est le Joueur 1 qui commence");
+				}
 				PlayerTurn=false;
 			}else {
+				if(turn==1) {
+					System.out.println("C'est le Joueur 2 qui commence");
+				}
 				PlayerTurn=true;
 			}		
 			turn++;
