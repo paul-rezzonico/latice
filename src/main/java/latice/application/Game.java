@@ -18,15 +18,16 @@ public class Game {
 
 	private static void launch() {
 		
-		ArrayList<Color> colorList = colorListCreation();
-		ArrayList<Symbol> symbolList = symbolListCreation();
+		//Création des tuiles
 		ArrayList<Tile> tileList = new ArrayList<>();
-		for (Color color : colorList) {
-			for (Symbol symbol : symbolList) {
+		for (Color color : Color.values()) {
+			for (Symbol symbol : Symbol.values()) {
 				tileList.add(new Tile(symbol,color));
 				tileList.add(new Tile(symbol,color));
 			}
 		}
+		
+		//Mélange et séparation des tuiles
 		Collections.shuffle(tileList);
 		List <Tile> stackJ1 = new ArrayList<>();
 		List <Tile> stackJ2 = new ArrayList<>();
@@ -37,6 +38,8 @@ public class Game {
 				stackJ2.add(tileList.get(i));
 			}
 		}
+		
+		//Création des tas 
 		List<Tile> rackJ1 = new ArrayList<>();
 		List<Tile> rackJ2 = new ArrayList<>();
 		Player player1=new Player("Player1",rackJ1,stackJ1,0);
@@ -44,28 +47,5 @@ public class Game {
 		player1.fillRack();
 		player2.fillRack();
 	}
-
-	private static ArrayList<Color> colorListCreation() {
-		ArrayList<Color> colorList = new ArrayList<>();
-		colorList.add(Color.RED);
-		colorList.add(Color.BLUE);
-		colorList.add(Color.GREEN);
-		colorList.add( Color.GREY);
-		colorList.add(Color.PINK);
-		colorList.add(Color.YELLOW);
-		return colorList;
-	}
-	
-	private static ArrayList<Symbol> symbolListCreation() {
-		ArrayList<Symbol> symbolList = new ArrayList<>();
-		symbolList.add(Symbol.RIAS);
-		symbolList.add(Symbol.AKENO);
-		symbolList.add(Symbol.ASIA);
-		symbolList.add(Symbol.IRINA);
-		symbolList.add(Symbol.KONEKO);
-		symbolList.add(Symbol.XENOVIA);
-		return symbolList;
-	}
-	
 	
 }
