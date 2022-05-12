@@ -5,14 +5,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import latice.model.Board;
 import latice.model.Color;
 import latice.model.Player;
 import latice.model.Symbol;
 import latice.model.Tile;
 
 public class Game {
-<<<<<<< HEAD
-=======
 	static boolean notWin;
 	static int turn;
 	
@@ -21,7 +20,6 @@ public class Game {
 		launch();  
 		progress();
 	}
->>>>>>> e979defd84ad161160383cfd74ae263193f6a2e5
 
 	private static void launch() {
 		
@@ -55,6 +53,9 @@ public class Game {
 		Player player2=new Player("Player2",rackJ2,stackJ2,0);
 		player1.fillRack();
 		player2.fillRack();
+		
+		Board board = new Board(); 
+		System.out.println(board.toAscii());
 	}
 	
 	private static void progress() {
@@ -74,9 +75,6 @@ public class Game {
 			}		
 			turn++;
 		}
-		
-			
-		
 		
 	}
 	

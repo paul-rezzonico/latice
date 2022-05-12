@@ -1,8 +1,6 @@
 package latice.model;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class Board {
@@ -17,7 +15,7 @@ public class Board {
 			for (int j = 1; j <= COLUMNS; j++) {
 				if ((i == j || i + j == 10) && i != 4 && i != 5 && i != 6) {
 					this.board.put(new Position(i, j), new Box(Shape.PENTAGON, null));
-				} else if ((i == 5 && j == 1) || (i == 1 && j == 5) || (i == 1 && j == 9) || (i == 9 && j == 1)) {
+				} else if ((i == 5 && j == 1) || (i == 1 && j == 5) || (i == 5 && j == 9) || (i == 9 && j == 5)) {
 					this.board.put(new Position(i, j), new Box(Shape.PENTAGON, null));
 				} else if (i==5 && j == 5){
 					this.board.put(new Position(i, j), new Box(Shape.LOGO, null));
@@ -39,7 +37,6 @@ public class Board {
 		return (this.board.get(position).getTile() != null);
 	}
 
-	@SuppressWarnings("rawtypes")
 	public boolean isEmpty() {
 		for (Map.Entry<Position, Box> mapentry : this.board.entrySet()) {
 			if (mapentry.getValue().getTile()!=null)
@@ -63,21 +60,30 @@ public class Board {
 	public Tile tileAt(Position position) {
 		return (this.board.get(position).getTile());
 	}
-
-	/*public String toAscii() {
-		String str = "";
-		for (int i = 0; i < ROWS; i++) {
-			for (int j = 0; j < COLUMNS; j++) {
+	
+	public Box boxAt(Position position) {
+		return (this.board.get(position));
+	}
+	
+	public String toAscii() {
+		String newLine = System.getProperty("line.separator");
+		StringBuilder str = new StringBuilder();
+		for (int i = 1; i <= ROWS; i++) {
+			for (int j = 1; j <= COLUMNS; j++) {
 				Position pos = new Position(i, j);
-				if (this.BoxAt(pos).get) {
-					str = str + (this.discAt(new Position(i, j)).ascii());
+				Tile tile = this.tileAt(pos);
+				if (tile != null) {
+					str.append(tile. toString());
+				} else if (this.boxAt(pos).getShape()!= null){
+					str.append(this.boxAt(pos).toString());
 				} else {
-					str = str + (" ");
+					str.append("         ");
 				}
+				str.append('|');
 			}
-			str = str + ("\n");
+			str.append("\n");
 		}
 		return str.toString();
-	}*/
+	}
 
 }

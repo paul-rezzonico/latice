@@ -4,17 +4,17 @@ public class Box {
     private Shape shape;
     private Tile tile;
 
-    public Box(Shape symbol, Tile tile) {
-        this.shape = symbol;
+    public Box(Shape shape, Tile tile) {
+        this.shape = shape;
         this.tile = tile;
     }
 
-    public Shape getSymbol() {
+    public Shape getShape() {
         return shape;
     }
 
-    public void setSymbol(Shape symbol) {
-        this.shape = symbol;
+    public void setShape(Shape shape) {
+        this.shape = shape;
     }
 
     public Tile getTile() {
@@ -25,4 +25,8 @@ public class Box {
         this.tile = tile;
     }
 
+	@Override
+	public String toString() {
+		return shape + " ";
+	}
 }
