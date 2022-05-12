@@ -1,20 +1,20 @@
 package latice.model;
 
 public class Box {
-    private Symbol symbol;
+    private Shape shape;
     private Tile tile;
 
-    public Box(Symbol symbol, Tile tile) {
-        this.symbol = symbol;
+    public Box(Shape symbol, Tile tile) {
+        this.shape = symbol;
         this.tile = tile;
     }
 
-    public Symbol getSymbol() {
-        return symbol;
+    public Shape getSymbol() {
+        return shape;
     }
 
-    public void setSymbol(Symbol symbol) {
-        this.symbol = symbol;
+    public void setSymbol(Shape symbol) {
+        this.shape = symbol;
     }
 
     public Tile getTile() {
