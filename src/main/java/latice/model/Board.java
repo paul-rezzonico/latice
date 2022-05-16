@@ -47,14 +47,17 @@ public class Board {
 
 	public boolean put(Position position, Tile tile) {
 		if (!this.isTileAt(position)) {
-			this.board.get(position).setTile(tile);;
+			this.board.get(position).setTile(tile);
 			return true;
 		}
 		return false;
 	}
-
-	public int howManyTilesOnBoard() {
-		return (this.board.size());
+	
+	public boolean verifTilesAround(Position position, Tile tile) {
+		if (this.isTileAt(position)) {
+			
+		}
+		return false;
 	}
 
 	public Tile tileAt(Position position) {
@@ -66,7 +69,6 @@ public class Board {
 	}
 	
 	public String toAscii() {
-		String newLine = System.getProperty("line.separator");
 		StringBuilder str = new StringBuilder();
 		for (int i = 1; i <= ROWS; i++) {
 			for (int j = 1; j <= COLUMNS; j++) {
