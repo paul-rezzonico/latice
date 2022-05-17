@@ -46,7 +46,7 @@ public class Board {
 	}
 
 	public boolean put(Position position, Tile tile) {
-		if (!this.isTileAt(position)) {
+		if (!this.isTileAt(position) && verifTilesAround(position, tile)) {
 			this.board.get(position).setTile(tile);
 			return true;
 		}
@@ -54,29 +54,45 @@ public class Board {
 	}
 
 	public boolean verifTilesAround(Position position, Tile tile) {
-		if (!this.isTileAt(position)) {
-			return false;
+
+		boolean isTileNear = false;
+		Position pos = new Position(position.getRow() - 1, position.getColumn());
+		if (isTileAt(pos)) {
+			isTileNear = true;
+			if (!verificationForTheEmplacemetOfTheTile(pos,tile)) {
+				return false;
+			} 
+		}
+		
+		pos = new Position(position.getRow() + 1, position.getColumn());
+		if (isTileAt(pos)) {
+			isTileNear = true;
+			if (!verificationForTheEmplacemetOfTheTile(pos,tile)) {
+				return false;
+			} 
 		}
 
-		else if (!verificationForTheEmplacemetOfTheTile(new Position(position.getRow() - 1, position.getColumn()),
-				tile)) {
-			return false;
-		} else if (!verificationForTheEmplacemetOfTheTile(new Position(position.getRow() + 1, position.getColumn()),
-				tile)) {
-			return false;
-		} else if (!verificationForTheEmplacemetOfTheTile(new Position(position.getRow(), position.getColumn() + 1),
-				tile)) {
-			return false;
-		} else if (!verificationForTheEmplacemetOfTheTile(new Position(position.getRow(), position.getColumn() - 1),
-				tile)) {
-			return false;
+		pos = new Position(position.getRow(), position.getColumn() + 1);
+		if (isTileAt(pos)) {
+			isTileNear = true;
+			if (!verificationForTheEmplacemetOfTheTile(pos,tile)) {
+				return false;
+			} 
 		}
-		return true;
+		
+		pos = new Position(position.getRow() + 1, position.getColumn() - 1);
+		if (isTileAt(pos)) {
+			isTileNear = true;
+			if (!verificationForTheEmplacemetOfTheTile(pos,tile)) {
+				return false;
+			} 
+		}
+		return isTileNear;
 	}
 
 	private boolean verificationForTheEmplacemetOfTheTile(Position position, Tile tile) {	
 		
-		return (this.tileAt(position) == null || this.tileAt(position).getColor().equals(tile.getColor())
+		return (this.tileAt(position).getColor().equals(tile.getColor())
 					|| this.tileAt(position).getSymbol().equals(tile.getSymbol()));
 	}
 
@@ -88,24 +104,5 @@ public class Board {
 		return (this.board.get(position));
 	}
 
-	public String toAscii() {
-		StringBuilder str = new StringBuilder();
-		for (int i = 1; i <= ROWS; i++) {
-			for (int j = 1; j <= COLUMNS; j++) {
-				Position pos = new Position(i, j);
-				Tile tile = this.tileAt(pos);
-				if (tile != null) {
-					str.append(tile.toString());
-				} else if (this.boxAt(pos).getShape() != null) {
-					str.append(this.boxAt(pos).toString());
-				} else {
-					str.append("         ");
-				}
-				str.append('|');
-			}
-			str.append("\n");
-		}
-		return str.toString();
-	}
 
 }

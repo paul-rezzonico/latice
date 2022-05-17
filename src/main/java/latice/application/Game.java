@@ -17,6 +17,8 @@ public class Game {
 
 	public static void main(String[] args) {
 
+		Console console = new Console();
+		
 		// Création des tuiles
 		ArrayList<Tile> tileList = new ArrayList<>();
 		for (Color color : Color.values()) {
@@ -48,16 +50,16 @@ public class Game {
 
 		Board board = new Board();
 
-		progress(board, player1, player2);
+		progress(board, player1, player2, console);
 
 	}
 	
-	private static void progress(Board board, Player player1, Player player2) {
+	private static void progress(Board board, Player player1, Player player2, Console console) {
 		int turn = 1;
 		Random random= new Random();
 		boolean PlayerTurn= random.nextBoolean();
 		while (notWin!=true && turn!=11) {
-			System.out.println(board.toAscii());
+			console.showBoard(board);
 			if(PlayerTurn==true) {
 				System.out.println("Au tour du joueur 1");
 				System.out.println(player1.getRack().toString());
