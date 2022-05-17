@@ -55,19 +55,27 @@ public class Game {
 	}
 	
 	private static void progress(Board board, Player player1, Player player2, Console console) {
+		
 		int turn = 1;
 		Random random= new Random();
+		
 		boolean PlayerTurn= random.nextBoolean();
 		while (notWin!=true && turn!=11) {
 			console.showBoard(board);
+			
 			if(PlayerTurn==true) {
 				System.out.println("Au tour du joueur 1");
-				System.out.println(player1.getRack().toString());
-				board.put(new Position(turn, turn ), new Tile(Symbol.RIAS, Color.RED));
+				Tile tile = console.tileChoice(player1.getRack());
+				Position position = console.positionChoice();
+				board.put(position, tile);
 				PlayerTurn=false;
+				
 			}else {
 				System.out.println("Au tour du joueur 2");
-				System.out.println(player2.getRack().toString());
+				Tile tile = console.tileChoice(player2.getRack());
+				Position position = console.positionChoice();
+				System.out.println("Placement de votre tuile " + tile.toString() + " à la position " + position.toString());
+				board.put(position, tile);
 				PlayerTurn=true;
 			}	
 			turn++;
