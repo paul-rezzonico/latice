@@ -17,7 +17,7 @@ public class Board {
 					this.board.put(new Position(i, j), new Box(Shape.PENTAGON, null));
 				} else if ((i == 5 && j == 1) || (i == 1 && j == 5) || (i == 5 && j == 9) || (i == 9 && j == 5)) {
 					this.board.put(new Position(i, j), new Box(Shape.PENTAGON, null));
-				} else if (i==5 && j == 5){
+				} else if (i == 5 && j == 5) {
 					this.board.put(new Position(i, j), new Box(Shape.LOGO, null));
 				} else {
 					this.board.put(new Position(i, j), new Box(null, null));
@@ -39,7 +39,7 @@ public class Board {
 
 	public boolean isEmpty() {
 		for (Map.Entry<Position, Box> mapentry : this.board.entrySet()) {
-			if (mapentry.getValue().getTile()!=null)
+			if (mapentry.getValue().getTile() != null)
 				return false;
 		}
 		return true;
@@ -52,22 +52,42 @@ public class Board {
 		}
 		return false;
 	}
-	
+
 	public boolean verifTilesAround(Position position, Tile tile) {
-		if (this.isTileAt(position)) {
-			
+		if (!this.isTileAt(position)) {
+			return false;
 		}
-		return false;
+
+		else if (!verificationForTheEmplacemetOfTheTile(new Position(position.getRow() - 1, position.getColumn()),
+				tile)) {
+			return false;
+		} else if (!verificationForTheEmplacemetOfTheTile(new Position(position.getRow() + 1, position.getColumn()),
+				tile)) {
+			return false;
+		} else if (!verificationForTheEmplacemetOfTheTile(new Position(position.getRow(), position.getColumn() + 1),
+				tile)) {
+			return false;
+		} else if (!verificationForTheEmplacemetOfTheTile(new Position(position.getRow(), position.getColumn() - 1),
+				tile)) {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean verificationForTheEmplacemetOfTheTile(Position position, Tile tile) {	
+		
+		return (this.tileAt(position) == null || this.tileAt(position).getColor().equals(tile.getColor())
+					|| this.tileAt(position).getSymbol().equals(tile.getSymbol()));
 	}
 
 	public Tile tileAt(Position position) {
 		return (this.board.get(position).getTile());
 	}
-	
+
 	public Box boxAt(Position position) {
 		return (this.board.get(position));
 	}
-	
+
 	public String toAscii() {
 		StringBuilder str = new StringBuilder();
 		for (int i = 1; i <= ROWS; i++) {
@@ -75,8 +95,8 @@ public class Board {
 				Position pos = new Position(i, j);
 				Tile tile = this.tileAt(pos);
 				if (tile != null) {
-					str.append(tile. toString());
-				} else if (this.boxAt(pos).getShape()!= null){
+					str.append(tile.toString());
+				} else if (this.boxAt(pos).getShape() != null) {
 					str.append(this.boxAt(pos).toString());
 				} else {
 					str.append("         ");
