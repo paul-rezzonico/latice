@@ -64,8 +64,8 @@ public class Menu extends BorderPane{
 		this.vBCenter.setAlignment(Pos.CENTER);
 		this.setCenter(vBCenter);
 		
-		BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
-		this.bck = new BackgroundImage(new Image("/Menu.png"),  BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,  BackgroundPosition.DEFAULT, backgroundSize);
+		BackgroundSize backgroundSize = new BackgroundSize(100, 100, false, false, false, true);
+		this.bck = new BackgroundImage(new Image("/Menu.png"),  BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,  BackgroundPosition.CENTER, backgroundSize);
 		this.setBackground(new Background(bck));
 	}
 }
