@@ -57,25 +57,36 @@ public class Game {
 	private static void progress(Board board, Player player1, Player player2, Console console) {
 		
 		int turn = 1;
+		boolean WellPut;
 		Random random= new Random();
 		
 		boolean PlayerTurn= random.nextBoolean();
 		while (notWin!=true && turn!=11) {
-			console.showBoard(board);
 			
 			if(PlayerTurn==true) {
 				System.out.println("Au tour du joueur 1");
-				Tile tile = console.tileChoice(player1.getRack());
-				Position position = console.positionChoice();
-				board.put(position, tile);
+				do {
+					console.showBoard(board);
+					Tile tile = console.tileChoice(player1.getRack());
+					Position position = console.positionChoice();
+					WellPut = board.put(position, tile, board);
+					if (!WellPut) {
+						System.out.println("Veuillez placer la pièce de manière convenable");
+					}
+				} while (!WellPut);
 				PlayerTurn=false;
 				
 			}else {
 				System.out.println("Au tour du joueur 2");
-				Tile tile = console.tileChoice(player2.getRack());
-				Position position = console.positionChoice();
-				System.out.println("Placement de votre tuile " + tile.toString() + " à la position " + position.toString());
-				board.put(position, tile);
+				do {
+					console.showBoard(board);
+					Tile tile = console.tileChoice(player2.getRack());
+					Position position = console.positionChoice();
+					WellPut = board.put(position, tile, board);
+					if (!WellPut) {
+						System.out.println("Veuillez placer la pièce de manière convenable");
+					}
+				} while (!WellPut);
 				PlayerTurn=true;
 			}	
 			turn++;
