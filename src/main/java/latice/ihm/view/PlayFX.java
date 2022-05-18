@@ -15,6 +15,7 @@ public class PlayFX extends BorderPane {
 	public PlayFX() {
 		
 		this.boardfx = new BoardFX(null);
+		//TODO création de ce layout qui va etre la layout de jeu. 
 		
 	}
 }
