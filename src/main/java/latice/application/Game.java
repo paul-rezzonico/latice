@@ -58,7 +58,6 @@ public class Game {
 		int turn = 1;
 		boolean WellPut;
 		boolean endturn = true;
-		int choix;
 		Random random = new Random();
 
 		boolean PlayerTurn = random.nextBoolean();
