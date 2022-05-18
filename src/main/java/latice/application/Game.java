@@ -8,71 +8,87 @@ import java.util.Random;
 import latice.model.Board;
 import latice.model.Color;
 import latice.model.Player;
+import latice.model.Position;
 import latice.model.Symbol;
 import latice.model.Tile;
 
 public class Game {
 	static boolean notWin;
-	static int turn;
-	
-	public static void main(String[] args) {
-		
-		launch();  
-		progress();
-	}
 
-	private static void launch() {
+	public static void main(String[] args) {
+
+		Console console = new Console();
 		
-		//Création des tuiles
+		// Création des tuiles
 		ArrayList<Tile> tileList = new ArrayList<>();
 		for (Color color : Color.values()) {
 			for (Symbol symbol : Symbol.values()) {
-				tileList.add(new Tile(symbol,color));
-				tileList.add(new Tile(symbol,color));
+				tileList.add(new Tile(symbol, color));
+				tileList.add(new Tile(symbol, color));
 			}
 		}
-		
-		
-		//Mélange et séparation des tuiles
+
+		// Mélange et séparation des tuiles
 		Collections.shuffle(tileList);
-		List <Tile> stackJ1 = new ArrayList<>();
-		List <Tile> stackJ2 = new ArrayList<>();
-		for (int i = 0; i <  tileList.size() ;i++) {
-			if (i<36) {
+		List<Tile> stackJ1 = new ArrayList<>();
+		List<Tile> stackJ2 = new ArrayList<>();
+		for (int i = 0; i < tileList.size(); i++) {
+			if (i < 36) {
 				stackJ1.add(tileList.get(i));
-			}else {
+			} else {
 				stackJ2.add(tileList.get(i));
 			}
 		}
-		
-		
-		//Création des tas 
+
+		// Création des tas
 		List<Tile> rackJ1 = new ArrayList<>();
 		List<Tile> rackJ2 = new ArrayList<>();
-		Player player1=new Player("Player1",rackJ1,stackJ1,0);
-		Player player2=new Player("Player2",rackJ2,stackJ2,0);
+		Player player1 = new Player("Player1", rackJ1, stackJ1, 0);
+		Player player2 = new Player("Player2", rackJ2, stackJ2, 0);
 		player1.fillRack();
 		player2.fillRack();
-		
-		Board board = new Board(); 
-		System.out.println(board.toAscii());
+
+		Board board = new Board();
+
+		progress(board, player1, player2, console);
+
 	}
 	
-	private static void progress() {
+	private static void progress(Board board, Player player1, Player player2, Console console) {
+		
+		int turn = 1;
+		boolean WellPut;
 		Random random= new Random();
+		
 		boolean PlayerTurn= random.nextBoolean();
-		while (notWin!=true && turn!=20) {
+		while (notWin!=true && turn!=11) {
+			
 			if(PlayerTurn==true) {
-				if(turn==1) {
-					System.out.println("C'est le Joueur 1 qui commence");
-				}
+				System.out.println("Au tour du joueur 1");
+				do {
+					console.showBoard(board);
+					Tile tile = console.tileChoice(player1.getRack());
+					Position position = console.positionChoice();
+					WellPut = board.put(position, tile, board);
+					if (!WellPut) {
+						System.out.println("Veuillez placer la pièce de manière convenable");
+					}
+				} while (!WellPut);
 				PlayerTurn=false;
+				
 			}else {
-				if(turn==1) {
-					System.out.println("C'est le Joueur 2 qui commence");
-				}
+				System.out.println("Au tour du joueur 2");
+				do {
+					console.showBoard(board);
+					Tile tile = console.tileChoice(player2.getRack());
+					Position position = console.positionChoice();
+					WellPut = board.put(position, tile, board);
+					if (!WellPut) {
+						System.out.println("Veuillez placer la pièce de manière convenable");
+					}
+				} while (!WellPut);
 				PlayerTurn=true;
-			}		
+			}	
 			turn++;
 		}
 		

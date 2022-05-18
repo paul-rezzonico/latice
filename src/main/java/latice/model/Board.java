@@ -5,22 +5,32 @@ import java.util.Map;
 
 public class Board {
 
-	private final Map<Position, Box> board;
+	private final Map<Position, Box> gameBoard;
 	private static final int ROWS = 9;
 	private static final int COLUMNS = 9;
 
 	public Board() {
-		this.board = new HashMap<>();
+		this.gameBoard = new HashMap<>();
+
 		for (int i = 1; i <= ROWS; i++) {
 			for (int j = 1; j <= COLUMNS; j++) {
+
 				if ((i == j || i + j == 10) && i != 4 && i != 5 && i != 6) {
-					this.board.put(new Position(i, j), new Box(Shape.PENTAGON, null));
+
+					this.gameBoard.put(new Position(i, j), new Box(Shape.PENTAGON, null));
+
 				} else if ((i == 5 && j == 1) || (i == 1 && j == 5) || (i == 5 && j == 9) || (i == 9 && j == 5)) {
-					this.board.put(new Position(i, j), new Box(Shape.PENTAGON, null));
-				} else if (i==5 && j == 5){
-					this.board.put(new Position(i, j), new Box(Shape.LOGO, null));
+
+					this.gameBoard.put(new Position(i, j), new Box(Shape.PENTAGON, null));
+
+				} else if (i == 5 && j == 5) {
+
+					this.gameBoard.put(new Position(i, j), new Box(Shape.LOGO, null));
+
 				} else {
-					this.board.put(new Position(i, j), new Box(null, null));
+
+					this.gameBoard.put(new Position(i, j), new Box(null, null));
+
 				}
 			}
 
@@ -28,62 +38,91 @@ public class Board {
 	}
 
 	// Guetters
-	public Map<Position, Box> getBoxs() {
-		return board;
+	public Map<Position, Box> getGameBoard() {
+		return gameBoard;
 	}
 
 	// Méthode de jeu
 	public boolean isTileAt(Position position) {
-		return (this.board.get(position).getTile() != null);
+		return (this.gameBoard.get(position).getTile() != null);
 	}
 
 	public boolean isEmpty() {
-		for (Map.Entry<Position, Box> mapentry : this.board.entrySet()) {
-			if (mapentry.getValue().getTile()!=null)
+		for (Map.Entry<Position, Box> mapentry : this.gameBoard.entrySet()) {
+			if (mapentry.getValue().getTile() != null)
 				return false;
 		}
+		
 		return true;
 	}
 
-	public boolean put(Position position, Tile tile) {
-		if (!this.isTileAt(position)) {
-			this.board.get(position).setTile(tile);;
+	public boolean put(Position position, Tile tile, Board board) {
+		if (!this.isTileAt(position) && verifTilesAround(position, tile, board)) {
+			this.gameBoard.get(position).setTile(tile);
 			return true;
 		}
 		return false;
 	}
 
-	public int howManyTilesOnBoard() {
-		return (this.board.size());
+	public boolean verifTilesAround(Position position, Tile tile, Board board) {
+		boolean isTileNear = false;
+
+		if(board.isEmpty() && position.equals(new Position(5, 5))) {
+			return true; 
+		}
+		
+		Position pos = new Position(position.getRow() - 1, position.getColumn());
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				isTileNear = true;
+				if (!verificationForTheEmplacemetOfTheTile(pos, tile)) {
+					return false;
+				}
+			}
+		}
+		pos = new Position(position.getRow() + 1, position.getColumn());
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				isTileNear = true;
+				if (!verificationForTheEmplacemetOfTheTile(pos, tile)) {
+					return false;
+				}
+			}
+		}
+		pos = new Position(position.getRow(), position.getColumn() + 1);
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+
+				isTileNear = true;
+				if (!verificationForTheEmplacemetOfTheTile(pos, tile)) {
+					return false;
+				}
+			}
+		}
+		pos = new Position(position.getRow(), position.getColumn() - 1);
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				isTileNear = true;
+				if (!verificationForTheEmplacemetOfTheTile(pos, tile)) {
+					return false;
+				}
+			}
+		}
+		return isTileNear;
+
+	}
+
+	private boolean verificationForTheEmplacemetOfTheTile(Position position, Tile tile) {
+		return (this.tileAt(position).getColor().equals(tile.getColor())
+				|| this.tileAt(position).getSymbol().equals(tile.getSymbol()));
 	}
 
 	public Tile tileAt(Position position) {
-		return (this.board.get(position).getTile());
+		return (this.gameBoard.get(position).getTile());
 	}
-	
+
 	public Box boxAt(Position position) {
-		return (this.board.get(position));
-	}
-	
-	public String toAscii() {
-		String newLine = System.getProperty("line.separator");
-		StringBuilder str = new StringBuilder();
-		for (int i = 1; i <= ROWS; i++) {
-			for (int j = 1; j <= COLUMNS; j++) {
-				Position pos = new Position(i, j);
-				Tile tile = this.tileAt(pos);
-				if (tile != null) {
-					str.append(tile. toString());
-				} else if (this.boxAt(pos).getShape()!= null){
-					str.append(this.boxAt(pos).toString());
-				} else {
-					str.append("         ");
-				}
-				str.append('|');
-			}
-			str.append("\n");
-		}
-		return str.toString();
+		return (this.gameBoard.get(position));
 	}
 
 }
