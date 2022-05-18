@@ -20,7 +20,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import latice.ihm.controller.ExitController;
 
-public class Menu extends BorderPane {
+public class MenuFX extends BorderPane {
 
 	private Label title;
 	private Label titleEdition;
@@ -34,7 +34,7 @@ public class Menu extends BorderPane {
 	private BackgroundImage bck;
 	private Random rdm = new Random();
 
-	public Menu() {
+	public MenuFX() {
 
 		this.title = new Label("Latice Game");
 		this.title.setFont(Font.font("System", FontWeight.BOLD, FontPosture.ITALIC, 60));
@@ -91,4 +91,76 @@ public class Menu extends BorderPane {
 		clip.play();
 	}
 
+	public Label getTitle() {
+		return title;
+	}
+
+	public void setTitle(Label title) {
+		this.title = title;
+	}
+
+	public Label getTitleEdition() {
+		return titleEdition;
+	}
+
+	public void setTitleEdition(Label titleEdition) {
+		this.titleEdition = titleEdition;
+	}
+
+	public VBox getvBTop() {
+		return vBTop;
+	}
+
+	public void setvBTop(VBox vBTop) {
+		this.vBTop = vBTop;
+	}
+
+	public Button getBtnGame() {
+		return btnGame;
+	}
+
+	public void setBtnGame(Button btnGame) {
+		this.btnGame = btnGame;
+	}
+
+	public Button getBtnParameters() {
+		return btnParameters;
+	}
+
+	public void setBtnParameters(Button btnParameters) {
+		this.btnParameters = btnParameters;
+	}
+
+	public Button getBtnExit() {
+		return btnExit;
+	}
+
+	public void setBtnExit(Button btnExit) {
+		this.btnExit = btnExit;
+	}
+
+	public VBox getvBCenter() {
+		return vBCenter;
+	}
+
+	public void setvBCenter(VBox vBCenter) {
+		this.vBCenter = vBCenter;
+	}
+
+	public BackgroundImage getBck() {
+		return bck;
+	}
+
+	public void setBck(BackgroundImage bck) {
+		this.bck = bck;
+	}
+
+	public Random getRdm() {
+		return rdm;
+	}
+
+	public void setRdm(Random rdm) {
+		this.rdm = rdm;
+	}
+	
 }
