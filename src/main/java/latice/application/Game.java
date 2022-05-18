@@ -51,7 +51,6 @@ public class Game {
 		Board board = new Board();
 
 		progress(board, player1, player2, console);
-
 	}
 	
 	private static void progress(Board board, Player player1, Player player2, Console console) {
