@@ -18,7 +18,7 @@ public class Game {
 	public static void main(String[] args) {
 
 		Console console = new Console();
-		
+
 		// Création des tuiles
 		ArrayList<Tile> tileList = new ArrayList<>();
 		for (Color color : Color.values()) {
@@ -52,45 +52,96 @@ public class Game {
 
 		progress(board, player1, player2, console);
 	}
-	
+
 	private static void progress(Board board, Player player1, Player player2, Console console) {
-		
+
 		int turn = 1;
 		boolean WellPut;
-		Random random= new Random();
-		
-		boolean PlayerTurn= random.nextBoolean();
-		while (notWin!=true && turn!=11) {
-			
-			if(PlayerTurn==true) {
+		boolean endturn = true;
+		int choix;
+		Random random = new Random();
+
+		boolean PlayerTurn = random.nextBoolean();
+		while (notWin != true && turn != 11) {
+			int coupgratuit = 1;
+			if (PlayerTurn == true) {
+				endturn = true;
 				System.out.println("Au tour du joueur 1");
 				do {
 					console.showBoard(board);
-					Tile tile = console.tileChoice(player1.getRack());
-					Position position = console.positionChoice();
-					WellPut = board.put(position, tile, board);
-					if (!WellPut) {
-						System.out.println("Veuillez placer la pièce de manière convenable");
+					int choix1 = console.choice();
+					switch (choix1) {
+
+					case 1:
+						if (coupgratuit == 1) {
+							do {
+								Tile tile = console.tileChoice(player1.getRack());
+								Position position = console.positionChoice();
+								WellPut = board.put(position, tile, board);
+								if (!WellPut) {
+									System.out.println("Veuillez placer la pièce de manière convenable");
+								}
+							} while (!WellPut);
+							coupgratuit = 0;
+						} else {
+							System.out.println("Vous n'avez plus de coup gratuit");
+						}
+						break;
+
+					case 2:
+						// TODO payement
+
+					case 3:
+
+						endturn = false;
+						PlayerTurn = false;
+						break;
+
+					default:
+						System.out.println("Choix incorrect");
+
 					}
-				} while (!WellPut);
-				PlayerTurn=false;
-				
-			}else {
+				} while (endturn);
+
+			} else {
 				System.out.println("Au tour du joueur 2");
+				endturn = true;
 				do {
 					console.showBoard(board);
-					Tile tile = console.tileChoice(player2.getRack());
-					Position position = console.positionChoice();
-					WellPut = board.put(position, tile, board);
-					if (!WellPut) {
-						System.out.println("Veuillez placer la pièce de manière convenable");
+					int choix2 = console.choice();
+					switch (choix2) {
+
+					case 1:
+						if (coupgratuit == 1) {
+							do {
+								Tile tile = console.tileChoice(player2.getRack());
+								Position position = console.positionChoice();
+								WellPut = board.put(position, tile, board);
+								if (!WellPut) {
+									System.out.println("Veuillez placer la pièce de manière convenable");
+								}
+							} while (!WellPut);
+							coupgratuit = 0;
+						} else {
+							System.out.println("Vous n'avez plus de coup gratuit");
+						}
+						break;
+
+					case 2:
+						// TODO payement
+
+					case 3:
+
+						endturn = false;
+						PlayerTurn = true;
+						break;
+
+					default:
+						System.out.println("Choix incorrect");
+
 					}
-				} while (!WellPut);
-				PlayerTurn=true;
-			}	
-			turn++;
+				} while (endturn);
+			}
 		}
-		
 	}
-	
 }

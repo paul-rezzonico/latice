@@ -50,6 +50,12 @@ public class Console {
 		return new Position(row, col);
 	}
 	
+	public int choice() {
+		System.out.println("1:Jouer la pièce gratuite 2:Payer une action suplémentaire 3:Finir son tour");
+		System.out.println("Choix : ");
+		int val =ensureIntegerBetween(1,3);
+		return val;
+	}
 	public void showBoard(Board board) {
 		StringBuilder str = new StringBuilder();
 		for (int i = 1; i <= ROWS; i++) {
