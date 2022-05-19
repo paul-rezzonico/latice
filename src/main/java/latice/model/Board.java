@@ -17,11 +17,11 @@ public class Board {
 
 				if ((i == j || i + j == 10) && i != 4 && i != 5 && i != 6) {
 
-					this.gameBoard.put(new Position(i, j), new Box(Shape.PENTAGON, null));
+					this.gameBoard.put(new Position(i, j), new Box(Shape.PENTACLE, null));
 
 				} else if ((i == 5 && j == 1) || (i == 1 && j == 5) || (i == 5 && j == 9) || (i == 9 && j == 5)) {
 
-					this.gameBoard.put(new Position(i, j), new Box(Shape.PENTAGON, null));
+					this.gameBoard.put(new Position(i, j), new Box(Shape.PENTACLE, null));
 
 				} else if (i == 5 && j == 5) {
 
@@ -29,7 +29,7 @@ public class Board {
 
 				} else {
 
-					this.gameBoard.put(new Position(i, j), new Box(null, null));
+					this.gameBoard.put(new Position(i, j), new Box(Shape.EMPTY, null));
 
 				}
 			}

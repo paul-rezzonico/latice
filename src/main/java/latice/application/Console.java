@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import latice.model.Board;
 import latice.model.Position;
+import latice.model.Shape;
 import latice.model.Tile;
 
 public class Console {
@@ -64,7 +65,7 @@ public class Console {
 				Tile tile = board.tileAt(pos);
 				if (tile != null) {
 					str.append(tile.toString());
-				} else if (board.boxAt(pos).getShape() != null) {
+				} else if (board.boxAt(pos).getShape()!=Shape.EMPTY) {
 					str.append(board.boxAt(pos).toString());
 				} else {
 					str.append("         ");
