@@ -20,12 +20,14 @@ public class BoardFX extends GridPane{
 			if(entry.getValue().getTile() != null) {
 				this.pictureURL = "/tiles/" + entry.getValue().getTile().toString() + ".png";
 			} else {
-				this.pictureURL = "/tiles/" + entry.getValue().getShape().getName()+".png";
+				this.pictureURL = "/Shape/" + entry.getValue().getShape().getName() + ".png";
 			}
 	
 			this.boxImage = new ImageView(new Image(getClass().getResourceAsStream(pictureURL)));
-			this.add(boxImage, entry.getKey().getColumn(), entry.getKey().getRow());
-			
+			this.boxImage.setPreserveRatio(true);
+			this.boxImage.setFitWidth(80);
+			this.add(boxImage, entry.getKey().getColumn()-1, entry.getKey().getRow()-1);
+			this.setStyle("-fx-grid-lines-visible: true");
 		}
 	}
 	

@@ -11,7 +11,7 @@ public class LaticeApp extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		Scene scene = new Scene(new MenuFX());
+		Scene scene = new Scene(new MenuFX(primaryStage));
 		
 		primaryStage.setScene(scene);
 		primaryStage.setFullScreen(true);

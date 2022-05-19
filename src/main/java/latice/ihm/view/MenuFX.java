@@ -18,7 +18,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 import latice.ihm.controller.ExitController;
+import latice.ihm.controller.PlayController;
 
 public class MenuFX extends BorderPane {
 
@@ -34,7 +36,7 @@ public class MenuFX extends BorderPane {
 	private BackgroundImage bck;
 	private Random rdm = new Random();
 
-	public MenuFX() {
+	public MenuFX(Stage primaryStage) {
 
 		this.title = new Label("Latice Game");
 		this.title.setFont(Font.font("System", FontWeight.BOLD, FontPosture.ITALIC, 60));
@@ -53,6 +55,7 @@ public class MenuFX extends BorderPane {
 		this.btnGame = new Button("Jouer");
 		this.btnGame.setFont(Font.font(32));
 		this.btnGame.setPrefWidth(400);
+		this.btnGame.setOnMouseClicked(new PlayController(primaryStage));
 
 		this.btnParameters = new Button("Paramètres");
 		this.btnParameters.setFont(Font.font(32));
