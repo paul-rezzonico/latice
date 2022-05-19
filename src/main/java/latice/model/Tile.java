@@ -27,7 +27,7 @@ public class Tile {
 
 	@Override
 	public String toString() {
-		return symbol + " "+ color ;
+		return this.symbol.getName() + this.color.getColor();
 	}
 	
 }
