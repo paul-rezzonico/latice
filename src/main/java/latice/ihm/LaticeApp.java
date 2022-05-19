@@ -21,6 +21,7 @@ public class LaticeApp extends Application {
 		primaryStage.setFullScreen(true);
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Logo.png")));
 		primaryStage.setTitle("Latice Game DxD edition");
+		primaryStage.setFullScreenExitHint("");
 		primaryStage.show();
 	}
 

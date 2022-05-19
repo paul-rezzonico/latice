@@ -19,8 +19,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import latice.ihm.controller.ExitController;
-import latice.ihm.controller.PlayController;
 
 public class MenuFX extends BorderPane {
 
