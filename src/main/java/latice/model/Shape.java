@@ -2,8 +2,8 @@ package latice.model;
 
 public enum Shape {
 	LOGO("CaseDepart"),
-	PENTACLE("pentacle"),
-	EMPTY("vide");
+	PENTACLE("Pentacle"),
+	EMPTY("Vide");
 	
 	private String name;
 

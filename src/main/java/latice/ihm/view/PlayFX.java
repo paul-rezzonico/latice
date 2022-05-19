@@ -3,6 +3,7 @@ package latice.ihm.view;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import latice.model.Board;
 
 public class PlayFX extends BorderPane {
 
@@ -14,8 +15,7 @@ public class PlayFX extends BorderPane {
 	
 	public PlayFX() {
 		
-		this.boardfx = new BoardFX(null);
-		//TODO création de ce layout qui va etre la layout de jeu. 
+		this.boardfx = new BoardFX(new Board());
 		
 	}
 }
