@@ -6,7 +6,7 @@ public enum Symbol {
 	XENOVIA("Xenovia"), 
 	IRINA("Irina"), 
 	KONEKO("Koneko"),
-	ASIA("Asia"),;
+	ASIA("Asia");
 
 	private String name;
 
