@@ -13,6 +13,7 @@ import latice.model.Symbol;
 import latice.model.Tile;
 
 public class Game {
+	
 	static boolean notWin;
 
 	public static void main(String[] args) {
