@@ -4,14 +4,18 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import latice.ihm.controller.ExitController;
+import latice.ihm.controller.PlayController;
 import latice.ihm.view.MenuFX;
 
 public class LaticeApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
-		Scene scene = new Scene(new MenuFX(primaryStage));
+		MenuFX menu = new MenuFX(primaryStage);
+		Scene scene = new Scene(menu);
+		menu.getBtnExit().setOnMouseClicked(new ExitController());
+		menu.getBtnGame().setOnMouseClicked(new PlayController(primaryStage, menu));
 		
 		primaryStage.setScene(scene);
 		primaryStage.setFullScreen(true);

@@ -35,6 +35,7 @@ public class MenuFX extends BorderPane {
 
 	private BackgroundImage bck;
 	private Random rdm = new Random();
+	private AudioClip song;
 
 	public MenuFX(Stage primaryStage) {
 
@@ -55,7 +56,6 @@ public class MenuFX extends BorderPane {
 		this.btnGame = new Button("Jouer");
 		this.btnGame.setFont(Font.font(32));
 		this.btnGame.setPrefWidth(400);
-		this.btnGame.setOnMouseClicked(new PlayController(primaryStage));
 
 		this.btnParameters = new Button("Paramètres");
 		this.btnParameters.setFont(Font.font(32));
@@ -64,7 +64,6 @@ public class MenuFX extends BorderPane {
 		this.btnExit = new Button("Quitter");
 		this.btnExit.setFont(Font.font(32));
 		this.btnExit.setPrefWidth(400);
-		this.btnExit.setOnMouseClicked(new ExitController());
 
 		this.vBCenter = new VBox(10);
 		this.vBCenter.getChildren().addAll(btnGame, btnParameters, btnExit);
@@ -76,11 +75,12 @@ public class MenuFX extends BorderPane {
 				BackgroundPosition.CENTER, backgroundSize);
 		this.setBackground(new Background(bck));
 
-		playMainMusic();
+		this.song = listOfSong();
+		this.song.play();
 
 	}
 
-	public void playMainMusic() {
+	public AudioClip listOfSong() {
 		
 		ArrayList<AudioClip> audioList = new ArrayList<AudioClip>();
 		audioList.add(new AudioClip(getClass().getResource("/music/MenuSong1.mp3").toExternalForm()));
@@ -91,7 +91,7 @@ public class MenuFX extends BorderPane {
 		
 		AudioClip clip = audioList.get(nb);
 		clip.setCycleCount(AudioClip.INDEFINITE);
-		clip.play();
+		return clip;
 	}
 
 	public Label getTitle() {
@@ -164,6 +164,14 @@ public class MenuFX extends BorderPane {
 
 	public void setRdm(Random rdm) {
 		this.rdm = rdm;
+	}
+
+	public AudioClip getSong() {
+		return song;
+	}
+
+	public void setSong(AudioClip song) {
+		this.song = song;
 	}
 	
 }

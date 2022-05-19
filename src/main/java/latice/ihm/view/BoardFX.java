@@ -2,6 +2,7 @@ package latice.ihm.view;
 
 import java.util.Map;
 
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -28,6 +29,7 @@ public class BoardFX extends GridPane{
 			this.boxImage.setFitWidth(80);
 			this.add(boxImage, entry.getKey().getColumn()-1, entry.getKey().getRow()-1);
 			this.setStyle("-fx-grid-lines-visible: true");
+			this.setAlignment(Pos.CENTER);
 		}
 	}
 	
