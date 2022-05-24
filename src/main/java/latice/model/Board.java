@@ -130,7 +130,7 @@ public class Board {
 			point++;
 		}
 		
-		if (this.gameBoard.get(position).getShape() == Shape.PENTAGON) {
+		if (this.gameBoard.get(position).getShape() == Shape.PENTACLE) {
 			point++;
 			point++;
 		}
