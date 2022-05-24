@@ -111,6 +111,36 @@ public class Board {
 		return isTileNear;
 
 	}
+	
+	public int sumpoint(Position position ,int point) {
+		Position pos = new Position(position.getRow() - 1, position.getColumn());
+		if (isTileAt(pos)) {
+			point++;
+		}
+		pos = new Position(position.getRow() + 1, position.getColumn());
+		if (isTileAt(pos)) {
+			point++;
+		}
+		pos = new Position(position.getRow(), position.getColumn() + 1);
+		if (isTileAt(pos)) {
+			point++;
+		}
+		pos = new Position(position.getRow(), position.getColumn() - 1);
+		if (isTileAt(pos)) {
+			point++;
+		}
+		
+		if (this.gameBoard.get(position).getShape() == Shape.PENTAGON) {
+			point++;
+			point++;
+		}
+		if (point>0) {
+			return point-1;
+		}else {
+			return 0;
+		}
+	}
+
 
 	private boolean verificationForTheEmplacemetOfTheTile(Position position, Tile tile) {
 		return (this.tileAt(position).getColor().equals(tile.getColor())

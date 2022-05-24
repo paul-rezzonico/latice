@@ -60,6 +60,17 @@ public class Player {
 	}
 		return rack;
 	}
+	
+	public List<Tile>changeRack(){
+		for (int i = 5; i>0; i--) {
+			if (rack.size()!=0) {
+				stack.add(rack.get(i-1));
+				rack.remove(i-1);
+			}
+		}
+		return rack;
+	}
+			
 }
 
 
