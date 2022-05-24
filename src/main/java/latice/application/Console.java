@@ -52,9 +52,9 @@ public class Console {
 	}
 	
 	public int choice() {
-		System.out.println("1:Jouer la pièce gratuite 2:Payer une action suplémentaire 3:Finir son tour");
+		System.out.println("1:Jouer une pièce 2:Payer une action suplémentaire 3:Changer son rack 4:Finir son tour");
 		System.out.println("Choix : ");
-		int val =ensureIntegerBetween(1,3);
+		int val =ensureIntegerBetween(1,4);
 		return val;
 	}
 	public void showBoard(Board board) {

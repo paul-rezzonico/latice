@@ -44,8 +44,10 @@ public class Game {
 		// Création des tas
 		List<Tile> rackJ1 = new ArrayList<>();
 		List<Tile> rackJ2 = new ArrayList<>();
-		Player player1 = new Player("Player1", rackJ1, stackJ1, 0);
-		Player player2 = new Player("Player2", rackJ2, stackJ2, 0);
+		Integer pointJ1 = 0;
+		Integer pointJ2 = 0;
+		Player player1 = new Player("Player1", rackJ1, stackJ1, pointJ1);
+		Player player2 = new Player("Player2", rackJ2, stackJ2, pointJ2);
 		player1.fillRack();
 		player2.fillRack();
 
@@ -55,7 +57,9 @@ public class Game {
 	}
 
 	private static void progress(Board board, Player player1, Player player2, Console console) {
-
+		
+		int pointJ1=player1.getPoint();
+		int pointJ2 = player2.getPoint();
 		int turn = 1;
 		boolean WellPut;
 		boolean endturn = true;
@@ -63,35 +67,52 @@ public class Game {
 
 		boolean PlayerTurn = random.nextBoolean();
 		while (notWin != true && turn != 11) {
-			int coupgratuit = 1;
+			int coup = 1;
 			if (PlayerTurn == true) {
 				endturn = true;
 				System.out.println("Au tour du joueur 1");
 				do {
 					console.showBoard(board);
+					System.out.println(player1.getRack().toString());
+					System.out.println("Point : "+player1.getPoint());
 					int choix1 = console.choice();
 					switch (choix1) {
 
 					case 1:
-						if (coupgratuit == 1) {
+						if (coup == 1) {
 							do {
 								Tile tile = console.tileChoice(player1.getRack());
 								Position position = console.positionChoice();
 								WellPut = board.put(position, tile, board);
 								if (!WellPut) {
 									System.out.println("Veuillez placer la pièce de manière convenable");
+								}else {
+									pointJ1=board.sumpoint(position, pointJ1 );
+									player1.setPoint(pointJ1);
+									player1.getRack().remove(tile);
 								}
 							} while (!WellPut);
-							coupgratuit = 0;
+							coup = 0;
 						} else {
 							System.out.println("Vous n'avez plus de coup gratuit");
 						}
 						break;
 
 					case 2:
-						// TODO payement
+						if (player1.getPoint()>=2) {
+							coup++;
+							player1.setPoint(pointJ1-2);
+							
+						}else {
+							System.out.println("Vous n'avez pas assez de point");
 
-					case 3:
+						}
+						break;
+						
+					case 3: 
+						player1.changeRack();
+						player1.fillRack();
+					case 4:
 
 						endturn = false;
 						PlayerTurn = false;
@@ -102,35 +123,51 @@ public class Game {
 
 					}
 				} while (endturn);
+				player1.fillRack();
 
 			} else {
 				System.out.println("Au tour du joueur 2");
 				endturn = true;
 				do {
 					console.showBoard(board);
+					System.out.println(player2.getRack().toString());
+					System.out.println("Point : "+player1.getPoint());
 					int choix2 = console.choice();
 					switch (choix2) {
 
 					case 1:
-						if (coupgratuit == 1) {
+						if (coup == 1) {
 							do {
 								Tile tile = console.tileChoice(player2.getRack());
 								Position position = console.positionChoice();
 								WellPut = board.put(position, tile, board);
 								if (!WellPut) {
 									System.out.println("Veuillez placer la pièce de manière convenable");
+								}else {
+									pointJ2=board.sumpoint(position, pointJ2 );
+									player2.setPoint(pointJ1);
+									player2.getRack().remove(tile);
 								}
 							} while (!WellPut);
-							coupgratuit = 0;
+							coup = 0;
 						} else {
 							System.out.println("Vous n'avez plus de coup gratuit");
 						}
 						break;
 
 					case 2:
-						// TODO payement
-
+						if (player2.getPoint()>=2) {
+							coup++;
+							player2.setPoint(pointJ2-2);
+							
+						}else {
+							System.out.println("Vous n'avez pas assez de point");
+						}
+						break;
 					case 3:
+						player2.changeRack();
+						player2.fillRack();
+					case 4:
 
 						endturn = false;
 						PlayerTurn = true;
@@ -142,6 +179,7 @@ public class Game {
 					}
 				} while (endturn);
 			}
+			player2.fillRack();
 		}
 	}
 }
