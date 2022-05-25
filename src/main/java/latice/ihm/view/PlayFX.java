@@ -17,6 +17,8 @@ public class PlayFX extends BorderPane {
 		
 		this.boardfx = new BoardFX(new Board());
 		this.setCenter(boardfx);
+		this.Rack1 = new rack
+		this.setBottom(Rack1);
 		
 	}
 }
