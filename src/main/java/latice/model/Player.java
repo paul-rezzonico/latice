@@ -37,7 +37,7 @@ public class Player {
 		this.point = point;
 	}
 	
-	public ArrayList<Tile> fillRack(){
+	public boolean fillRack(){
 		Collections.shuffle(stack);
 		for (int i = 0; i < 5; i++) {
 			if (this.rack.size()<5) {
@@ -46,17 +46,22 @@ public class Player {
 			}
 	 
 		}
-		return this.rack;
+		return true;
 	}
 	
-	public List<Tile>changeRack(){
-		for (int i = 5; i>0; i--) {
-			if (rack.size()!=0) {
-				stack.add(rack.get(i-1));
-				rack.remove(i-1);
+	public boolean changeRack() {
+		if (this.rack.size()==5) { 
+			for (int i = 5; i>0; i--) {
+			
+				System.out.println("dfsr");
+				if (this.rack.size()!=0) {
+					this.stack.add(rack.get(i-1));
+					this.rack.remove(i-1);
+				}
 			}
-		}
-		return rack;
+			return this.fillRack();
+		} 
+		return false;
 	}
 			
 }

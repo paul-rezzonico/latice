@@ -20,4 +20,10 @@ public class Box {
     public void setTile(Tile tile) {
         this.tile = tile;
     }
+
+	@Override
+	public String toString() {
+		return this.shape.getName();
+	}
+    
 }

@@ -68,7 +68,7 @@ public class Console {
 				} else if (board.boxAt(pos).getShape()!=Shape.EMPTY) {
 					str.append(board.boxAt(pos).toString());
 				} else {
-					str.append("         ");
+					str.append("        ");
 				}
 				str.append('|');
 			}

@@ -2,7 +2,6 @@ package latice.application;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import latice.model.Board;
@@ -38,6 +37,13 @@ public class Game {
 		this.board = new Board();
 	}
 
+	public static void main(String[] args) {
+		Game game = new Game();
+		
+		game.play();
+	}
+	
+	
 	private static ArrayList<Tile> tileCreation() {
 		ArrayList<Tile> tileList = new ArrayList<>();
 		for (Color color : Color.values()) {
@@ -59,23 +65,29 @@ public class Game {
 		return stack;	
 	}
 
-	private static void play(Game game) {
+	private void play() {
 		
-		int pointJ1=game.player1.getPoint();
-		int pointJ2 = game.player2.getPoint();
+		Console console = new Console();
+		
+		int pointJ1 = this.player1.getPoint();
+		int pointJ2 = this.player2.getPoint();
 		
 		int turn = 1;
 		boolean WellPut;
 		boolean PlayerTurn = turn();
+		boolean endturn;
 		
 		while (!Win && turn != 11) {
 			int coup = 1;
 			
 			if (PlayerTurn) {
+				System.out.println("Au tour du joueur 1");
+				endturn = false;
 			
 				do {
-					System.out.println(game.player1.getRack().toString());
-					System.out.println("Point : "+player1.getPoint());
+					console.showBoard(board);
+					System.out.println(this.player1.getRack().toString());
+					System.out.println("Point : " + player1.getPoint());
 					
 					int choix1 = console.choice();
 					switch (choix1) {
@@ -112,11 +124,13 @@ public class Game {
 						break;
 						
 					case 3: 
-						player1.changeRack();
-						player1.fillRack();
+						if(!player1.changeRack()) {
+							System.out.println("vous ne pouvez pas changer de rack après avoir jouer");
+							break;
+						}  
 					case 4:
 
-						endturn = false;
+						endturn = true;
 						PlayerTurn = false;
 						break;
 
@@ -124,12 +138,13 @@ public class Game {
 						System.out.println("Choix incorrect");
 
 					}
-				} while (endturn);
+				} while (!endturn);
 				player1.fillRack();
 
 			} else {
+				
 				System.out.println("Au tour du joueur 2");
-				endturn = true;
+				endturn = false;
 				do {
 					console.showBoard(board);
 					System.out.println(player2.getRack().toString());
@@ -167,11 +182,13 @@ public class Game {
 						}
 						break;
 					case 3:
-						player2.changeRack();
-						player2.fillRack();
+						if(!player2.changeRack()) {
+							System.out.println("vous ne pouvez pas changer de rack après avoir jouer");
+							break;
+						}
 					case 4:
 
-						endturn = false;
+						endturn = true;
 						PlayerTurn = true;
 						break;
 
@@ -179,7 +196,7 @@ public class Game {
 						System.out.println("Choix incorrect");
 
 					}
-				} while (endturn);
+				} while (!endturn);
 			}
 			player2.fillRack();
 		}
