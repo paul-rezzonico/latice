@@ -14,13 +14,31 @@ import latice.model.Tile;
 
 public class Game {
 	
-	static boolean notWin;
+	private static boolean Win = false;
+	private static Integer pointJ1 = 0;
+	private static Integer pointJ2 = 0;
+	private Board board;
+	private Player player1;
+	private Player player2;
 
-	public static void main(String[] args) {
+	public Game() {
 
-		Console console = new Console();
+		ArrayList<Tile> tileList = tileCreation();
 
-		// Création des tuiles
+		Collections.shuffle(tileList);
+		
+		ArrayList<Tile> stackJ1 = stackCreation(tileList);
+		ArrayList<Tile> stackJ2 = stackCreation(tileList);
+		
+		this.player1 = new Player("Player1", new ArrayList<Tile>(), stackJ1, pointJ1);
+		this.player2 = new Player("Player2", new ArrayList<Tile>(), stackJ2, pointJ2);
+		this.player1.fillRack();
+		this.player2.fillRack();
+
+		this.board = new Board();
+	}
+
+	private static ArrayList<Tile> tileCreation() {
 		ArrayList<Tile> tileList = new ArrayList<>();
 		for (Color color : Color.values()) {
 			for (Symbol symbol : Symbol.values()) {
@@ -28,53 +46,37 @@ public class Game {
 				tileList.add(new Tile(symbol, color));
 			}
 		}
-
-		// Mélange et séparation des tuiles
-		Collections.shuffle(tileList);
-		List<Tile> stackJ1 = new ArrayList<>();
-		List<Tile> stackJ2 = new ArrayList<>();
-		for (int i = 0; i < tileList.size(); i++) {
-			if (i < 36) {
-				stackJ1.add(tileList.get(i));
-			} else {
-				stackJ2.add(tileList.get(i));
-			}
+		return tileList;
+	}
+	
+	public static ArrayList<Tile> stackCreation(ArrayList<Tile> tileList) {
+		
+		ArrayList<Tile> stack = new ArrayList<>();
+		for (int i = 0; i < tileList.size()/2; i++) {
+			stack.add(tileList.get(i));
+			tileList.remove(i);
 		}
-
-		// Création des tas
-		List<Tile> rackJ1 = new ArrayList<>();
-		List<Tile> rackJ2 = new ArrayList<>();
-		Integer pointJ1 = 0;
-		Integer pointJ2 = 0;
-		Player player1 = new Player("Player1", rackJ1, stackJ1, pointJ1);
-		Player player2 = new Player("Player2", rackJ2, stackJ2, pointJ2);
-		player1.fillRack();
-		player2.fillRack();
-
-		Board board = new Board();
-
-		progress(board, player1, player2, console);
+		return stack;	
 	}
 
-	private static void progress(Board board, Player player1, Player player2, Console console) {
+	private static void play(Game game) {
 		
-		int pointJ1=player1.getPoint();
-		int pointJ2 = player2.getPoint();
+		int pointJ1=game.player1.getPoint();
+		int pointJ2 = game.player2.getPoint();
+		
 		int turn = 1;
 		boolean WellPut;
-		boolean endturn = true;
-		Random random = new Random();
-
-		boolean PlayerTurn = random.nextBoolean();
-		while (notWin != true && turn != 11) {
+		boolean PlayerTurn = turn();
+		
+		while (!Win && turn != 11) {
 			int coup = 1;
-			if (PlayerTurn == true) {
-				endturn = true;
-				System.out.println("Au tour du joueur 1");
+			
+			if (PlayerTurn) {
+			
 				do {
-					console.showBoard(board);
-					System.out.println(player1.getRack().toString());
+					System.out.println(game.player1.getRack().toString());
 					System.out.println("Point : "+player1.getPoint());
+					
 					int choix1 = console.choice();
 					switch (choix1) {
 
@@ -182,4 +184,35 @@ public class Game {
 			player2.fillRack();
 		}
 	}
+
+	private static boolean turn() {
+		Random random = new Random();
+		boolean PlayerTurn = random.nextBoolean();
+		return PlayerTurn;
+	}
+
+	public Board getBoard() {
+		return board;
+	}
+
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+
+	public Player getPlayer1() {
+		return player1;
+	}
+
+	public void setPlayer1(Player player1) {
+		this.player1 = player1;
+	}
+
+	public Player getPlayer2() {
+		return player2;
+	}
+
+	public void setPlayer2(Player player2) {
+		this.player2 = player2;
+	}
+	
 }

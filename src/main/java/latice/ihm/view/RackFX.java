@@ -14,7 +14,7 @@ public class RackFX extends VBox{
 	private List<Tile> rack; 
 	private ImageView image;
 	
-	public RackFX(List<Tile> list) {
+	public RackFX(ArrayList<Tile> list) {
 		this.rack = list;
 		
 		for (Tile tile : list) {

@@ -37,19 +37,18 @@ public class Board {
 		}
 	}
 
-	// Guetters
 	public Map<Position, Box> getGameBoard() {
-		return gameBoard;
+		return this.gameBoard;
 	}
 
-	// Méthode de jeu
+	
 	public boolean isTileAt(Position position) {
 		return (this.gameBoard.get(position).getTile() != null);
 	}
 
 	public boolean isEmpty() {
 		for (Map.Entry<Position, Box> mapentry : this.gameBoard.entrySet()) {
-			if (mapentry.getValue().getTile() != null)
+			if (isTileAt(mapentry.getKey()))
 				return false;
 		}
 		
@@ -72,34 +71,22 @@ public class Board {
 		}
 		
 		Position pos = new Position(position.getRow() - 1, position.getColumn());
-		if (gameBoard.containsKey(pos)) {
-			if (isTileAt(pos)) {
-				isTileNear = true;
-				if (!verificationForTheEmplacemetOfTheTile(pos, tile)) {
-					return false;
-				}
-			}
-		}
+		isTileNear = verifyIsTileNearbyHaveSameColorOrShape(tile, isTileNear, pos);
+		
 		pos = new Position(position.getRow() + 1, position.getColumn());
-		if (gameBoard.containsKey(pos)) {
-			if (isTileAt(pos)) {
-				isTileNear = true;
-				if (!verificationForTheEmplacemetOfTheTile(pos, tile)) {
-					return false;
-				}
-			}
-		}
+		isTileNear = verifyIsTileNearbyHaveSameColorOrShape(tile, isTileNear, pos);
+		
 		pos = new Position(position.getRow(), position.getColumn() + 1);
-		if (gameBoard.containsKey(pos)) {
-			if (isTileAt(pos)) {
-
-				isTileNear = true;
-				if (!verificationForTheEmplacemetOfTheTile(pos, tile)) {
-					return false;
-				}
-			}
-		}
+		isTileNear = verifyIsTileNearbyHaveSameColorOrShape(tile, isTileNear, pos);
+		
 		pos = new Position(position.getRow(), position.getColumn() - 1);
+		isTileNear = verifyIsTileNearbyHaveSameColorOrShape(tile, isTileNear, pos);
+		
+		return isTileNear;
+
+	}
+
+	private boolean verifyIsTileNearbyHaveSameColorOrShape(Tile tile, boolean isTileNear, Position pos) {
 		if (gameBoard.containsKey(pos)) {
 			if (isTileAt(pos)) {
 				isTileNear = true;
@@ -109,7 +96,6 @@ public class Board {
 			}
 		}
 		return isTileNear;
-
 	}
 	
 	public int sumpoint(Position position ,int point) {

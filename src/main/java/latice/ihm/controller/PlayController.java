@@ -26,7 +26,7 @@ public class PlayController implements EventHandler<MouseEvent>{
 	public void handle(MouseEvent event) {
 		this.menu.getSong().stop();
 		this.song.play();
-		this.primaryStage.getScene().setRoot(new PlayFX(null));
+		this.primaryStage.getScene().setRoot(new PlayFX(this.game));
 		
 	}
 }
