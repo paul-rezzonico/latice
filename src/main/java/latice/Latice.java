@@ -1,4 +1,4 @@
-package latice.ihm;
+package latice;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

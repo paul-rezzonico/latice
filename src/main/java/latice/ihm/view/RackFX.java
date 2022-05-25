@@ -1,9 +1,6 @@
 package latice.ihm.view;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -11,7 +8,7 @@ import latice.model.Tile;
 
 public class RackFX extends VBox{
 
-	private List<Tile> rack; 
+	private ArrayList<Tile> rack; 
 	private ImageView image;
 	
 	public RackFX(ArrayList<Tile> list) {

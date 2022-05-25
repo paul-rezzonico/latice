@@ -2,7 +2,6 @@ package latice.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class Player {
 	private final String name;
@@ -21,11 +20,11 @@ public class Player {
 		return name;
 	}
 
-	public List<Tile> getRack() {
+	public ArrayList<Tile> getRack() {
 		return rack;
 	}
 
-	public List<Tile> getStack() {
+	public ArrayList<Tile> getStack() {
 		return stack;
 	}
 
