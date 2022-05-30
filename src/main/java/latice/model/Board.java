@@ -55,18 +55,18 @@ public class Board {
 		return true;
 	}
 
-	public boolean put(Position position, Tile tile, Board board) {
-		if (!this.isTileAt(position) && verifTilesAround(position, tile, board)) {
+	public boolean put(Position position, Tile tile) {
+		if (!this.isTileAt(position) && verifTilesAround(position, tile)) {
 			this.gameBoard.get(position).setTile(tile);
 			return true;
 		}
 		return false;
 	}
 
-	public boolean verifTilesAround(Position position, Tile tile, Board board) {
+	public boolean verifTilesAround(Position position, Tile tile) {
 		boolean isTileNear = false;
 
-		if(board.isEmpty() && position.equals(new Position(5, 5))) {
+		if(this.isEmpty() && position.equals(new Position(5, 5))) {
 			return true; 
 		}
 		

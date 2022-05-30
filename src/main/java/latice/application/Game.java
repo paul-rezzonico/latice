@@ -22,6 +22,10 @@ public class Game {
 	private Player player1;
 	private Player player2;
 	private Stage primaryStage;
+	
+	private static boolean playerTurn;
+
+	private static Game instance;
 
 	public Game(Stage primaryStage) {
 
@@ -40,6 +44,8 @@ public class Game {
 		this.player2.fillRack();
 
 		this.board = new Board();
+		this.instance = this;
+		this.playerTurn = turn();
 	}	
 	
 	private static ArrayList<Tile> tileCreation() {
@@ -63,79 +69,43 @@ public class Game {
 		return stack;	
 	}
 
+	public static boolean getPlayerTurn() {
+		return playerTurn;
+	}
+
+	public static void setPlayerTurn(boolean playerTurn) {
+		Game.playerTurn = playerTurn;
+	}
+
 	public void play() {
 		
-		this.primaryStage.getScene().setRoot(new PlayFX(this));
+		PlayFX playFX = new PlayFX(this);
+		this.primaryStage.getScene().setRoot(playFX);
 		
 		int pointJ1 = this.player1.getPoint();
+		playFX.getLblPointJ1().setText("Point du joueur 1 : " + this.getPlayer1().getPoint());
 		int pointJ2 = this.player2.getPoint();
+		playFX.getLblPointJ2().setText("Point du joueur 2 : " + this.getPlayer2().getPoint());
 		
 		int turn = 1;
 		boolean WellPut;
-		boolean PlayerTurn = turn();
 		boolean endturn;
+		boolean win = false; 
 		
-		while (!Win && turn != 11) {
+		/*while (!win && turn != 11) {
 			int coup = 1;
 			
-			if (PlayerTurn) {
-				System.out.println("Au tour du joueur 1");
+			if (this.playerTurn) {
+				
+				//TODO afficher le bon rack du joueur 
 				endturn = false;
 			
 				do {
 					
 					System.out.println(this.player1.getRack().toString());
+					
 					System.out.println("Point : " + player1.getPoint());
 					
-					int choix1 = 0;
-					switch (choix1) {
-
-					case 1:
-						if (coup == 1) {
-							do {
-								Tile tile = console.tileChoice(player1.getRack());
-								Position position = console.positionChoice();
-								WellPut = board.put(position, tile, board);
-								if (!WellPut) {
-									System.out.println("Veuillez placer la pièce de manière convenable");
-								}else {
-									pointJ1=board.sumpoint(position, pointJ1 );
-									player1.setPoint(pointJ1);
-									player1.getRack().remove(tile);
-								}
-							} while (!WellPut);
-							coup = 0;
-						} else {
-							System.out.println("Vous n'avez plus de coup gratuit");
-						}
-						break;
-
-					case 2:
-						if (player1.getPoint()>=2) {
-							coup++;
-							player1.setPoint(pointJ1-2);
-							
-						}else {
-							System.out.println("Vous n'avez pas assez de point");
-
-						}
-						break;
-						
-					case 3: 
-						if(!player1.changeRack()) {
-							System.out.println("vous ne pouvez pas changer de rack après avoir jouer");
-							break;
-						}  
-					case 4:
-
-						endturn = true;
-						PlayerTurn = false;
-						break;
-
-					default:
-						System.out.println("Choix incorrect");
-
-					}
 				} while (!endturn);
 				player1.fillRack();
 
@@ -144,62 +114,21 @@ public class Game {
 				System.out.println("Au tour du joueur 2");
 				endturn = false;
 				do {
-					console.showBoard(board);
+					
 					System.out.println(player2.getRack().toString());
 					System.out.println("Point : "+player1.getPoint());
-					int choix2 = console.choice();
-					switch (choix2) {
 
-					case 1:
-						if (coup == 1) {
-							do {
-								Tile tile = console.tileChoice(player2.getRack());
-								Position position = console.positionChoice();
-								WellPut = board.put(position, tile, board);
-								if (!WellPut) {
-									System.out.println("Veuillez placer la pièce de manière convenable");
-								}else {
-									pointJ2=board.sumpoint(position, pointJ2 );
-									player2.setPoint(pointJ1);
-									player2.getRack().remove(tile);
-								}
-							} while (!WellPut);
-							coup = 0;
-						} else {
-							System.out.println("Vous n'avez plus de coup gratuit");
-						}
-						break;
-
-					case 2:
-						if (player2.getPoint()>=2) {
-							coup++;
-							player2.setPoint(pointJ2-2);
-							
-						}else {
-							System.out.println("Vous n'avez pas assez de point");
-						}
-						break;
-					case 3:
-						if(!player2.changeRack()) {
-							System.out.println("vous ne pouvez pas changer de rack après avoir jouer");
-							break;
-						}
-					case 4:
-
-						endturn = true;
-						PlayerTurn = true;
-						break;
-
-					default:
-						System.out.println("Choix incorrect");
-
-					}
+				
 				} while (!endturn);
 			}
 			player2.fillRack();
-		}
+		}*/
 	}
 
+	public static Game getInstance() {
+		return instance;
+	}
+	
 	private static boolean turn() {
 		Random random = new Random();
 		boolean PlayerTurn = random.nextBoolean();

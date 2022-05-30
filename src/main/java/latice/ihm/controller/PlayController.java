@@ -2,12 +2,10 @@ package latice.ihm.controller;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import latice.application.Game;
 import latice.ihm.view.MenuFX;
-import latice.ihm.view.PlayFX;
 
 public class PlayController implements EventHandler<MouseEvent>{
 
