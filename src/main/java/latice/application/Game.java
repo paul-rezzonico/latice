@@ -23,6 +23,7 @@ public class Game {
 	private Player player1;
 	private Player player2;
 	private Stage primaryStage;
+	private PlayFX playFX;
 	
 	private static boolean playerTurn;
 
@@ -80,13 +81,13 @@ public class Game {
 
 	public void play() {
 		
-		PlayFX playFX = new PlayFX(this);
+		this.playFX = new PlayFX();
 		this.primaryStage.getScene().setRoot(playFX);
 		
 		int pointJ1 = this.player1.getPoint();
-		playFX.getLblPointJ1().setText("Point du joueur 1 : " + this.getPlayer1().getPoint());
+		this.playFX.getLblPointJ1().setText("Point du joueur 1 : " + this.getPlayer1().getPoint());
 		int pointJ2 = this.player2.getPoint();
-		playFX.getLblPointJ2().setText("Point du joueur 2 : " + this.getPlayer2().getPoint());
+		this.playFX.getLblPointJ2().setText("Point du joueur 2 : " + this.getPlayer2().getPoint());
 		
 		int turn = 1;
 		boolean WellPut;

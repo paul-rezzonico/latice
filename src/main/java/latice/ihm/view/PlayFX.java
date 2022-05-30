@@ -23,9 +23,9 @@ public class PlayFX extends BorderPane {
 	
 	private AudioClip musique;
 	
-	public PlayFX(Game game) {
+	public PlayFX() {
 		
-		this.game = game;
+		Game game = Game.getInstance();
 		this.setCenter(new BoardFX(game.getBoard()));
 		
 		this.rackJ1 = new RackFX(game.getPlayer1().getRack());

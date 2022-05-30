@@ -14,6 +14,7 @@ import latice.application.Game;
 import latice.ihm.view.BoardFX;
 import latice.model.Board;
 import latice.model.Color;
+import latice.model.Player;
 import latice.model.Position;
 import latice.model.Symbol;
 import latice.model.Tile;
@@ -59,17 +60,20 @@ public class DnDController {
 
 				Game game = Game.getInstance();
 				
-				Tile tile = null;
 				Dragboard db = event.getDragboard();
 				Integer positionTile = Integer.parseInt(db.getString());
+				Player player = null;
 				
 				if(Game.getPlayerTurn()) {
-					tile = game.getPlayer1().getRack().get(positionTile);
+					player = game.getPlayer1();
 				} else {
-					tile = game.getPlayer2().getRack().get(positionTile);
+					player = game.getPlayer2();
 				}
 				
+				Tile tile = player.getRack().get(positionTile);
+				
 				if(game.getBoard().put(pos, tile)) {
+					player.setPoint(game.getBoard().sumpoint(pos, player.getPoint()));
 					ImageView img = ((ImageView)event.getGestureSource());			
 					target.getChildren().clear();
 					target.getChildren().add(img);
