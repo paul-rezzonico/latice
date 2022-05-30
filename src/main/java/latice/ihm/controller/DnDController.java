@@ -1,22 +1,17 @@
 package latice.ihm.controller;
 
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import latice.application.Game;
 import latice.ihm.view.BoardFX;
-import latice.model.Board;
-import latice.model.Color;
 import latice.model.Player;
 import latice.model.Position;
-import latice.model.Symbol;
 import latice.model.Tile;
 
 public class DnDController {
