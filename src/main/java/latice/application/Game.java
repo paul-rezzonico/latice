@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import javafx.stage.Stage;
+import latice.ihm.view.PlayFX;
 import latice.model.Board;
 import latice.model.Color;
 import latice.model.Player;
@@ -19,9 +21,12 @@ public class Game {
 	private Board board;
 	private Player player1;
 	private Player player2;
+	private Stage primaryStage;
 
-	public Game() {
+	public Game(Stage primaryStage) {
 
+		this.primaryStage = primaryStage;
+		
 		ArrayList<Tile> tileList = tileCreation();
 
 		Collections.shuffle(tileList);
@@ -35,14 +40,7 @@ public class Game {
 		this.player2.fillRack();
 
 		this.board = new Board();
-	}
-
-	public static void main(String[] args) {
-		Game game = new Game();
-		
-		game.play();
-	}
-	
+	}	
 	
 	private static ArrayList<Tile> tileCreation() {
 		ArrayList<Tile> tileList = new ArrayList<>();
@@ -65,9 +63,9 @@ public class Game {
 		return stack;	
 	}
 
-	private void play() {
+	public void play() {
 		
-		Console console = new Console();
+		this.primaryStage.getScene().setRoot(new PlayFX(this));
 		
 		int pointJ1 = this.player1.getPoint();
 		int pointJ2 = this.player2.getPoint();
@@ -85,11 +83,11 @@ public class Game {
 				endturn = false;
 			
 				do {
-					console.showBoard(board);
+					
 					System.out.println(this.player1.getRack().toString());
 					System.out.println("Point : " + player1.getPoint());
 					
-					int choix1 = console.choice();
+					int choix1 = 0;
 					switch (choix1) {
 
 					case 1:

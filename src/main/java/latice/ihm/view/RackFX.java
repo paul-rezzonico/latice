@@ -1,12 +1,14 @@
 package latice.ihm.view;
 
 import java.util.ArrayList;
+
+import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import latice.model.Tile;
 
-public class RackFX extends VBox{
+public class RackFX extends HBox{
 
 	private ArrayList<Tile> rack; 
 	private ImageView image;
@@ -22,7 +24,6 @@ public class RackFX extends VBox{
 			this.getChildren().add(image);
 			
 		}
-		
 	}
 	
 }

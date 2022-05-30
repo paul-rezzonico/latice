@@ -15,7 +15,7 @@ public class Latice extends Application {
 		MenuFX menu = new MenuFX(primaryStage);
 		Scene scene = new Scene(menu);
 		menu.getBtnExit().setOnMouseClicked(new ExitController());
-		menu.getBtnGame().setOnMouseClicked(new PlayController(menu));
+		menu.getBtnGame().setOnMouseClicked(new PlayController(primaryStage, menu));
 		
 		primaryStage.setScene(scene);
 		primaryStage.setFullScreen(true);
