@@ -6,6 +6,7 @@ import java.util.Random;
 
 import javafx.stage.Stage;
 import latice.ihm.view.PlayFX;
+import latice.ihm.view.RackFX;
 import latice.model.Board;
 import latice.model.Color;
 import latice.model.Player;
@@ -92,6 +93,8 @@ public class Game {
 		boolean endturn;
 		boolean win = false; 
 		
+		playFX.getRackJ1().setVisible(this.getPlayerTurn());
+		playFX.getRackJ2().setVisible(!this.getPlayerTurn());
 		/*while (!win && turn != 11) {
 			int coup = 1;
 			

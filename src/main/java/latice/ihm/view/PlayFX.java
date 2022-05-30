@@ -16,7 +16,9 @@ public class PlayFX extends BorderPane {
 	private Button btnSkip; 
 	private Label lblPointJ1;
 	private Label lblPointJ2;
-	private HBox rack;
+	private RackFX rackJ1;
+	private RackFX rackJ2;
+	private HBox hBrack;
 	private Game game;
 	
 	private AudioClip musique;
@@ -26,11 +28,13 @@ public class PlayFX extends BorderPane {
 		this.game = game;
 		this.setCenter(new BoardFX(game.getBoard()));
 		
-		this.rack =  new HBox(40);
-		this.rack.getChildren().addAll(new RackFX(game.getPlayer1().getRack()), new RackFX(game.getPlayer2().getRack()));
-		this.rack.setAlignment(Pos.CENTER);
-		this.rack.setMaxHeight(300);
-		this.setBottom(rack);
+		this.rackJ1 = new RackFX(game.getPlayer1().getRack());
+		this.rackJ2 = new RackFX(game.getPlayer2().getRack());
+		this.hBrack =  new HBox(40);
+		this.hBrack.getChildren().addAll(rackJ1, rackJ2);
+		this.hBrack.setAlignment(Pos.CENTER);
+		this.hBrack.setMaxHeight(300);
+		this.setBottom(hBrack);
 		
 		this.lblPointJ1 = new Label();
 		this.lblPointJ1.setMaxWidth(200);
@@ -81,14 +85,6 @@ public class PlayFX extends BorderPane {
 		this.lblPointJ2 = lblPointJ2;
 	}
 
-	public HBox getRack() {
-		return rack;
-	}
-
-	public void setRack(HBox rack) {
-		this.rack = rack;
-	}
-
 	public Game getGame() {
 		return game;
 	}
@@ -104,4 +100,29 @@ public class PlayFX extends BorderPane {
 	public void setMusique(AudioClip musique) {
 		this.musique = musique;
 	}
+
+	public RackFX getRackJ1() {
+		return rackJ1;
+	}
+
+	public void setRackJ1(RackFX rackJ1) {
+		this.rackJ1 = rackJ1;
+	}
+
+	public RackFX getRackJ2() {
+		return rackJ2;
+	}
+
+	public void setRackJ2(RackFX rackJ2) {
+		this.rackJ2 = rackJ2;
+	}
+
+	public HBox gethBrack() {
+		return hBrack;
+	}
+
+	public void sethBrack(HBox hBrack) {
+		this.hBrack = hBrack;
+	}
+	
 }
