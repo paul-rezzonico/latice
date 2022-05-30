@@ -2,7 +2,6 @@ package latice.application;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import latice.model.Board;
@@ -31,8 +30,8 @@ public class Game {
 
 		// Mélange et séparation des tuiles
 		Collections.shuffle(tileList);
-		List<Tile> stackJ1 = new ArrayList<>();
-		List<Tile> stackJ2 = new ArrayList<>();
+		ArrayList<Tile> stackJ1 = new ArrayList<>();
+		ArrayList<Tile> stackJ2 = new ArrayList<>();
 		for (int i = 0; i < tileList.size(); i++) {
 			if (i < 36) {
 				stackJ1.add(tileList.get(i));
@@ -42,8 +41,8 @@ public class Game {
 		}
 
 		// Création des tas
-		List<Tile> rackJ1 = new ArrayList<>();
-		List<Tile> rackJ2 = new ArrayList<>();
+		ArrayList<Tile> rackJ1 = new ArrayList<>();
+		ArrayList<Tile> rackJ2 = new ArrayList<>();
 		Integer pointJ1 = 0;
 		Integer pointJ2 = 0;
 		Player player1 = new Player("Player1", rackJ1, stackJ1, pointJ1);

@@ -2,7 +2,6 @@ package latice.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class Player {
 	private final String name;
@@ -22,11 +21,11 @@ public class Player {
 		return name;
 	}
 
-	public List<Tile> getRack() {
+	public ArrayList<Tile> getRack() {
 		return rack;
 	}
 
-	public List<Tile> getStack() {
+	public ArrayList<Tile> getStack() {
 		return stack;
 	}
 
@@ -38,7 +37,7 @@ public class Player {
 		this.point = point;
 	}
 	
-	public List<Tile>fillRack(){
+	public ArrayList<Tile>fillRack(){
 		Collections.shuffle(stack);
 		for (int i = 0; i < 5; i++) {
 			if (rack.size()<5) {
@@ -50,7 +49,7 @@ public class Player {
 		return rack;
 	}
 	
-	public List<Tile>changeRack(){
+	public ArrayList<Tile>changeRack(){
 		for (int i = 5; i>0; i--) {
 			if (rack.size()!=0) {
 				stack.add(rack.get(i-1));
