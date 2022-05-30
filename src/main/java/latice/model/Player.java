@@ -36,32 +36,28 @@ public class Player {
 		this.point = point;
 	}
 	
-	public boolean fillRack(){
+	public ArrayList<Tile>fillRack(){
 		Collections.shuffle(stack);
 		for (int i = 0; i < 5; i++) {
-			if (this.rack.size()<5) {
-				this.rack.add(stack.get(i));
-				this.stack.remove(i);
-			}
-	 
+			if (rack.size()<5) {
+			rack.add(stack.get(i));
+			stack.remove(i);
 		}
-		return true;
+	 
+	}
+		return rack;
 	}
 	
-	public boolean changeRack() {
-		if (this.rack.size()==5) { 
-			for (int i = 5; i>0; i--) {
-			
-				System.out.println("dfsr");
-				if (this.rack.size()!=0) {
-					this.stack.add(rack.get(i-1));
-					this.rack.remove(i-1);
-				}
+	public ArrayList<Tile>changeRack(){
+		for (int i = 5; i>0; i--) {
+			if (rack.size()!=0) {
+				stack.add(rack.get(i-1));
+				rack.remove(i-1);
 			}
-			return this.fillRack();
-		} 
-		return false;
+		}
+		return rack;
 	}
+
 			
 }
 
