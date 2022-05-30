@@ -59,8 +59,7 @@ public class Player {
 		}
 		return rack;
 	}
-
-			
+	
 }
 
 
