@@ -65,10 +65,8 @@ public class DnDController {
 				
 				if(Game.getPlayerTurn()) {
 					tile = game.getPlayer1().getRack().get(positionTile);
-					System.out.println("j1");
 				} else {
 					tile = game.getPlayer2().getRack().get(positionTile);
-					System.out.println("j2");
 				}
 				
 				if(game.getBoard().put(pos, tile)) {
