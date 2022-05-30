@@ -71,22 +71,34 @@ public class Board {
 		}
 		
 		Position pos = new Position(position.getRow() - 1, position.getColumn());
-		isTileNear = verifyIsTileNearbyHaveSameColorOrShape(tile, isTileNear, pos);
-		
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				isTileNear = true;
+				if (!verificationForTheEmplacemetOfTheTile(pos, tile)) {
+					return false;
+				}
+			}
+		}
 		pos = new Position(position.getRow() + 1, position.getColumn());
-		isTileNear = verifyIsTileNearbyHaveSameColorOrShape(tile, isTileNear, pos);
-		
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				isTileNear = true;
+				if (!verificationForTheEmplacemetOfTheTile(pos, tile)) {
+					return false;
+				}
+			}
+		}
 		pos = new Position(position.getRow(), position.getColumn() + 1);
-		isTileNear = verifyIsTileNearbyHaveSameColorOrShape(tile, isTileNear, pos);
-		
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+
+				isTileNear = true;
+				if (!verificationForTheEmplacemetOfTheTile(pos, tile)) {
+					return false;
+				}
+			}
+		}
 		pos = new Position(position.getRow(), position.getColumn() - 1);
-		isTileNear = verifyIsTileNearbyHaveSameColorOrShape(tile, isTileNear, pos);
-		
-		return isTileNear;
-
-	}
-
-	private boolean verifyIsTileNearbyHaveSameColorOrShape(Tile tile, boolean isTileNear, Position pos) {
 		if (gameBoard.containsKey(pos)) {
 			if (isTileAt(pos)) {
 				isTileNear = true;
@@ -96,7 +108,9 @@ public class Board {
 			}
 		}
 		return isTileNear;
+
 	}
+
 	
 	public int sumpoint(Position position ,int point) {
 		

@@ -19,12 +19,11 @@ class TestForBoard {
 	void shouldTakeATileInTheBoard() {
 		Board board = new Board();
 		Tile tile = new Tile(Symbol.RIAS, Color.RED);
-		Tile otherTile = new Tile(Symbol.RIAS, Color.RED);
 		board.put(new Position(5, 5), tile);
 		
 		Tile ti = board.tileAt(new Position(5, 5));
 		
-		assertThat(otherTile)
+		assertThat(tile)
 			.usingRecursiveComparison().isEqualTo(ti);
 	}
 	
