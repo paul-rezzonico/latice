@@ -77,7 +77,6 @@ public class Game {
 					System.out.println("Point : "+player1.getPoint());
 					int choix1 = console.choice();
 					switch (choix1) {
-
 					case 1:
 						if (coup == 1) {
 							do {
