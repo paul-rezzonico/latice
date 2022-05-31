@@ -1,8 +1,8 @@
 package latice.model;
 
 public class Tile {
-	private Symbol symbol;
-	private Color color;
+	private final Symbol symbol;
+	private final Color color;
 
 	public Tile(Symbol symbol, Color color) {
 		this.symbol = symbol;
@@ -13,16 +13,8 @@ public class Tile {
 		return symbol;
 	}
 
-	public void setSymbol(Symbol symbol) {
-		this.symbol = symbol;
-	}
-
 	public Color getColor() {
 		return color;
-	}
-
-	public void setColor(Color color) {
-		this.color = color;
 	}
 
 	@Override

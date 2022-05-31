@@ -113,7 +113,9 @@ public class Board {
 	}
 	
 	public int sumpoint(Position position ,int point) {
+		
 		Position pos = new Position(position.getRow() - 1, position.getColumn());
+		
 		if (isTileAt(pos)) {
 			point++;
 		}
