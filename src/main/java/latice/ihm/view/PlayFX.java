@@ -24,6 +24,7 @@ public class PlayFX extends BorderPane {
 	private HBox hBrack;
 	private Game game;
 	private Button btnEndTurn;
+	private Button btnChangeRack;
 	private VBox hbptsJ1;
 	private VBox hbptsJ2;
 	
@@ -54,8 +55,9 @@ public class PlayFX extends BorderPane {
 		this.lblPointJ1.setPadding(new Insets(20, 20, 20, 20));
 		
 		this.turn = new Label("Tour : " + game.getTurn());
+		this.btnChangeRack = new Button("Changer le rack");
 		
-		this.hbptsJ1.getChildren().addAll(lblPointJ1, tileInStackJ1, turn);
+		this.hbptsJ1.getChildren().addAll(lblPointJ1, tileInStackJ1, turn, btnChangeRack);
 		
 		this.hbptsJ2 = new VBox(10);
 		
@@ -184,6 +186,14 @@ public class PlayFX extends BorderPane {
 
 	public void setHbptsJ2(VBox hbptsJ2) {
 		this.hbptsJ2 = hbptsJ2;
+	}
+
+	public Button getBtnChangeRack() {
+		return btnChangeRack;
+	}
+
+	public void setBtnChangeRack(Button btnChangeRack) {
+		this.btnChangeRack = btnChangeRack;
 	}
 	
 }

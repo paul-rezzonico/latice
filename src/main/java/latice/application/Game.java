@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import latice.ihm.controller.ChangeRackController;
 import latice.ihm.controller.EndTurnController;
 import latice.ihm.view.PlayFX;
 import latice.model.Board;
@@ -53,6 +53,7 @@ public class Game {
 		this.playFX = new PlayFX();
 		this.primaryStage.getScene().setRoot(playFX);
 		this.playFX.getBtnEndTurn().setOnMouseClicked(new EndTurnController());
+		this.playFX.getBtnChangeRack().setOnMouseClicked(new ChangeRackController());
 		this.turnbegin();
 	}	
 	
