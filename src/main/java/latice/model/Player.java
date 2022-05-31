@@ -51,21 +51,27 @@ public class Player {
 	
 	public List<Tile>fillRack(){
 		Collections.shuffle(stack);
-		for (int i = 0; i < 5; i++) {
-			if (rack.size()<5) {
-			rack.add(stack.get(i));
-			stack.remove(i);
-		}
+		if(stack.size()>4) {
+			for (int i = 4-rack.size(); i >=0; i--) {
+		
+					rack.add(stack.get(i));
+					stack.remove(i);
 	 
-	}
-		return rack;
+			}
+		}else {
+			for(int j=stack.size()-1;j>=0 ; j--) {
+				rack.add(stack.get(j));
+				stack.remove(j);
+			}
+		}
+	return rack;
 	}
 	
-	public List<Tile>changeRack(){
-		for (int i = 5; i>0; i--) {
-			if (rack.size()!=0) {
-				stack.add(rack.get(i-1));
-				rack.remove(i-1);
+	public List<Tile>clearRack(){
+			for (int i = rack.size(); i>0; i--) {
+				if (rack.size()!=0) {
+					stack.add(rack.get(i-1));
+					rack.remove(i-1);
 			}
 		}
 		return rack;

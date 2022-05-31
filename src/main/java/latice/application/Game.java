@@ -110,8 +110,10 @@ public class Game {
 						break;
 						
 					case 3: 
-						player1.changeRack();
+						player1.clearRack();
 						player1.fillRack();
+						
+
 					case 4:
 
 						endturn = false;
@@ -165,7 +167,7 @@ public class Game {
 						}
 						break;
 					case 3:
-						player2.changeRack();
+						player2.clearRack();
 						player2.fillRack();
 					case 4:
 
