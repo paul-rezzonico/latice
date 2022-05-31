@@ -35,7 +35,7 @@ public class BoardFX extends GridPane{
 			this.boxImage.setFitWidth(80);
 			this.hBox.getChildren().add(boxImage);
 			this.add(hBox, entry.getKey().getColumn()-1, entry.getKey().getRow()-1);
-			this.setStyle("-fx-grid-lines-visible: true");
+			this.setStyle("-fx-grid-lines-visible: true;");
 			this.setAlignment(Pos.CENTER);
 
 		}

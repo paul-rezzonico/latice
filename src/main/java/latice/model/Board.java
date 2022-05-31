@@ -36,11 +36,6 @@ public class Board {
 
 		}
 	}
-
-	public Map<Position, Box> getGameBoard() {
-		return this.gameBoard;
-	}
-
 	
 	public boolean isTileAt(Position position) {
 		return (this.gameBoard.get(position).getTile() != null);
@@ -165,6 +160,10 @@ public class Board {
 
 	public Box boxAt(Position position) {
 		return (this.gameBoard.get(position));
+	}
+	
+	public Map<Position, Box> getGameBoard() {
+		return this.gameBoard;
 	}
 
 }

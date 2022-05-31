@@ -4,10 +4,18 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
+import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import latice.application.Game;
 
@@ -25,8 +33,10 @@ public class PlayFX extends BorderPane {
 	private Game game;
 	private Button btnEndTurn;
 	private Button btnChangeRack;
+	
 	private VBox hbptsJ1;
 	private VBox hbptsJ2;
+	private VBox vbBtn;
 	
 	private AudioClip musique;
 	
@@ -39,10 +49,20 @@ public class PlayFX extends BorderPane {
 		this.rackJ2 = new RackFX(game.getPlayer2().getRack());
 		this.hBrack =  new HBox(40);
 		
+		this.vbBtn = new VBox(15);
+		
+		this.btnChangeRack = new Button("Changer le rack");
+		this.btnChangeRack.setPrefWidth(150);
+		this.btnChangeRack.setAlignment(Pos.CENTER);
 		this.btnEndTurn = new Button("Finir le tour");
-		this.hBrack.getChildren().addAll(rackJ1, btnEndTurn, rackJ2);
+		this.btnEndTurn.setPrefWidth(150);
+		this.vbBtn.getChildren().addAll(btnEndTurn, btnChangeRack);
+		this.vbBtn.setAlignment(Pos.CENTER);
+		
+		this.hBrack.getChildren().addAll(rackJ1, vbBtn, rackJ2);
 		this.hBrack.setAlignment(Pos.CENTER);
 		this.hBrack.setMaxHeight(300);
+		this.hBrack.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, getInsets())));
 		this.setBottom(hBrack);
 		
 		this.hbptsJ1 = new VBox(10);
@@ -55,9 +75,8 @@ public class PlayFX extends BorderPane {
 		this.lblPointJ1.setPadding(new Insets(20, 20, 20, 20));
 		
 		this.turn = new Label("Tour : " + game.getTurn());
-		this.btnChangeRack = new Button("Changer le rack");
 		
-		this.hbptsJ1.getChildren().addAll(lblPointJ1, tileInStackJ1, turn, btnChangeRack);
+		this.hbptsJ1.getChildren().addAll(lblPointJ1, tileInStackJ1, turn);
 		
 		this.hbptsJ2 = new VBox(10);
 		
@@ -71,6 +90,11 @@ public class PlayFX extends BorderPane {
 		
 		this.setLeft(hbptsJ1);
 		this.setRight(hbptsJ2);
+		
+		BackgroundSize backgroundSize = new BackgroundSize(100, 100, false, false, false, true);
+		BackgroundImage bck  = new BackgroundImage(new Image("/Fond.png"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.CENTER, backgroundSize);
+		this.setBackground(new Background(bck));
 		
 	}
 
