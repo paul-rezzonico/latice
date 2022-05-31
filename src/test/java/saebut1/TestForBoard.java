@@ -85,9 +85,18 @@ class TestForBoard {
 		Player player = new Player("Player", rack, stack, 0);
 		player.clearRack();
 		assertThat(rack).hasSize(0);
-
 		
-		
-		
+	}
+	
+	@Test
+	void shouldPlaceATileInALine() {
+		Board board = new Board();
+		Tile tt = new Tile(Symbol.RIAS, Color.RED);
+		board.put(new Position(5, 5), tt, board);
+		board.put(new Position(6, 5), tt, board);
+		board.put(new Position(7, 5), tt, board);
+		board.put(new Position(8, 5), tt, board);
+		board.put(new Position(9, 5), tt, board);
+		assertTrue(board.isTileAt(new Position(9, 5)));
 	}
 }
