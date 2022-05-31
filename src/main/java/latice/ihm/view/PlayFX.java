@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.text.TextAlignment;
 import latice.application.Game;
@@ -15,11 +16,15 @@ public class PlayFX extends BorderPane {
 	private BoardFX boardfx;
 	private Label lblPointJ1;
 	private Label lblPointJ2;
+	private Label tileInStackJ1;
+	private Label tileInStackJ2;
 	private RackFX rackJ1;
 	private RackFX rackJ2;
 	private HBox hBrack;
 	private Game game;
 	private Button btnEndTurn;
+	private VBox hbptsJ1;
+	private VBox hbptsJ2;
 	
 	private AudioClip musique;
 	
@@ -38,20 +43,29 @@ public class PlayFX extends BorderPane {
 		this.hBrack.setMaxHeight(300);
 		this.setBottom(hBrack);
 		
-		this.lblPointJ1 = new Label();
+		this.hbptsJ1 = new VBox(10);
+		
+		this.tileInStackJ1 = new Label("Il reste : " + game.getPlayer1().getStack().size() + " tuile dans votre stack ");
+		this.lblPointJ1 = new Label("Vous avez actuellement " + game.getPlayer1().getPoint() + " points");
 		this.lblPointJ1.setMaxWidth(200);
 		this.lblPointJ1.setAlignment(Pos.CENTER);
 		this.lblPointJ1.setTextAlignment(TextAlignment.CENTER);
 		this.lblPointJ1.setPadding(new Insets(20, 20, 20, 20));
 		
-		this.lblPointJ2 = new Label();
+		this.hbptsJ1.getChildren().addAll(lblPointJ1, tileInStackJ1);
+		
+		this.hbptsJ2 = new VBox(10);
+		
+		this.tileInStackJ2 = new Label("Il reste : " + game.getPlayer2().getStack().size() + " tuile dans votre stack ");
+		this.lblPointJ2 = new Label("Vous avez actuellement " + game.getPlayer2().getPoint() + " points");
 		this.lblPointJ2.setMaxWidth(200);
 		this.lblPointJ2.setAlignment(Pos.CENTER);
 		this.lblPointJ2.setTextAlignment(TextAlignment.CENTER);
 		this.lblPointJ2.setPadding(new Insets(20, 20, 20, 20));
+		this.hbptsJ2.getChildren().addAll(lblPointJ2, tileInStackJ2);
 		
-		this.setLeft(lblPointJ1);
-		this.setRight(lblPointJ2);
+		this.setLeft(hbptsJ1);
+		this.setRight(hbptsJ2);
 		
 	}
 
@@ -125,6 +139,38 @@ public class PlayFX extends BorderPane {
 
 	public void sethBrack(HBox hBrack) {
 		this.hBrack = hBrack;
+	}
+
+	public Label getTileInStackJ1() {
+		return tileInStackJ1;
+	}
+
+	public void setTileInStackJ1(Label tileInStackJ1) {
+		this.tileInStackJ1 = tileInStackJ1;
+	}
+
+	public Label getTileInStackJ2() {
+		return tileInStackJ2;
+	}
+
+	public void setTileInStackJ2(Label tileInStackJ2) {
+		this.tileInStackJ2 = tileInStackJ2;
+	}
+
+	public VBox getHbptsJ1() {
+		return hbptsJ1;
+	}
+
+	public void setHbptsJ1(VBox hbptsJ1) {
+		this.hbptsJ1 = hbptsJ1;
+	}
+
+	public VBox getHbptsJ2() {
+		return hbptsJ2;
+	}
+
+	public void setHbptsJ2(VBox hbptsJ2) {
+		this.hbptsJ2 = hbptsJ2;
 	}
 	
 }

@@ -1,6 +1,7 @@
 package latice.ihm.controller;
 
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -10,6 +11,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import latice.application.Game;
 import latice.ihm.view.BoardFX;
+import latice.model.Box;
 import latice.model.Player;
 import latice.model.Position;
 import latice.model.Tile;
@@ -26,9 +28,10 @@ public class DnDController {
 			public void handle(MouseEvent event) {
 
 				Dragboard db = source.startDragAndDrop(TransferMode.ANY);
-				db.setDragView(source.getImage(), 0, 0);
+				db.setDragView(source.getImage());
 				ClipboardContent content = new ClipboardContent();
 				content.putString(positionTile.toString());
+				content.putImage(source.getImage());
 				db.setContent(content);
 
 				event.consume();
@@ -37,7 +40,7 @@ public class DnDController {
 		
 	}
 
-	public static void menageTargetDragAndDrop(HBox target, BoardFX boardFX, Position pos) {
+	public static void menageTargetDragAndDrop(ImageView target, Position pos) {
 
 		target.setOnDragOver(new EventHandler<DragEvent>() {
 
@@ -58,6 +61,7 @@ public class DnDController {
 				
 				Dragboard db = event.getDragboard();
 				Integer positionTile = Integer.parseInt(db.getString());
+				Image image = db.getImage();
 				Player player = null;
 				
 				if(game.getPlayerTurn()) {
@@ -68,14 +72,34 @@ public class DnDController {
 				
 				Tile tile = player.getRack().get(positionTile);
 				
-				if(game.getBoard().put(pos, tile)) {
-					player.setPoint(game.getBoard().sumpoint(pos, player.getPoint()));
-					ImageView img = ((ImageView)event.getGestureSource());			
-					target.getChildren().clear();
-					target.getChildren().add(img);
+				//if(player.getPtsFree() || player.getPoint() >= 2) {
+				Boolean ter = (game.getBoard().put(pos, tile));
+				System.out.println(ter);
+					if(ter) {
+						System.out.println(game.getBoard().isTileAt(pos));
+						player.getRack().set(positionTile, null);
+						
+						/*if(!player.getPtsFree()) {
+							player.setPoint(player.getPoint()-2);
+						} else {
+							player.setPtsFree(false);
+						}*/
+					
+						player.setPoint(game.getBoard().sumpoint(pos, player.getPoint()));
+						
+						if(game.getPlayerTurn()) {
+							game.getPlayFX().getLblPointJ1().setText("Vous avez actuellement " + game.getPlayer1().getPoint() + " points");
+						} else {
+							game.getPlayFX().getLblPointJ2().setText("Vous avez actuellement " + game.getPlayer2().getPoint() + " points");
+						}
+						
+						target.setImage(image);
+						ImageView img = ((ImageView)event.getGestureSource());
+						img.setImage(null);
+					}
 				}
 				
-			}
+			//}
 		});
 	}
 }

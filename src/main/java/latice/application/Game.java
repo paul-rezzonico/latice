@@ -7,11 +7,9 @@ import java.util.Random;
 import javafx.stage.Stage;
 import latice.ihm.controller.EndTurnController;
 import latice.ihm.view.PlayFX;
-import latice.ihm.view.RackFX;
 import latice.model.Board;
 import latice.model.Color;
 import latice.model.Player;
-import latice.model.Position;
 import latice.model.Symbol;
 import latice.model.Tile;
 
@@ -41,15 +39,32 @@ public class Game {
 		ArrayList<Tile> stackJ1 = stackCreation(tileList);
 		ArrayList<Tile> stackJ2 = stackCreation(tileList);
 		
-		this.player1 = new Player("Player1", new ArrayList<Tile>(), stackJ1, pointJ1);
-		this.player2 = new Player("Player2", new ArrayList<Tile>(), stackJ2, pointJ2);
+	
+		this.player1 = new Player("Player1", this.rackCreation(), stackJ1, pointJ1);
+		this.player2 = new Player("Player2", this.rackCreation(), stackJ2, pointJ2);
 		this.player1.fillRack();
 		this.player2.fillRack();
 
 		this.board = new Board();
 		this.instance = this;
+		
 		this.playerTurn = turn();
+		this.playFX = new PlayFX();
+		this.primaryStage.getScene().setRoot(playFX);
+		this.playFX.getBtnEndTurn().setOnMouseClicked(new EndTurnController());
+		this.turnbegin();
 	}	
+	
+	public ArrayList<Tile> rackCreation(){
+		ArrayList<Tile> rack = new ArrayList<Tile>();
+		rack.add(null);
+		rack.add(null);
+		rack.add(null);
+		rack.add(null);
+		rack.add(null);
+		return rack;
+		
+	}
 	
 	private ArrayList<Tile> tileCreation() {
 		ArrayList<Tile> tileList = new ArrayList<>();
@@ -65,9 +80,9 @@ public class Game {
 	public ArrayList<Tile> stackCreation(ArrayList<Tile> tileList) {
 		
 		ArrayList<Tile> stack = new ArrayList<>();
-		for (int i = 0; i < tileList.size()/2; i++) {
-			stack.add(tileList.get(i));
-			tileList.remove(i);
+		for (int i = 0; i < 36; i++) {
+			stack.add(tileList.get(0));
+			tileList.remove(0);
 		}
 		return stack;	
 	}
@@ -79,27 +94,42 @@ public class Game {
 	public void setPlayerTurn(boolean playerTurn) {
 		this.playerTurn = playerTurn;
 	}
-
-	public void play() {
-		
-		this.playFX = new PlayFX();
-		this.primaryStage.getScene().setRoot(playFX);
-		this.playFX.getBtnEndTurn().setOnMouseClicked(new EndTurnController());
-		this.playFX.getRackJ1().setVisible(this.getPlayerTurn());
-		this.playFX.getRackJ2().setVisible(!this.getPlayerTurn());
-		
-		//à faire chaque tour
-		this.playFX.getLblPointJ1().setText("Point du joueur 1 : " + this.getPlayer1().getPoint());
-		this.playFX.getLblPointJ2().setText("Point du joueur 2 : " + this.getPlayer2().getPoint());
-		
-	}
 	
+	public void turnbegin() {
+		
+		if(this.getPlayerTurn()) {
+			this.getPlayer1().setPtsFree(true);
+			this.playFX.getRackJ1().setVisible(true);
+			this.playFX.getRackJ2().setVisible(false);
+			this.playFX.getTileInStackJ1().setText("Il reste " + this.getPlayer1().getStack().size() + " tuile dans votre stack");
+		} else {
+			this.getPlayer2().setPtsFree(true);
+			this.playFX.getRackJ1().setVisible(false);
+			this.playFX.getRackJ2().setVisible(true);
+			this.playFX.getTileInStackJ2().setText("Il reste " + this.getPlayer2().getStack().size() + " tuile dans votre stack");
+		}
+	}
 	public void endTurn() {
 		
-		this.setPlayerTurn(!getPlayerTurn());
-		this.playFX.getRackJ1().setVisible(this.getPlayerTurn());
-		this.playFX.getRackJ2().setVisible(!this.getPlayerTurn());
+		if(this.getPlayerTurn()) {
+			this.getPlayer1().fillRack();
+			this.playFX.getRackJ1().fillRackFX(this.getPlayer1().getRack());
+		} else { 
+			this.getPlayer2().fillRack();
+			this.playFX.getRackJ2().fillRackFX(this.getPlayer2().getRack());
+		}
 		
+		this.setPlayerTurn(!this.getPlayerTurn());
+		this.turnbegin();
+		
+	}
+
+	public PlayFX getPlayFX() {
+		return playFX;
+	}
+
+	public void setPlayFX(PlayFX playFX) {
+		this.playFX = playFX;
 	}
 
 	public static Game getInstance() {

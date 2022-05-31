@@ -29,7 +29,7 @@ public class BoardFX extends GridPane{
 			}
 	
 			this.boxImage = new ImageView(new Image(getClass().getResourceAsStream(pictureURL)));
-			DnDController.menageTargetDragAndDrop(hBox,this, new Position(entry.getKey().getRow(), entry.getKey().getColumn()));
+			DnDController.menageTargetDragAndDrop(boxImage, new Position(entry.getKey().getRow(), entry.getKey().getColumn()));
 			
 			this.boxImage.setPreserveRatio(true);
 			this.boxImage.setFitWidth(80);

@@ -23,8 +23,7 @@ public class PlayController implements EventHandler<MouseEvent>{
 	public void handle(MouseEvent event) {
 		this.menu.getSong().stop();
 		this.song.play();
-		Game game = new Game(primaryStage);
-		game.play();
+		new Game(primaryStage);
 		
 	}
 }

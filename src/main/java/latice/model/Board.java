@@ -112,7 +112,7 @@ public class Board {
 	}
 
 	
-	public int sumpoint(Position position ,int point) {
+	public int sumpoint(Position position , int point) {
 		
 		Position pos = new Position(position.getRow() - 1, position.getColumn());
 		
@@ -136,6 +136,7 @@ public class Board {
 			point++;
 			point++;
 		}
+		
 		if (point>0) {
 			return point-1;
 		}else {

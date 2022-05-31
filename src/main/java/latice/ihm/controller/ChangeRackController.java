@@ -10,10 +10,11 @@ public class ChangeRackController implements EventHandler<MouseEvent>{
 	public void handle(MouseEvent event) {
 		Game game = Game.getInstance();
 		if(game.getPlayerTurn()) {
-			game.getPlayer1().changeRack();
+			game.getPlayer1().clearRack();
 		} else {
-			game.getPlayer2().changeRack();
+			game.getPlayer2().clearRack();
 		}
+		game.endTurn();
 		
 	}
 
