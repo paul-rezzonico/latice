@@ -26,6 +26,7 @@ public class DnDController {
 			public void handle(MouseEvent event) {
 
 				Dragboard db = source.startDragAndDrop(TransferMode.ANY);
+				db.setDragView(source.getImage(), 0, 0);
 				ClipboardContent content = new ClipboardContent();
 				content.putString(positionTile.toString());
 				db.setContent(content);
@@ -59,7 +60,7 @@ public class DnDController {
 				Integer positionTile = Integer.parseInt(db.getString());
 				Player player = null;
 				
-				if(Game.getPlayerTurn()) {
+				if(game.getPlayerTurn()) {
 					player = game.getPlayer1();
 				} else {
 					player = game.getPlayer2();

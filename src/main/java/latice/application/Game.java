@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import javafx.stage.Stage;
+import latice.ihm.controller.EndTurnController;
 import latice.ihm.view.PlayFX;
 import latice.ihm.view.RackFX;
 import latice.model.Board;
@@ -16,16 +17,16 @@ import latice.model.Tile;
 
 public class Game {
 	
-	private static boolean Win = false;
-	private static Integer pointJ1 = 0;
-	private static Integer pointJ2 = 0;
+	private Integer pointJ1 = 0;
+	private Integer pointJ2 = 0;
 	private Board board;
 	private Player player1;
 	private Player player2;
 	private Stage primaryStage;
 	private PlayFX playFX;
 	
-	private static boolean playerTurn;
+	private boolean playerTurn;
+	private Integer turn = 0; 
 
 	private static Game instance;
 
@@ -50,7 +51,7 @@ public class Game {
 		this.playerTurn = turn();
 	}	
 	
-	private static ArrayList<Tile> tileCreation() {
+	private ArrayList<Tile> tileCreation() {
 		ArrayList<Tile> tileList = new ArrayList<>();
 		for (Color color : Color.values()) {
 			for (Symbol symbol : Symbol.values()) {
@@ -61,7 +62,7 @@ public class Game {
 		return tileList;
 	}
 	
-	public static ArrayList<Tile> stackCreation(ArrayList<Tile> tileList) {
+	public ArrayList<Tile> stackCreation(ArrayList<Tile> tileList) {
 		
 		ArrayList<Tile> stack = new ArrayList<>();
 		for (int i = 0; i < tileList.size()/2; i++) {
@@ -71,69 +72,41 @@ public class Game {
 		return stack;	
 	}
 
-	public static boolean getPlayerTurn() {
+	public boolean getPlayerTurn() {
 		return playerTurn;
 	}
 
-	public static void setPlayerTurn(boolean playerTurn) {
-		Game.playerTurn = playerTurn;
+	public void setPlayerTurn(boolean playerTurn) {
+		this.playerTurn = playerTurn;
 	}
 
 	public void play() {
 		
 		this.playFX = new PlayFX();
 		this.primaryStage.getScene().setRoot(playFX);
+		this.playFX.getBtnEndTurn().setOnMouseClicked(new EndTurnController());
+		this.playFX.getRackJ1().setVisible(this.getPlayerTurn());
+		this.playFX.getRackJ2().setVisible(!this.getPlayerTurn());
 		
-		int pointJ1 = this.player1.getPoint();
+		//à faire chaque tour
 		this.playFX.getLblPointJ1().setText("Point du joueur 1 : " + this.getPlayer1().getPoint());
-		int pointJ2 = this.player2.getPoint();
 		this.playFX.getLblPointJ2().setText("Point du joueur 2 : " + this.getPlayer2().getPoint());
 		
-		int turn = 1;
-		boolean WellPut;
-		boolean endturn;
-		boolean win = false; 
+	}
+	
+	public void endTurn() {
 		
-		playFX.getRackJ1().setVisible(this.getPlayerTurn());
-		playFX.getRackJ2().setVisible(!this.getPlayerTurn());
-		/*while (!win && turn != 11) {
-			int coup = 1;
-			
-			if (this.playerTurn) {
-				
-				//TODO afficher le bon rack du joueur 
-				endturn = false;
-			
-				do {
-					
-					System.out.println(this.player1.getRack().toString());
-					
-					System.out.println("Point : " + player1.getPoint());
-					
-				} while (!endturn);
-				player1.fillRack();
-
-			} else {
-				
-				System.out.println("Au tour du joueur 2");
-				endturn = false;
-				do {
-					
-					System.out.println(player2.getRack().toString());
-					System.out.println("Point : "+player1.getPoint());
-
-				
-				} while (!endturn);
-			}
-			player2.fillRack();
-		}*/
+		this.setPlayerTurn(!getPlayerTurn());
+		this.playFX.getRackJ1().setVisible(this.getPlayerTurn());
+		this.playFX.getRackJ2().setVisible(!this.getPlayerTurn());
+		
 	}
 
 	public static Game getInstance() {
 		return instance;
 	}
 	
-	private static boolean turn() {
+	private boolean turn() {
 		Random random = new Random();
 		boolean PlayerTurn = random.nextBoolean();
 		return PlayerTurn;

@@ -13,13 +13,13 @@ import latice.application.Game;
 public class PlayFX extends BorderPane {
 
 	private BoardFX boardfx;
-	private Button btnSkip; 
 	private Label lblPointJ1;
 	private Label lblPointJ2;
 	private RackFX rackJ1;
 	private RackFX rackJ2;
 	private HBox hBrack;
 	private Game game;
+	private Button btnEndTurn;
 	
 	private AudioClip musique;
 	
@@ -31,7 +31,9 @@ public class PlayFX extends BorderPane {
 		this.rackJ1 = new RackFX(game.getPlayer1().getRack());
 		this.rackJ2 = new RackFX(game.getPlayer2().getRack());
 		this.hBrack =  new HBox(40);
-		this.hBrack.getChildren().addAll(rackJ1, rackJ2);
+		
+		this.btnEndTurn = new Button("Finir le tour");
+		this.hBrack.getChildren().addAll(rackJ1, btnEndTurn, rackJ2);
 		this.hBrack.setAlignment(Pos.CENTER);
 		this.hBrack.setMaxHeight(300);
 		this.setBottom(hBrack);
@@ -61,12 +63,12 @@ public class PlayFX extends BorderPane {
 		this.boardfx = boardfx;
 	}
 
-	public Button getBtnSkip() {
-		return btnSkip;
+	public Button getBtnEndTurn() {
+		return btnEndTurn;
 	}
 
-	public void setBtnSkip(Button btnSkip) {
-		this.btnSkip = btnSkip;
+	public void setBtnEndTurn(Button btnEndTurn) {
+		this.btnEndTurn = btnEndTurn;
 	}
 
 	public Label getLblPointJ1() {

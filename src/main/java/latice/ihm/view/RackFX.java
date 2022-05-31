@@ -18,7 +18,7 @@ public class RackFX extends HBox{
 
 		for (Tile tile : list) {
 	
-			this.image = new ImageView(new Image(getClass().getResourceAsStream("/tiles/" + tile.toString() + ".png")));
+			this.image = new ImageView(new Image(getClass().getResourceAsStream("/tiles/" + tile.toString() + ".png"), 50, 50, true, true));
 			this.image.setPreserveRatio(true);
 			this.image.setFitWidth(80);
 			DnDController.menageSourceDragAndDrop(image, i);
