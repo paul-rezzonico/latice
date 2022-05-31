@@ -18,6 +18,7 @@ public class PlayFX extends BorderPane {
 	private Label lblPointJ2;
 	private Label tileInStackJ1;
 	private Label tileInStackJ2;
+	private Label turn;
 	private RackFX rackJ1;
 	private RackFX rackJ2;
 	private HBox hBrack;
@@ -52,7 +53,9 @@ public class PlayFX extends BorderPane {
 		this.lblPointJ1.setTextAlignment(TextAlignment.CENTER);
 		this.lblPointJ1.setPadding(new Insets(20, 20, 20, 20));
 		
-		this.hbptsJ1.getChildren().addAll(lblPointJ1, tileInStackJ1);
+		this.turn = new Label("Tour : " + game.getTurn());
+		
+		this.hbptsJ1.getChildren().addAll(lblPointJ1, tileInStackJ1, turn);
 		
 		this.hbptsJ2 = new VBox(10);
 		
@@ -68,6 +71,16 @@ public class PlayFX extends BorderPane {
 		this.setRight(hbptsJ2);
 		
 	}
+
+	public Label getTurn() {
+		return turn;
+	}
+
+
+	public void setTurn(Label turn) {
+		this.turn = turn;
+	}
+
 
 	public BoardFX getBoardfx() {
 		return boardfx;

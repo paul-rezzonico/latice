@@ -56,9 +56,11 @@ public class Board {
 	}
 
 	public boolean put(Position position, Tile tile) {
-		if (!this.isTileAt(position) && verifTilesAround(position, tile)) {
-			this.gameBoard.get(position).setTile(tile);
-			return true;
+		if (gameBoard.containsKey(position)) {
+			if (!this.isTileAt(position) && verifTilesAround(position, tile)) {
+				this.gameBoard.get(position).setTile(tile);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -115,21 +117,28 @@ public class Board {
 	public int sumpoint(Position position , int point) {
 		
 		Position pos = new Position(position.getRow() - 1, position.getColumn());
-		
-		if (isTileAt(pos)) {
-			point++;
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				point++;
+			}
 		}
 		pos = new Position(position.getRow() + 1, position.getColumn());
-		if (isTileAt(pos)) {
-			point++;
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				point++;
+			}
 		}
 		pos = new Position(position.getRow(), position.getColumn() + 1);
-		if (isTileAt(pos)) {
-			point++;
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				point++;
+			}
 		}
 		pos = new Position(position.getRow(), position.getColumn() - 1);
-		if (isTileAt(pos)) {
-			point++;
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				point++;
+			}
 		}
 		
 		if (this.gameBoard.get(position).getShape() == Shape.PENTACLE) {
@@ -143,7 +152,6 @@ public class Board {
 			return 0;
 		}
 	}
-
 
 	private boolean verificationForTheEmplacemetOfTheTile(Position position, Tile tile) {
 		return (this.tileAt(position).getColor().equals(tile.getColor())

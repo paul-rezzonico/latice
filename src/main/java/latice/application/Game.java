@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import latice.ihm.controller.EndTurnController;
 import latice.ihm.view.PlayFX;
@@ -86,6 +87,14 @@ public class Game {
 		}
 		return stack;	
 	}
+	
+	public Integer getTurn() {
+		return turn;
+	}
+
+	public void setTurn(Integer turn) {
+		this.turn = turn;
+	}
 
 	public boolean getPlayerTurn() {
 		return playerTurn;
@@ -96,6 +105,9 @@ public class Game {
 	}
 	
 	public void turnbegin() {
+		
+		this.setTurn(this.getTurn() + 1);
+		this.playFX.getTurn().setText(("Tour : " + ((this.getTurn()/2) + 1)));
 		
 		if(this.getPlayerTurn()) {
 			this.getPlayer1().setPtsFree(true);
@@ -109,6 +121,7 @@ public class Game {
 			this.playFX.getTileInStackJ2().setText("Il reste " + this.getPlayer2().getStack().size() + " tuile dans votre stack");
 		}
 	}
+	
 	public void endTurn() {
 		
 		if(this.getPlayerTurn()) {

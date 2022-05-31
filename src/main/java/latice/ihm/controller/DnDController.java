@@ -8,10 +8,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.HBox;
 import latice.application.Game;
-import latice.ihm.view.BoardFX;
-import latice.model.Box;
 import latice.model.Player;
 import latice.model.Position;
 import latice.model.Tile;
@@ -72,19 +69,22 @@ public class DnDController {
 				
 				Tile tile = player.getRack().get(positionTile);
 				
-				//if(player.getPtsFree() || player.getPoint() >= 2) {
-				Boolean ter = (game.getBoard().put(pos, tile));
-				System.out.println(ter);
-					if(ter) {
-						System.out.println(game.getBoard().isTileAt(pos));
+				if(player.getPtsFree() || player.getPoint() >= 2) {
+					if((game.getBoard().put(pos, tile))) {
+						
 						player.getRack().set(positionTile, null);
 						
-						/*if(!player.getPtsFree()) {
+						target.setImage(image);
+						
+						ImageView img = ((ImageView)event.getGestureSource());
+						img.setImage(null);
+						
+						if(!player.getPtsFree()) {
 							player.setPoint(player.getPoint()-2);
 						} else {
 							player.setPtsFree(false);
-						}*/
-					
+						}
+				
 						player.setPoint(game.getBoard().sumpoint(pos, player.getPoint()));
 						
 						if(game.getPlayerTurn()) {
@@ -93,13 +93,10 @@ public class DnDController {
 							game.getPlayFX().getLblPointJ2().setText("Vous avez actuellement " + game.getPlayer2().getPoint() + " points");
 						}
 						
-						target.setImage(image);
-						ImageView img = ((ImageView)event.getGestureSource());
-						img.setImage(null);
 					}
 				}
 				
-			//}
+			}
 		});
 	}
 }
