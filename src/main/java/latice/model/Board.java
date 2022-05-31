@@ -141,16 +141,17 @@ public class Board {
 			}
 		}
 		
+		if (point>0 && point!=4) {
+			point = point-1;
+			
+		}
+		
 		if (this.gameBoard.get(position).getShape() == Shape.PENTACLE) {
 			point++;
 			point++;
 		}
 		
-		if (point>0) {
-			return point-1;
-		}else {
-			return 0;
-		}
+		return point;
 	}
 
 	private boolean verificationForTheEmplacemetOfTheTile(Position position, Tile tile) {

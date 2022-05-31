@@ -88,26 +88,16 @@ public class Game {
 		return stack;	
 	}
 	
-	public Integer getTurn() {
-		return turn;
-	}
-
-	public void setTurn(Integer turn) {
-		this.turn = turn;
-	}
-
-	public boolean getPlayerTurn() {
-		return playerTurn;
-	}
-
-	public void setPlayerTurn(boolean playerTurn) {
-		this.playerTurn = playerTurn;
+	private boolean turn() {
+		Random random = new Random();
+		boolean PlayerTurn = random.nextBoolean();
+		return PlayerTurn;
 	}
 	
 	public void turnbegin() {
 		
 		this.setTurn(this.getTurn() + 1);
-		this.playFX.getTurn().setText(("Tour : " + ((this.getTurn()/2) + 1)));
+		this.playFX.getTurn().setText(("Tour : " + (this.getTurn())));
 		
 		if(this.getPlayerTurn()) {
 			this.getPlayer1().setPtsFree(true);
@@ -136,6 +126,21 @@ public class Game {
 		this.turnbegin();
 		
 	}
+	public Integer getTurn() {
+		return turn;
+	}
+
+	public void setTurn(Integer turn) {
+		this.turn = turn;
+	}
+
+	public boolean getPlayerTurn() {
+		return playerTurn;
+	}
+
+	public void setPlayerTurn(boolean playerTurn) {
+		this.playerTurn = playerTurn;
+	}
 
 	public PlayFX getPlayFX() {
 		return playFX;
@@ -147,12 +152,6 @@ public class Game {
 
 	public static Game getInstance() {
 		return instance;
-	}
-	
-	private boolean turn() {
-		Random random = new Random();
-		boolean PlayerTurn = random.nextBoolean();
-		return PlayerTurn;
 	}
 
 	public Board getBoard() {

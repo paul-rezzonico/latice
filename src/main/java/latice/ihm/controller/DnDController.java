@@ -68,6 +68,7 @@ public class DnDController {
 				}
 				
 				Tile tile = player.getRack().get(positionTile);
+				boolean succes = false;
 				
 				if(player.getPtsFree() || player.getPoint() >= 2) {
 					if((game.getBoard().put(pos, tile))) {
@@ -93,8 +94,11 @@ public class DnDController {
 							game.getPlayFX().getLblPointJ2().setText("Vous avez actuellement " + game.getPlayer2().getPoint() + " points");
 						}
 						
+						succes = true;
+						
 					}
 				}
+				event.setDropCompleted(succes);
 				
 			}
 		});
