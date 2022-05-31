@@ -30,15 +30,14 @@ public class Player {
         }
     }
 
-    //TODO refaire methode
-    public void clearRack(){
-            for (int i = rack.size(); i>0; i--) {
-                if (rack.size()!=0) {
-                    stack.add(rack.get(i-1));
-                    rack.remove(i-1);
-            }
+    public void changeRack(){
+    	
+        for (int i = 0; i<this.rack.size(); i++) {
+        	if (this.rack.get(i)!= null){
+        		this.stack.add(this.rack.get(i));
+        		this.rack.set(i, null);
+        	}
         }
-
     }
 
 	public String getName() {
