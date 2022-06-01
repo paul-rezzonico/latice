@@ -12,7 +12,7 @@ public class Latice extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		MenuFX menu = new MenuFX(primaryStage);
+		MenuFX menu = new MenuFX();
 		Scene scene = new Scene(menu);
 		menu.getBtnExit().setOnMouseClicked(new ExitController());
 		menu.getBtnGame().setOnMouseClicked(new PlayController(primaryStage, menu));

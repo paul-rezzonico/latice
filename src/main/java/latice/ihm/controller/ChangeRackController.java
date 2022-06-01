@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
-import javafx.scene.text.Font;
 import latice.application.Game;
 
 public class ChangeRackController implements EventHandler<MouseEvent>{

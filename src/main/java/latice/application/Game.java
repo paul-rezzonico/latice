@@ -52,7 +52,7 @@ public class Game {
 		this.playerTurn = turn();
 		this.playFX = new PlayFX();
 		this.primaryStage.getScene().setRoot(playFX);
-		this.playFX.getBtnEndTurn().setOnMouseClicked(new EndTurnController());
+		this.playFX.getBtnEndTurn().setOnMouseClicked(new EndTurnController(this.primaryStage));
 		this.playFX.getBtnChangeRack().setOnMouseClicked(new ChangeRackController());
 		this.turnbegin();
 	}	
@@ -128,6 +128,22 @@ public class Game {
 		
 	}
 	
+	public boolean isATie() {
+		
+		if(this.getPlayer1().getRack().size() == this.getPlayer2().getRack().size()){
+			return true;
+		}
+		return false;
+	}
+	
+	public Player calculateWinner(){
+		
+		if(this.getPlayer1().getRack().size() < this.getPlayer2().getRack().size()) {
+			return player1;
+		} else { 
+			return player2;
+		}
+	}
 
 	public Integer getTurn() {
 		return turn;
@@ -147,10 +163,6 @@ public class Game {
 
 	public PlayFX getPlayFX() {
 		return playFX;
-	}
-
-	public void setPlayFX(PlayFX playFX) {
-		this.playFX = playFX;
 	}
 
 	public static Game getInstance() {

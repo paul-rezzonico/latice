@@ -18,7 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 
 public class MenuFX extends BorderPane {
 
@@ -35,7 +34,7 @@ public class MenuFX extends BorderPane {
 	private Random rdm = new Random();
 	private AudioClip song;
 
-	public MenuFX(Stage primaryStage) {
+	public MenuFX() {
 
 		this.title = new Label("Latice Game");
 		this.title.setFont(Font.font("System", FontWeight.BOLD, FontPosture.ITALIC, 60));
