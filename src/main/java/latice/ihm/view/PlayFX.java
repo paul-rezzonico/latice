@@ -1,5 +1,8 @@
 package latice.ihm.view;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -38,7 +41,7 @@ public class PlayFX extends BorderPane {
 	private VBox hbptsJ2;
 	private VBox vbBtn;
 	
-	private AudioClip musique;
+	private AudioClip song;
 	
 	public PlayFX() {
 		
@@ -97,6 +100,34 @@ public class PlayFX extends BorderPane {
 				BackgroundPosition.CENTER, backgroundSize);
 		this.setBackground(new Background(bck));
 		
+		this.song = listOfSong();
+		this.song.play(0.1);
+		
+	}
+	
+	public AudioClip listOfSong() {
+		
+		ArrayList<AudioClip> audioList = new ArrayList<AudioClip>();
+		audioList.add(new AudioClip(getClass().getResource("/music/AmbianceMusic1.mp3").toExternalForm()));
+		audioList.add(new AudioClip(getClass().getResource("/music/AmbianceMusic2.mp3").toExternalForm()));
+		
+		int nb = new Random().nextInt(2);
+		
+		AudioClip clip = audioList.get(nb);
+		clip.setCycleCount(AudioClip.INDEFINITE);
+		return clip;
+	}
+
+	public VBox getVbBtn() {
+		return vbBtn;
+	}
+
+	public AudioClip getSong() {
+		return song;
+	}
+
+	public void setSong(AudioClip song) {
+		this.song = song;
 	}
 
 	public Label getTurn() {
@@ -147,14 +178,6 @@ public class PlayFX extends BorderPane {
 
 	public void setGame(Game game) {
 		this.game = game;
-	}
-
-	public AudioClip getMusique() {
-		return musique;
-	}
-
-	public void setMusique(AudioClip musique) {
-		this.musique = musique;
 	}
 
 	public RackFX getRackJ1() {
