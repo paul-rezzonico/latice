@@ -25,7 +25,7 @@ public class DnDController {
 			public void handle(MouseEvent event) {
 
 				Dragboard db = source.startDragAndDrop(TransferMode.ANY);
-				db.setDragView(source.getImage());
+				db.setDragView(source.getImage(), 40, 40);
 				ClipboardContent content = new ClipboardContent();
 				content.putString(positionTile.toString());
 				content.putImage(source.getImage());

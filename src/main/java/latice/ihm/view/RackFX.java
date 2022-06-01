@@ -41,7 +41,7 @@ public class RackFX extends HBox{
 			} else {
 				url = "/tiles/Vide.png";
 			};
-			this.image = new ImageView(new Image(getClass().getResourceAsStream(url), 50, 50, true, true));
+			this.image = new ImageView(new Image(getClass().getResourceAsStream(url)));
 			this.image.setPreserveRatio(true);
 			this.image.setFitWidth(80);
 			DnDController.menageSourceDragAndDrop(image, i);
