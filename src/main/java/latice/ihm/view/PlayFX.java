@@ -56,6 +56,7 @@ public class PlayFX extends BorderPane {
 		this.btnChangeRack.setAlignment(Pos.CENTER);
 		this.btnEndTurn = new Button("Finir le tour");
 		this.btnEndTurn.setPrefWidth(150);
+		this.btnEndTurn.setAlignment(Pos.CENTER);
 		this.vbBtn.getChildren().addAll(btnEndTurn, btnChangeRack);
 		this.vbBtn.setAlignment(Pos.CENTER);
 		

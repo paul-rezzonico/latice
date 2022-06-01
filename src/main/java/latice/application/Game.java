@@ -104,12 +104,10 @@ public class Game {
 			this.getPlayer1().setPtsFree(true);
 			this.playFX.getRackJ1().setVisible(true);
 			this.playFX.getRackJ2().setVisible(false);
-			this.playFX.getTileInStackJ1().setText("Il reste " + this.getPlayer1().getStack().size() + " tuile dans votre stack");
 		} else {
 			this.getPlayer2().setPtsFree(true);
 			this.playFX.getRackJ1().setVisible(false);
 			this.playFX.getRackJ2().setVisible(true);
-			this.playFX.getTileInStackJ2().setText("Il reste " + this.getPlayer2().getStack().size() + " tuile dans votre stack");
 		}
 	}
 	
@@ -118,15 +116,19 @@ public class Game {
 		if(this.getPlayerTurn()) {
 			this.getPlayer1().fillRack();
 			this.playFX.getRackJ1().fillRackFX(this.getPlayer1().getRack());
+			this.playFX.getTileInStackJ1().setText("Il reste " + this.getPlayer1().getStack().size() + " tuile dans votre stack");
 		} else { 
 			this.getPlayer2().fillRack();
 			this.playFX.getRackJ2().fillRackFX(this.getPlayer2().getRack());
+			this.playFX.getTileInStackJ2().setText("Il reste " + this.getPlayer2().getStack().size() + " tuile dans votre stack");
 		}
 		
 		this.setPlayerTurn(!this.getPlayerTurn());
 		this.turnbegin();
 		
 	}
+	
+
 	public Integer getTurn() {
 		return turn;
 	}
