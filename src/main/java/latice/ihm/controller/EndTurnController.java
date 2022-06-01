@@ -27,14 +27,14 @@ public class EndTurnController implements EventHandler<MouseEvent>{
 			if(game.isATie()) {
 				victorie = "It's a Tie ";
 			} else {
-				victorie = game.calculateWinner().getName();
+				victorie = game.calculateWinner().getName() + " à gagné, bravo !";
 			}
 			
 			//TODO personnalisé la fenetre ?
 			Alert dialog = new Alert(AlertType.INFORMATION);
 			dialog.setTitle("Fin de partie !");
 			dialog.setHeaderText("La partie est fini !");
-			dialog.setContentText(" todo ");
+			dialog.setContentText(victorie);
 			dialog.initOwner(((Node)event.getSource()).getScene().getWindow() );
 			//dialog.setGraphic(img);
 			dialog.showAndWait();
