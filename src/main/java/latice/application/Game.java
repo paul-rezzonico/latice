@@ -139,7 +139,7 @@ public class Game {
 	
 	public boolean isATie() {
 		
-		if(this.getPlayer1().getStack().size() == this.getPlayer2().getStack().size()){
+		if(this.getPlayer1().getStack().size() + this.getPlayer1().sizeRack() == this.getPlayer2().getStack().size() + this.getPlayer2().sizeRack()){
 			return true;
 		}
 		return false;
@@ -147,7 +147,7 @@ public class Game {
 	
 	public Player calculateWinner(){
 		
-		if(this.getPlayer1().getStack().size() < this.getPlayer2().getStack().size()) {
+		if(this.getPlayer1().getStack().size() + this.getPlayer1().sizeRack()  < this.getPlayer2().getStack().size() + this.getPlayer2().sizeRack()) {
 			return player1;
 		} else { 
 			return player2;

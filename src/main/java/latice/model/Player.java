@@ -17,6 +17,17 @@ public class Player {
 		this.point = point;
 	}
 	
+	public int sizeRack() {
+		int size = 0;
+		for (int i = 0; i < this.rack.size(); i++) {
+			
+			if(this.rack.get(i) != null) {
+				size ++;
+			}
+		}
+		return size;
+	}
+	
     public void fillRack() {
         
     	Collections.shuffle(this.stack);
