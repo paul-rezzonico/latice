@@ -42,8 +42,8 @@ public class Game {
 		ArrayList<Tile> stackJ2 = stackCreation(tileList);
 		
 	
-		this.player1 = new Player("Player1", this.rackCreation(), stackJ1, pointJ1);
-		this.player2 = new Player("Player2", this.rackCreation(), stackJ2, pointJ2);
+		this.player1 = new Player("Player1", stackJ1, pointJ1);
+		this.player2 = new Player("Player2", stackJ2, pointJ2);
 		this.player1.fillRack();
 		this.player2.fillRack();
 
@@ -57,17 +57,6 @@ public class Game {
 		this.playFX.getBtnChangeRack().setOnMouseClicked(new ChangeRackController());
 		this.turnbegin();
 	}	
-	
-	public ArrayList<Tile> rackCreation(){
-		ArrayList<Tile> rack = new ArrayList<Tile>();
-		rack.add(null);
-		rack.add(null);
-		rack.add(null);
-		rack.add(null);
-		rack.add(null);
-		return rack;
-		
-	}
 	
 	private ArrayList<Tile> tileCreation() {
 		ArrayList<Tile> tileList = new ArrayList<>();

@@ -48,41 +48,7 @@ class TestForBoard {
 		assertTrue(board.isEmpty());
 	}
 	
-	@Test
-	void shouldFillRackWhenRackIsEmpty() {
-		
-		ArrayList<Tile> stack = new ArrayList<>();
-		stack.add(new Tile(Symbol.RIAS, Color.RED));
-		stack.add(new Tile(Symbol.AKENO, Color.BLUE));
-		stack.add(new Tile(Symbol.KONEKO, Color.YELLOW));
-		stack.add(new Tile(Symbol.ASIA, Color.GREEN));
-		stack.add(new Tile(Symbol.XENOVIA, Color.PINK));
-		stack.add(new Tile(Symbol.IRINA, Color.GREY));
-		
-		ArrayList<Tile> rack = rackCreation();
-		
-		Player player = new Player("Player", rack, stack, 0);
-		
-		player.fillRack();
-		
-		assertThat(rack).hasSize(5);
-	}
-	
 	//TODO test sur le rack 
-	
-	@Test
-	void shouldClearRack() {
-		ArrayList<Tile> stack = new ArrayList<>();
-		ArrayList<Tile> rack = new ArrayList<>();
-		rack.add(new Tile(Symbol.RIAS, Color.RED));
-		rack.add(new Tile(Symbol.AKENO, Color.BLUE));
-		rack.add(new Tile(Symbol.KONEKO, Color.YELLOW));
-
-		Player player = new Player("Player", rack, stack, 0);
-		player.clearRack();
-		assertThat(rack).hasSize(0);
-		
-	}
 	
 	@Test
 	void shouldPlaceATileInALine() {

@@ -10,9 +10,17 @@ public class Player {
 	private Integer point;
 	private Boolean ptsFree;
 	
-	public Player(String name, ArrayList<Tile> rack, ArrayList<Tile> stack, Integer point) {
+	public Player(String name, ArrayList<Tile> stack, Integer point) {
+		
 		this.name = name;
-		this.rack = rack;
+		
+		this.rack = new ArrayList<Tile>();
+		rack.add(null);
+		rack.add(null);
+		rack.add(null);
+		rack.add(null);
+		rack.add(null);
+		
 		this.stack = stack;
 		this.point = point;
 	}
