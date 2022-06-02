@@ -10,65 +10,74 @@ import org.junit.jupiter.api.Test;
 
 import latice.model.Board;
 import latice.model.Color;
-import latice.model.Player;
 import latice.model.Position;
 import latice.model.Symbol;
 import latice.model.Tile;
 
-
 class TestForBoard {
+
+	@Test
+	void ShouldVerifyIfTheBoardIsEmpty() {
+		Board board = new Board();
+
+		assertTrue(board.isEmpty());
+	}
 	
+	@Test 
+	void ShouldVerifyIfTheBoardIsNotEmpty() {
+		Board board = new Board();
+		board.put(new Position(5, 5), new Tile(Symbol.RIAS, Color.RED));
+		
+		assertFalse(board.isEmpty());
+	
+	}
+
 	@Test
 	void shouldTakeATileInTheBoard() {
 		Board board = new Board();
 		Tile tile = new Tile(Symbol.RIAS, Color.RED);
-		Tile otherTile = new Tile(Symbol.RIAS, Color.RED);
 		board.put(new Position(5, 5), tile);
-		
+
 		Tile ti = board.tileAt(new Position(5, 5));
+
+		assertThat(tile).usingRecursiveComparison().isEqualTo(ti);
+	}
+	
+	//TODO test is tiles at and tile at method 
+	
+	@Test
+	void shouldNotTakeATileInTheBoardIfPositionAlreadyOccuped() {
 		
-		assertThat(otherTile)
-			.usingRecursiveComparison().isEqualTo(ti);
+		Board board = new Board();
+		Tile tile = new Tile(Symbol.RIAS, Color.RED);
+		Tile tileTwo = new Tile(Symbol.IRINA, Color.GREEN);
+		
+		Boolean firstTileWellPut = board.put(new Position(5, 5), tile);
+		Boolean secondTileWellPut = board.put(new Position(5, 5), tileTwo);
+
+		assertTrue(firstTileWellPut);
+		assertFalse(secondTileWellPut);
+		
 	}
 	
 	@Test
-	void shouldCreateAGameBoardWithThePosition() {
+	void shouldNotPutATileIfNotPutInTheCenterAtFirst() {
+		
 		Board board = new Board();
-		Position pos = new Position(1, 5);
+		Tile tile = new Tile(Symbol.RIAS, Color.RED);
 		
-		boolean var = board.getGameBoard().containsKey(pos);
+		Boolean tilePutNotCenter = board.put(new Position(4, 5), tile);
+		Boolean tilePutCenter = board.put(new Position(5, 5), tile);
 		
-		assertTrue(var);
+		assertFalse(tilePutNotCenter);
+		assertTrue(tilePutCenter);
+		
 	}
 	
-	@Test
-	void ShouldSeeIfTheBoardIsEmpty() {
-		Board board = new Board();
-		
-		assertTrue(board.isEmpty());
-	}
 	
-	//TODO test sur le rack 
+	//TODO faire tout les test avec tuiles a cotée 
+	//@Test
+	//void should
 	
-	@Test
-	void shouldPlaceATileInALine() {
-		Board board = new Board();
-		Tile tt = new Tile(Symbol.RIAS, Color.RED);
-		board.put(new Position(5, 5), tt);
-		board.put(new Position(6, 5), tt);
-		board.put(new Position(7, 5), tt);
-		board.put(new Position(8, 5), tt);
-		board.put(new Position(9, 5), tt);
-		assertTrue(board.isTileAt(new Position(9, 5)));
-	}
-		
-	private ArrayList<Tile> rackCreation() {
-		ArrayList<Tile> rack = new ArrayList<>();
-		rack.add(null);
-		rack.add(null);
-		rack.add(null);
-		rack.add(null);
-		rack.add(null);
-		return rack;
-	}
+	//TODO faire tout les test pour calcul des points
 }
