@@ -141,7 +141,6 @@ class TestForPlayer {
 	@Test
 	void shouldLeftEmptyTheSTackAfterFillRAckIfRackIsEmpty() {
 		
-		
 	}
 	private ArrayList<Tile> createASTackWithFiveTile() {
 		ArrayList<Tile> stack = new ArrayList<>();

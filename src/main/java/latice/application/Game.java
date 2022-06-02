@@ -42,8 +42,8 @@ public class Game {
 		ArrayList<Tile> stackJ2 = stackCreation(tileList);
 		
 	
-		this.player1 = new Player("Player1", stackJ1, pointJ1);
-		this.player2 = new Player("Player2", stackJ2, pointJ2);
+		this.player1 = new Player("Joueur 1", stackJ1, pointJ1);
+		this.player2 = new Player("Joueur 2", stackJ2, pointJ2);
 		this.player1.fillRack();
 		this.player2.fillRack();
 
@@ -81,8 +81,7 @@ public class Game {
 	
 	private boolean turn() {
 		Random random = new Random();
-		boolean PlayerTurn = random.nextBoolean();
-		return PlayerTurn;
+		return random.nextBoolean();
 	}
 	
 	public void turnbegin() {
@@ -128,10 +127,8 @@ public class Game {
 	
 	public boolean isATie() {
 		
-		if(this.getPlayer1().getStack().size() + this.getPlayer1().sizeRack() == this.getPlayer2().getStack().size() + this.getPlayer2().sizeRack()){
-			return true;
-		}
-		return false;
+		return (this.getPlayer1().getStack().size() + this.getPlayer1().sizeRack() == this.getPlayer2().getStack().size() + this.getPlayer2().sizeRack());
+			
 	}
 	
 	public Player calculateWinner(){

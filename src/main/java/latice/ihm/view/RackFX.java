@@ -15,7 +15,6 @@ import latice.model.Tile;
 public class RackFX extends HBox{
 
 	private ImageView image;
-	private int i;
 	
 	public RackFX(ArrayList<Tile> list) {
 		
@@ -28,11 +27,11 @@ public class RackFX extends HBox{
 	
 	public void fillRackFX(ArrayList<Tile> rack) {
 		
-		i = 0;
+		int i = 0;
 
 		this.getChildren().clear();
 		
-		String url = " ";
+		String url;
 		
 		for (Tile tile : rack) {
 			
@@ -40,7 +39,7 @@ public class RackFX extends HBox{
 				url = "/tiles/" + tile.toString() + ".png";
 			} else {
 				url = "/tiles/Vide.png";
-			};
+			}
 			this.image = new ImageView(new Image(getClass().getResourceAsStream(url)));
 			this.image.setPreserveRatio(true);
 			this.image.setFitWidth(80);
