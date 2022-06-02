@@ -19,84 +19,67 @@ import latice.model.Tile;
 class TestForBoard {
 	
 
+	@Test
+	void ShouldVerifyIfTheBoardIsEmpty() {
+		Board board = new Board();
+
+		assertTrue(board.isEmpty());
+	}
 	
+	@Test 
+	void ShouldVerifyIfTheBoardIsNotEmpty() {
+		Board board = new Board();
+		board.put(new Position(5, 5), new Tile(Symbol.RIAS, Color.RED));
+		
+		assertFalse(board.isEmpty());
+	
+	}
 
 	@Test
 	void shouldTakeATileInTheBoard() {
 		Board board = new Board();
 		Tile tile = new Tile(Symbol.RIAS, Color.RED);
-		Tile otherTile = new Tile(Symbol.RIAS, Color.RED);
-		board.put(new Position(5, 5), tile, board);
-		
-		Tile ti = board.tileAt(new Position(5, 5));
-		
-		assertThat(otherTile)
-			.usingRecursiveComparison().isEqualTo(ti);
-	}
-	
-	@Test
-	void shouldtest() {
-		Board board = new Board();
-		Position pos = new Position(1, 5);
-		boolean var = board.getGameBoard().containsKey(pos);
-		assertTrue(var);
-	}
-	
-	@Test
-	void shouldFillRackWhenStackSizeMoreThan5() {
-		ArrayList<Tile> stack = new ArrayList<>();
-		stack.add(new Tile(Symbol.RIAS, Color.RED));
-		stack.add(new Tile(Symbol.AKENO, Color.BLUE));
-		stack.add(new Tile(Symbol.KONEKO, Color.YELLOW));
-		stack.add(new Tile(Symbol.ASIA, Color.GREEN));
-		stack.add(new Tile(Symbol.XENOVIA, Color.PINK));
-		stack.add(new Tile(Symbol.IRINA, Color.GREY));
-		
-		ArrayList<Tile> rack = new ArrayList<>();
-		Player player = new Player("Player", rack, stack, 0);
-		
-		player.fillRack();
-		
-		assertThat(rack).hasSize(5);
-	}
-	
-	@Test
-	void shouldFillRackWhenStackSizeLessThan5() {
-		ArrayList<Tile> stack = new ArrayList<>();
-		stack.add(new Tile(Symbol.RIAS, Color.RED));
-		stack.add(new Tile(Symbol.AKENO, Color.BLUE));
-		stack.add(new Tile(Symbol.KONEKO, Color.YELLOW));
-		
-		ArrayList<Tile> rack = new ArrayList<>();
-		Player player = new Player("Player", rack, stack, 0);
-		
-		player.fillRack();
-		
-		assertThat(rack).hasSize(3);
-	}
-	@Test
-	void shouldClearRack() {
-		ArrayList<Tile> stack = new ArrayList<>();
-		ArrayList<Tile> rack = new ArrayList<>();
-		rack.add(new Tile(Symbol.RIAS, Color.RED));
-		rack.add(new Tile(Symbol.AKENO, Color.BLUE));
-		rack.add(new Tile(Symbol.KONEKO, Color.YELLOW));
+		board.put(new Position(5, 5), tile);
 
-		Player player = new Player("Player", rack, stack, 0);
-		player.clearRack();
-		assertThat(rack).hasSize(0);
+		Tile ti = board.tileAt(new Position(5, 5));
+
+		assertThat(tile).usingRecursiveComparison().isEqualTo(ti);
+	}
+	
+	//TODO test is tiles at and tile at method 
+	
+	@Test
+	void shouldNotTakeATileInTheBoardIfPositionAlreadyOccuped() {
+		
+		Board board = new Board();
+		Tile tile = new Tile(Symbol.RIAS, Color.RED);
+		Tile tileTwo = new Tile(Symbol.IRINA, Color.GREEN);
+		
+		Boolean firstTileWellPut = board.put(new Position(5, 5), tile);
+		Boolean secondTileWellPut = board.put(new Position(5, 5), tileTwo);
+
+		assertTrue(firstTileWellPut);
+		assertFalse(secondTileWellPut);
 		
 	}
 	
 	@Test
-	void shouldPlaceATileInALine() {
+	void shouldNotPutATileIfNotPutInTheCenterAtFirst() {
+		
 		Board board = new Board();
-		Tile tt = new Tile(Symbol.RIAS, Color.RED);
-		board.put(new Position(5, 5), tt, board);
-		board.put(new Position(6, 5), tt, board);
-		board.put(new Position(7, 5), tt, board);
-		board.put(new Position(8, 5), tt, board);
-		board.put(new Position(9, 5), tt, board);
-		assertTrue(board.isTileAt(new Position(9, 5)));
+		Tile tile = new Tile(Symbol.RIAS, Color.RED);
+		
+		Boolean tilePutNotCenter = board.put(new Position(4, 5), tile);
+		Boolean tilePutCenter = board.put(new Position(5, 5), tile);
+		
+		assertFalse(tilePutNotCenter);
+		assertTrue(tilePutCenter);
+		
 	}
+	
+	//TODO faire tout les test avec tuiles a cotée 
+	//@Test
+	//void should
+	
+	//TODO faire tout les test pour calcul des points
 }

@@ -4,22 +4,61 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import javafx.scene.media.AudioClip;
+import javafx.stage.Stage;
+import latice.ihm.controller.ChangeRackController;
+import latice.ihm.controller.EndTurnController;
+import latice.ihm.view.PlayFX;
 import latice.model.Board;
 import latice.model.Color;
 import latice.model.Player;
-import latice.model.Position;
 import latice.model.Symbol;
 import latice.model.Tile;
 
 public class Game {
 	
-	static boolean notWin;
+	private Integer pointJ1 = 0;
+	private Integer pointJ2 = 0;
+	private Board board;
+	private Player player1;
+	private Player player2;
+	private Stage primaryStage;
+	private PlayFX playFX;
+	
+	private boolean playerTurn;
+	private Integer turn = 0; 
 
-	public static void main(String[] args) {
+	private static Game instance;
 
-		Console console = new Console();
+	public Game(Stage primaryStage) {
 
-		// Création des tuiles
+		this.primaryStage = primaryStage;
+		
+		ArrayList<Tile> tileList = tileCreation();
+
+		Collections.shuffle(tileList);
+		
+		ArrayList<Tile> stackJ1 = stackCreation(tileList);
+		ArrayList<Tile> stackJ2 = stackCreation(tileList);
+		
+	
+		this.player1 = new Player("Player1", stackJ1, pointJ1);
+		this.player2 = new Player("Player2", stackJ2, pointJ2);
+		this.player1.fillRack();
+		this.player2.fillRack();
+
+		this.board = new Board();
+		this.instance = this;
+		
+		this.playerTurn = turn();
+		this.playFX = new PlayFX();
+		this.primaryStage.getScene().setRoot(playFX);
+		this.playFX.getBtnEndTurn().setOnMouseClicked(new EndTurnController(this.primaryStage));
+		this.playFX.getBtnChangeRack().setOnMouseClicked(new ChangeRackController());
+		this.turnbegin();
+	}	
+	
+	private ArrayList<Tile> tileCreation() {
 		ArrayList<Tile> tileList = new ArrayList<>();
 		for (Color color : Color.values()) {
 			for (Symbol symbol : Symbol.values()) {
@@ -27,159 +66,129 @@ public class Game {
 				tileList.add(new Tile(symbol, color));
 			}
 		}
-
-		// Mélange et séparation des tuiles
-		Collections.shuffle(tileList);
-		ArrayList<Tile> stackJ1 = new ArrayList<>();
-		ArrayList<Tile> stackJ2 = new ArrayList<>();
-		for (int i = 0; i < tileList.size(); i++) {
-			if (i < 36) {
-				stackJ1.add(tileList.get(i));
-			} else {
-				stackJ2.add(tileList.get(i));
-			}
-		}
-
-		// Création des tas
-		ArrayList<Tile> rackJ1 = new ArrayList<>();
-		ArrayList<Tile> rackJ2 = new ArrayList<>();
-		Integer pointJ1 = 0;
-		Integer pointJ2 = 0;
-		Player player1 = new Player("Player1", rackJ1, stackJ1, pointJ1);
-		Player player2 = new Player("Player2", rackJ2, stackJ2, pointJ2);
-		player1.fillRack();
-		player2.fillRack();
-
-		Board board = new Board();
-
-		progress(board, player1, player2, console);
+		return tileList;
 	}
-
-	private static void progress(Board board, Player player1, Player player2, Console console) {
+	
+	public ArrayList<Tile> stackCreation(ArrayList<Tile> tileList) {
 		
-		int pointJ1=player1.getPoint();
-		int pointJ2 = player2.getPoint();
-		int turn = 1;
-		boolean WellPut;
-		boolean endturn = true;
+		ArrayList<Tile> stack = new ArrayList<>();
+		for (int i = 0; i < 36; i++) {
+			stack.add(tileList.get(0));
+			tileList.remove(0);
+		}
+		return stack;	
+	}
+	
+	private boolean turn() {
 		Random random = new Random();
-
 		boolean PlayerTurn = random.nextBoolean();
-		while (notWin != true && turn != 11) {
-			int coup = 1;
-			if (PlayerTurn == true) {
-				endturn = true;
-				System.out.println("Au tour du joueur 1");
-				do {
-					console.showBoard(board);
-					System.out.println(player1.getRack().toString());
-					System.out.println("Point : "+player1.getPoint());
-					int choix1 = console.choice();
-					switch (choix1) {
-					case 1:
-						if (coup == 1) {
-							do {
-								Tile tile = console.tileChoice(player1.getRack());
-								Position position = console.positionChoice();
-								WellPut = board.put(position, tile, board);
-								if (!WellPut) {
-									System.out.println("Veuillez placer la pièce de manière convenable");
-								}else {
-									pointJ1=board.sumpoint(position, pointJ1 );
-									player1.setPoint(pointJ1);
-									player1.getRack().remove(tile);
-								}
-							} while (!WellPut);
-							coup = 0;
-						} else {
-							System.out.println("Vous n'avez plus de coup gratuit");
-						}
-						break;
-
-					case 2:
-						if (player1.getPoint()>=2) {
-							coup++;
-							player1.setPoint(pointJ1-2);
-							
-						}else {
-							System.out.println("Vous n'avez pas assez de point");
-
-						}
-						break;
-						
-					case 3: 
-						player1.clearRack();
-						player1.fillRack();
-						
-
-					case 4:
-
-						endturn = false;
-						PlayerTurn = false;
-						break;
-
-					default:
-						System.out.println("Choix incorrect");
-
-					}
-				} while (endturn);
-				player1.fillRack();
-
-			} else {
-				System.out.println("Au tour du joueur 2");
-				endturn = true;
-				do {
-					console.showBoard(board);
-					System.out.println(player2.getRack().toString());
-					System.out.println("Point : "+player1.getPoint());
-					int choix2 = console.choice();
-					switch (choix2) {
-
-					case 1:
-						if (coup == 1) {
-							do {
-								Tile tile = console.tileChoice(player2.getRack());
-								Position position = console.positionChoice();
-								WellPut = board.put(position, tile, board);
-								if (!WellPut) {
-									System.out.println("Veuillez placer la pièce de manière convenable");
-								}else {
-									pointJ2=board.sumpoint(position, pointJ2 );
-									player2.setPoint(pointJ1);
-									player2.getRack().remove(tile);
-								}
-							} while (!WellPut);
-							coup = 0;
-						} else {
-							System.out.println("Vous n'avez plus de coup gratuit");
-						}
-						break;
-
-					case 2:
-						if (player2.getPoint()>=2) {
-							coup++;
-							player2.setPoint(pointJ2-2);
-							
-						}else {
-							System.out.println("Vous n'avez pas assez de point");
-						}
-						break;
-					case 3:
-						player2.clearRack();
-						player2.fillRack();
-					case 4:
-
-						endturn = false;
-						PlayerTurn = true;
-						break;
-
-					default:
-						System.out.println("Choix incorrect");
-
-					}
-				} while (endturn);
-			}
-			player2.fillRack();
+		return PlayerTurn;
+	}
+	
+	public void turnbegin() {
+		
+		this.setTurn(this.getTurn() + 1);
+		this.playFX.getTurn().setText(("Tour : " + (this.getTurn())));
+		
+		if(this.getPlayerTurn()) {
+			this.getPlayer1().setPtsFree(true);
+			this.playFX.getRackJ1().setVisible(true);
+			this.playFX.getRackJ2().setVisible(false);
+		} else {
+			this.getPlayer2().setPtsFree(true);
+			this.playFX.getRackJ1().setVisible(false);
+			this.playFX.getRackJ2().setVisible(true);
 		}
 	}
+	
+	public void endTurn() {
+		
+		if(this.getPlayerTurn()) {
+			this.getPlayer1().fillRack();
+			this.playFX.getRackJ1().fillRackFX(this.getPlayer1().getRack());
+			this.playFX.getTileInStackJ1().setText(this.getPlayer1().getName() + " Il reste " + this.getPlayer1().getStack().size() + " tuile dans votre stack");
+		} else { 
+			this.getPlayer2().fillRack();
+			this.playFX.getRackJ2().fillRackFX(this.getPlayer2().getRack());
+			this.playFX.getTileInStackJ2().setText(this.getPlayer2().getName() +" Il reste " + this.getPlayer2().getStack().size() + " tuile dans votre stack");
+		}
+		
+		this.setPlayerTurn(!this.getPlayerTurn());
+		
+		if(this.getTurn() == 15) {
+			this.getPlayFX().getSong().stop();
+			this.getPlayFX().setSong(new AudioClip(getClass().getResource("/music/Time.mp3").toExternalForm()));
+			this.getPlayFX().getSong().setCycleCount(AudioClip.INDEFINITE);
+			this.getPlayFX().getSong().play();
+		}
+		
+		this.turnbegin();
+		
+	}
+	
+	public boolean isATie() {
+		
+		if(this.getPlayer1().getStack().size() + this.getPlayer1().sizeRack() == this.getPlayer2().getStack().size() + this.getPlayer2().sizeRack()){
+			return true;
+		}
+		return false;
+	}
+	
+	public Player calculateWinner(){
+		
+		if(this.getPlayer1().getStack().size() + this.getPlayer1().sizeRack()  < this.getPlayer2().getStack().size() + this.getPlayer2().sizeRack()) {
+			return player1;
+		} else { 
+			return player2;
+		}
+	}
+
+	public Integer getTurn() {
+		return turn;
+	}
+
+	public void setTurn(Integer turn) {
+		this.turn = turn;
+	}
+
+	public boolean getPlayerTurn() {
+		return playerTurn;
+	}
+
+	public void setPlayerTurn(boolean playerTurn) {
+		this.playerTurn = playerTurn;
+	}
+
+	public PlayFX getPlayFX() {
+		return playFX;
+	}
+
+	public static Game getInstance() {
+		return instance;
+	}
+
+	public Board getBoard() {
+		return board;
+	}
+
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+
+	public Player getPlayer1() {
+		return player1;
+	}
+
+	public void setPlayer1(Player player1) {
+		this.player1 = player1;
+	}
+
+	public Player getPlayer2() {
+		return player2;
+	}
+
+	public void setPlayer2(Player player2) {
+		this.player2 = player2;
+	}
+	
 }

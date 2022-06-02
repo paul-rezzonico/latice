@@ -8,14 +8,56 @@ public class Player {
 	private final ArrayList<Tile> rack;
 	private final ArrayList<Tile> stack;
 	private Integer point;
+	private Boolean ptsFree;
 	
-	public Player(String name, ArrayList<Tile> rack, ArrayList<Tile> stack, Integer point) {
-		super();
+	public Player(String name, ArrayList<Tile> stack, Integer point) {
+		
 		this.name = name;
-		this.rack = rack;
+		
+		this.rack = new ArrayList<Tile>();
+		rack.add(null);
+		rack.add(null);
+		rack.add(null);
+		rack.add(null);
+		rack.add(null);
+		
 		this.stack = stack;
 		this.point = point;
 	}
+	
+	public int sizeRack() {
+		int size = 0;
+		for (int i = 0; i < this.rack.size(); i++) {
+			
+			if(this.rack.get(i) != null) {
+				size ++;
+			}
+		}
+		return size;
+	}
+	
+    public void fillRack() {
+        
+    	Collections.shuffle(this.stack);
+    	
+        for (int i = 0; i<rack.size(); i++) {
+        	
+        	if(this.rack.get(i) == null && this.stack.size()>0) {
+        		this.rack.set(i, this.stack.get(0));
+        		this.stack.remove(0);
+        	}  
+        }
+    }
+
+    public void clearRack(){
+    	
+        for (int i = 0; i<this.rack.size(); i++) {
+        	if (this.rack.get(i)!= null){
+        		this.stack.add(this.rack.get(i));
+        		this.rack.set(i, null);
+        	}
+        }
+    }
 
 	public String getName() {
 		return name;
@@ -36,35 +78,14 @@ public class Player {
 	public void setPoint(Integer point) {
 		this.point = point;
 	}
-	
-	
-    public ArrayList<Tile>fillRack(){
-        Collections.shuffle(stack);
-        if(stack.size()>4) {
-            for (int i = 4-rack.size(); i >=0; i--) {
 
-                    rack.add(stack.get(i));
-                    stack.remove(i);
+	public Boolean getPtsFree() {
+		return ptsFree;
+	}
 
-            }
-        }else {
-            for(int j=stack.size()-1;j>=0 ; j--) {
-                rack.add(stack.get(j));
-                stack.remove(j);
-            }
-        }
-    return rack;
-    }
-
-    public ArrayList<Tile>clearRack(){
-            for (int i = rack.size(); i>0; i--) {
-                if (rack.size()!=0) {
-                    stack.add(rack.get(i-1));
-                    rack.remove(i-1);
-            }
-        }
-        return rack;
-    }
+	public void setPtsFree(Boolean ptsFree) {
+		this.ptsFree = ptsFree;
+	}
 
 }
 	

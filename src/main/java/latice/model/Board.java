@@ -36,38 +36,34 @@ public class Board {
 
 		}
 	}
-
-	// Guetters
-	public Map<Position, Box> getGameBoard() {
-		return gameBoard;
-	}
-
-	// Méthode de jeu
+	
 	public boolean isTileAt(Position position) {
 		return (this.gameBoard.get(position).getTile() != null);
 	}
 
 	public boolean isEmpty() {
 		for (Map.Entry<Position, Box> mapentry : this.gameBoard.entrySet()) {
-			if (mapentry.getValue().getTile() != null)
+			if (isTileAt(mapentry.getKey()))
 				return false;
 		}
 		
 		return true;
 	}
 
-	public boolean put(Position position, Tile tile, Board board) {
-		if (!this.isTileAt(position) && verifTilesAround(position, tile, board)) {
-			this.gameBoard.get(position).setTile(tile);
-			return true;
+	public boolean put(Position position, Tile tile) {
+		if (gameBoard.containsKey(position)) {
+			if (!this.isTileAt(position) && verifTilesAround(position, tile)) {
+				this.gameBoard.get(position).setTile(tile);
+				return true;
+			}
 		}
 		return false;
 	}
 
-	public boolean verifTilesAround(Position position, Tile tile, Board board) {
+	public boolean verifTilesAround(Position position, Tile tile) {
 		boolean isTileNear = false;
 
-		if(board.isEmpty() && position.equals(new Position(5, 5))) {
+		if(this.isEmpty() && position.equals(new Position(5, 5))) {
 			return true; 
 		}
 		
@@ -111,38 +107,47 @@ public class Board {
 		return isTileNear;
 
 	}
+
 	
-	public int sumpoint(Position position ,int point) {
+	public int sumpoint(Position position , int point) {
 		
 		Position pos = new Position(position.getRow() - 1, position.getColumn());
-		
-		if (isTileAt(pos)) {
-			point++;
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				point++;
+			}
 		}
 		pos = new Position(position.getRow() + 1, position.getColumn());
-		if (isTileAt(pos)) {
-			point++;
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				point++;
+			}
 		}
 		pos = new Position(position.getRow(), position.getColumn() + 1);
-		if (isTileAt(pos)) {
-			point++;
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				point++;
+			}
 		}
 		pos = new Position(position.getRow(), position.getColumn() - 1);
-		if (isTileAt(pos)) {
-			point++;
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				point++;
+			}
+		}
+		
+		if (point>0 && point!=4) {
+			point = point-1;
+			
 		}
 		
 		if (this.gameBoard.get(position).getShape() == Shape.PENTACLE) {
 			point++;
 			point++;
 		}
-		if (point>0) {
-			return point-1;
-		}else {
-			return 0;
-		}
+		
+		return point;
 	}
-
 
 	private boolean verificationForTheEmplacemetOfTheTile(Position position, Tile tile) {
 		return (this.tileAt(position).getColor().equals(tile.getColor())
@@ -155,6 +160,10 @@ public class Board {
 
 	public Box boxAt(Position position) {
 		return (this.gameBoard.get(position));
+	}
+	
+	public Map<Position, Box> getGameBoard() {
+		return this.gameBoard;
 	}
 
 }
