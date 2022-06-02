@@ -71,7 +71,7 @@ public class DnDController {
 				boolean succes = false;
 				
 				if(player.getPtsFree() || player.getPoint() >= 2) {
-					if((game.getBoard().put(pos, tile))) {
+					if(game.getBoard().put(pos, tile)) {
 						
 						player.getRack().set(positionTile, null);
 						
@@ -99,7 +99,6 @@ public class DnDController {
 					}
 				}
 				event.setDropCompleted(succes);
-				
 			}
 		});
 	}

@@ -42,7 +42,7 @@ public class Player {
     	
         for (int i = 0; i<rack.size(); i++) {
         	
-        	if(this.rack.get(i) == null && this.stack.size()>0) {
+        	if(this.rack.get(i) == null && !this.stack.isEmpty()) {
         		this.rack.set(i, this.stack.get(0));
         		this.stack.remove(0);
         	}  

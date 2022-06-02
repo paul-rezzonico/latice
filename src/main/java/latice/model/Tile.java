@@ -19,7 +19,7 @@ public class Tile {
 
 	@Override
 	public String toString() {
-		return this.symbol.getName() + this.color.getColor();
+		return this.symbol.getName() + this.color.getName();
 	}
 	
 }

@@ -8,14 +8,14 @@ public enum Color {
 	PINK("Rose"),
 	BLUE("Bleu");
 	
-	private String color;
+	private String name;
 
 	private Color(String name) {
-		this.color = name;
+		this.name = name;
 	}
 
-	public String getColor() {
-		return color;
+	public String getName() {
+		return name;
 	}
 
 }
