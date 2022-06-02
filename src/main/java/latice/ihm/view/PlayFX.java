@@ -71,7 +71,7 @@ public class PlayFX extends BorderPane {
 		
 		this.hbptsJ1 = new VBox(10);
 		
-		this.tileInStackJ1 = new Label("Il reste : " + game.getPlayer1().getStack().size() + " tuile dans votre stack ");
+		this.tileInStackJ1 = new Label(game.getPlayer1().getName() + ",Il reste : " + game.getPlayer1().getStack().size() + " tuile dans votre stack ");
 		this.lblPointJ1 = new Label("Vous avez actuellement " + game.getPlayer1().getPoint() + " points");
 		this.lblPointJ1.setMaxWidth(200);
 		this.lblPointJ1.setAlignment(Pos.CENTER);
@@ -84,7 +84,7 @@ public class PlayFX extends BorderPane {
 		
 		this.hbptsJ2 = new VBox(10);
 		
-		this.tileInStackJ2 = new Label("Il reste : " + game.getPlayer2().getStack().size() + " tuile dans votre stack ");
+		this.tileInStackJ2 = new Label(game.getPlayer2().getName() + ", il reste : " + game.getPlayer2().getStack().size() + " tuile dans votre stack ");
 		this.lblPointJ2 = new Label("Vous avez actuellement " + game.getPlayer2().getPoint() + " points");
 		this.lblPointJ2.setMaxWidth(200);
 		this.lblPointJ2.setAlignment(Pos.CENTER);

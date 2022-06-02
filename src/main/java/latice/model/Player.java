@@ -30,7 +30,7 @@ public class Player {
         }
     }
 
-    public void changeRack(){
+    public void clearRack(){
     	
         for (int i = 0; i<this.rack.size(); i++) {
         	if (this.rack.get(i)!= null){

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import latice.ihm.controller.ChangeRackController;
 import latice.ihm.controller.EndTurnController;
@@ -116,21 +117,29 @@ public class Game {
 		if(this.getPlayerTurn()) {
 			this.getPlayer1().fillRack();
 			this.playFX.getRackJ1().fillRackFX(this.getPlayer1().getRack());
-			this.playFX.getTileInStackJ1().setText("Il reste " + this.getPlayer1().getStack().size() + " tuile dans votre stack");
+			this.playFX.getTileInStackJ1().setText(this.getPlayer1().getName() + " Il reste " + this.getPlayer1().getStack().size() + " tuile dans votre stack");
 		} else { 
 			this.getPlayer2().fillRack();
 			this.playFX.getRackJ2().fillRackFX(this.getPlayer2().getRack());
-			this.playFX.getTileInStackJ2().setText("Il reste " + this.getPlayer2().getStack().size() + " tuile dans votre stack");
+			this.playFX.getTileInStackJ2().setText(this.getPlayer2().getName() +" Il reste " + this.getPlayer2().getStack().size() + " tuile dans votre stack");
 		}
 		
 		this.setPlayerTurn(!this.getPlayerTurn());
+		
+		if(this.getTurn() == 15) {
+			this.getPlayFX().getSong().stop();
+			this.getPlayFX().setSong(new AudioClip(getClass().getResource("/music/Time.mp3").toExternalForm()));
+			this.getPlayFX().getSong().setCycleCount(AudioClip.INDEFINITE);
+			this.getPlayFX().getSong().play();
+		}
+		
 		this.turnbegin();
 		
 	}
 	
 	public boolean isATie() {
 		
-		if(this.getPlayer1().getRack().size() == this.getPlayer2().getRack().size()){
+		if(this.getPlayer1().getStack().size() == this.getPlayer2().getStack().size()){
 			return true;
 		}
 		return false;
@@ -138,7 +147,7 @@ public class Game {
 	
 	public Player calculateWinner(){
 		
-		if(this.getPlayer1().getRack().size() < this.getPlayer2().getRack().size()) {
+		if(this.getPlayer1().getStack().size() < this.getPlayer2().getStack().size()) {
 			return player1;
 		} else { 
 			return player2;

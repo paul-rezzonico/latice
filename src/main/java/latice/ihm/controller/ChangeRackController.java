@@ -15,11 +15,12 @@ public class ChangeRackController implements EventHandler<MouseEvent>{
 	@Override
 	public void handle(MouseEvent event) {
 		Game game = Game.getInstance();
+		
 		if(game.getPlayerTurn() && game.getPlayer1().getPtsFree()) {
-			game.getPlayer1().changeRack();
+			game.getPlayer1().clearRack();
 			game.endTurn();
 		} else if((!game.getPlayerTurn()) && game.getPlayer2().getPtsFree()) {
-			game.getPlayer2().changeRack();
+			game.getPlayer2().clearRack();
 			game.endTurn();
 		} else {
 			AudioClip objection = new AudioClip(getClass().getResource("/music/Objection.mp3").toExternalForm());
