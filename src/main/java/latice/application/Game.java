@@ -27,7 +27,7 @@ public class Game {
 	private PlayFX playFX;
 	
 	private boolean playerTurn;
-	private Integer turn = 0; 
+	private Integer turn = 1; 
 
 	private static Game instance;
 
@@ -55,7 +55,7 @@ public class Game {
 		this.playFX = new PlayFX();
 		this.primaryStage.getScene().setRoot(playFX);
 		this.playFX.getBtnEndTurn().setOnMouseClicked(new EndTurnController(this.primaryStage));
-		this.playFX.getBtnChangeRack().setOnMouseClicked(new ChangeRackController());
+		this.playFX.getBtnChangeRack().setOnMouseClicked(new ChangeRackController(this.primaryStage));
 		this.turnbegin();
 	}	
 	
@@ -88,7 +88,8 @@ public class Game {
 	public void turnbegin() {
 		
 		this.setTurn(this.getTurn() + 1);
-		this.playFX.getTurn().setText(("Tour : " + (this.getTurn())));
+		int cycle = (int) Math.ceil(this.getTurn()/2);
+		this.playFX.getTurn().setText(("Cycle : " + cycle));
 		
 		if(this.getPlayerTurn()) {
 			this.getPlayer1().setPtsFree(true);
@@ -106,11 +107,11 @@ public class Game {
 		if(this.getPlayerTurn()) {
 			this.getPlayer1().fillRack();
 			this.playFX.getRackJ1().fillRackFX(this.getPlayer1().getRack());
-			this.playFX.getTileInStackJ1().setText(this.getPlayer1().getName() + " Il reste " + this.getPlayer1().getStack().size() + " tuile dans votre stack");
+			this.playFX.getTileInStackJ1().setText(this.getPlayer1().getStack().size() + this.getPlayer1().sizeRack() + " tuiles restantes ");
 		} else { 
 			this.getPlayer2().fillRack();
 			this.playFX.getRackJ2().fillRackFX(this.getPlayer2().getRack());
-			this.playFX.getTileInStackJ2().setText(this.getPlayer2().getName() +" Il reste " + this.getPlayer2().getStack().size() + " tuile dans votre stack");
+			this.playFX.getTileInStackJ2().setText(this.getPlayer2().getStack().size() + this.getPlayer2().sizeRack() + " tuiles restantes ");
 		}
 		
 		this.setPlayerTurn(!this.getPlayerTurn());

@@ -8,7 +8,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
@@ -21,7 +20,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 import latice.application.Game;
 
 public class PlayFX extends BorderPane {
@@ -87,21 +85,21 @@ public class PlayFX extends BorderPane {
 		
 		this.hbptsJ1 = new VBox(10);
 		
-		this.tileInStackJ1 = new Label(game.getPlayer1().getName() + ", il vous reste " + game.getPlayer1().getStack().size() + " tuiles dans votre stack ");
+		this.tileInStackJ1 = new Label(game.getPlayer1().getStack().size() + game.getPlayer1().sizeRack() + " tuiles restantes ");
 		this.tileInStackJ1.setAlignment(Pos.CENTER);
 		this.tileInStackJ1.setFont(Font.font("System", 12));
-		this.tileInStackJ1.setTextFill(Color.RED);
+		this.tileInStackJ1.setTextFill(Color.DARKRED);
 		
 		this.lblPointJ1 = new Label("Vous avez actuellement " + game.getPlayer1().getPoint() + " points");
 		this.lblPointJ1.setAlignment(Pos.CENTER);
 		this.lblPointJ1.setFont(Font.font("System", 12));
-		this.lblPointJ1.setTextFill(Color.WHITE);
 		
 		this.hbLeft = new HBox();
 		this.hbptsJ1.getChildren().addAll(lblPointJ1, tileInStackJ1);
 		this.hbptsJ1.setPrefSize(300, 100);
 		this.hbptsJ1.setMaxHeight(200);
-		this.hbptsJ1.setBackground(new Background(new BackgroundFill(Color.BLACK, null, getInsets())));
+		this.hbptsJ1.setBackground(new Background(new BackgroundFill(Color.WHITE, null, getInsets())));
+		this.hbptsJ1.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: DarkRed;" + "-fx-border-width: 12;");
 		this.hbptsJ1.setAlignment(Pos.CENTER);
 		this.hbLeft.getChildren().add(hbptsJ1);
 		this.hbLeft.setPadding(new Insets(50, 50, 50, 50));
@@ -111,20 +109,20 @@ public class PlayFX extends BorderPane {
 		this.hbRight = new HBox();
 		this.hbptsJ2 = new VBox(10);
 		
-		this.tileInStackJ2 = new Label(game.getPlayer2().getName() + ", il vous reste " + game.getPlayer2().getStack().size() + " tuiles dans votre stack ");
+		this.tileInStackJ2 = new Label(game.getPlayer2().getStack().size() + game.getPlayer2().sizeRack() + " tuiles restantes ");
 		this.tileInStackJ2.setAlignment(Pos.CENTER);
 		this.tileInStackJ2.setFont(Font.font("System", 12));
-		this.tileInStackJ2.setTextFill(Color.RED);
+		this.tileInStackJ2.setTextFill(Color.DARKRED);
 		
 		this.lblPointJ2 = new Label("Vous avez actuellement " + game.getPlayer2().getPoint() + " points");
 		this.lblPointJ2.setAlignment(Pos.CENTER);
 		this.lblPointJ2.setFont(Font.font("System", 12));
-		this.lblPointJ2.setTextFill(Color.WHITE);
 		
 		this.hbptsJ2.getChildren().addAll(lblPointJ2, tileInStackJ2);
 		this.hbptsJ2.setPrefSize(300, 100);
 		this.hbptsJ2.setMaxHeight(200);
-		this.hbptsJ2.setBackground(new Background(new BackgroundFill(Color.BLACK, null, getInsets())));
+		this.hbptsJ2.setBackground(new Background(new BackgroundFill(Color.WHITE, null, getInsets())));
+		this.hbptsJ2.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: DarkRed;" + "-fx-border-width: 12;");
 		this.hbptsJ2.setAlignment(Pos.CENTER);
 		this.hbRight.getChildren().add(hbptsJ2);
 		this.hbRight.setPadding(new Insets(50, 50, 50, 50));
