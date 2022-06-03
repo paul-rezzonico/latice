@@ -30,6 +30,9 @@ public class PlayFX extends BorderPane {
 	private Label tileInStackJ1;
 	private Label tileInStackJ2;
 	
+	private Label nameJ1;
+	private Label nameJ2;
+	
 	private RackFX rackJ1;
 	private RackFX rackJ2;
 	private HBox hBrack;
@@ -85,17 +88,19 @@ public class PlayFX extends BorderPane {
 		
 		this.hbptsJ1 = new VBox(10);
 		
+		this.nameJ1 = new Label(game.getPlayer1().getName());
+		this.nameJ1.setFont(Font.font("System", 25));
 		this.tileInStackJ1 = new Label(game.getPlayer1().getStack().size() + game.getPlayer1().sizeRack() + " tuiles restantes ");
 		this.tileInStackJ1.setAlignment(Pos.CENTER);
-		this.tileInStackJ1.setFont(Font.font("System", 12));
+		this.tileInStackJ1.setFont(Font.font("System", 20));
 		this.tileInStackJ1.setTextFill(Color.DARKRED);
 		
 		this.lblPointJ1 = new Label("Vous avez actuellement " + game.getPlayer1().getPoint() + " points");
 		this.lblPointJ1.setAlignment(Pos.CENTER);
-		this.lblPointJ1.setFont(Font.font("System", 12));
+		this.lblPointJ1.setFont(Font.font("System", 15));
 		
 		this.hbLeft = new HBox();
-		this.hbptsJ1.getChildren().addAll(lblPointJ1, tileInStackJ1);
+		this.hbptsJ1.getChildren().addAll(nameJ1, lblPointJ1, tileInStackJ1);
 		this.hbptsJ1.setPrefSize(300, 100);
 		this.hbptsJ1.setMaxHeight(200);
 		this.hbptsJ1.setBackground(new Background(new BackgroundFill(Color.WHITE, null, getInsets())));
@@ -109,16 +114,18 @@ public class PlayFX extends BorderPane {
 		this.hbRight = new HBox();
 		this.hbptsJ2 = new VBox(10);
 		
+		this.nameJ2 = new Label(game.getPlayer2().getName());
+		this.nameJ2.setFont(Font.font("System", 25));
 		this.tileInStackJ2 = new Label(game.getPlayer2().getStack().size() + game.getPlayer2().sizeRack() + " tuiles restantes ");
 		this.tileInStackJ2.setAlignment(Pos.CENTER);
-		this.tileInStackJ2.setFont(Font.font("System", 12));
+		this.tileInStackJ2.setFont(Font.font("System", 20));
 		this.tileInStackJ2.setTextFill(Color.DARKRED);
 		
 		this.lblPointJ2 = new Label("Vous avez actuellement " + game.getPlayer2().getPoint() + " points");
+		this.lblPointJ2.setFont(Font.font("System", 15));
 		this.lblPointJ2.setAlignment(Pos.CENTER);
-		this.lblPointJ2.setFont(Font.font("System", 12));
 		
-		this.hbptsJ2.getChildren().addAll(lblPointJ2, tileInStackJ2);
+		this.hbptsJ2.getChildren().addAll(nameJ2, lblPointJ2, tileInStackJ2);
 		this.hbptsJ2.setPrefSize(300, 100);
 		this.hbptsJ2.setMaxHeight(200);
 		this.hbptsJ2.setBackground(new Background(new BackgroundFill(Color.WHITE, null, getInsets())));
