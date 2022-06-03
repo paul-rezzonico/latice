@@ -105,9 +105,8 @@ public class Board {
 			}
 		}
 		return isTileNear;
-
 	}
-
+	
 	
 	public int sumpoint(Position position , int point) {
 		
@@ -156,10 +155,6 @@ public class Board {
 
 	public Tile tileAt(Position position) {
 		return (this.gameBoard.get(position).getTile());
-	}
-
-	public Box boxAt(Position position) {
-		return (this.gameBoard.get(position));
 	}
 	
 	public Map<Position, Box> getGameBoard() {
