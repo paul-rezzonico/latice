@@ -111,29 +111,16 @@ public class Board {
 	public int sumpoint(Position position , int point) {
 		
 		Position pos = new Position(position.getRow() - 1, position.getColumn());
-		if (gameBoard.containsKey(pos)) {
-			if (isTileAt(pos)) {
-				point++;
-			}
-		}
+		point = points(pos, point);
+		
 		pos = new Position(position.getRow() + 1, position.getColumn());
-		if (gameBoard.containsKey(pos)) {
-			if (isTileAt(pos)) {
-				point++;
-			}
-		}
+		point = points(pos, point);
+		
 		pos = new Position(position.getRow(), position.getColumn() + 1);
-		if (gameBoard.containsKey(pos)) {
-			if (isTileAt(pos)) {
-				point++;
-			}
-		}
+		point = points(pos, point);
+		
 		pos = new Position(position.getRow(), position.getColumn() - 1);
-		if (gameBoard.containsKey(pos)) {
-			if (isTileAt(pos)) {
-				point++;
-			}
-		}
+		point = points(pos, point);
 		
 		if (point>0 && point!=4) {
 			point = point-1;
@@ -145,6 +132,15 @@ public class Board {
 			point++;
 		}
 		
+		return point;
+	}
+	
+	public int points(Position pos, int point) {
+		if (gameBoard.containsKey(pos)) {
+			if (isTileAt(pos)) {
+				point++;
+			}
+		}
 		return point;
 	}
 

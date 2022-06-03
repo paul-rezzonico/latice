@@ -131,17 +131,19 @@ class TestForPlayer {
 		assertThat(player.sizeRack()).isNotEqualTo(startSize);
 
 	}
-
-	@Test
-	void shouldOnlyLeftOneTileWhenFillARack() {
-		
-		
-	}
 	
 	@Test
 	void shouldLeftEmptyTheSTackAfterFillRAckIfRackIsEmpty() {
 		
+		ArrayList<Tile> stack = createASTackWithFiveTile();
+		Player player = new Player("Player", stack, 0);
+		
+		player.fillRack();
+		
+		assertThat(player.sizeRack()).isNotZero()
+									.isEqualTo(RACK_FULL);
 	}
+	
 	private ArrayList<Tile> createASTackWithFiveTile() {
 		ArrayList<Tile> stack = new ArrayList<>();
 		stack.add(new Tile(Symbol.AKENO, Color.RED));

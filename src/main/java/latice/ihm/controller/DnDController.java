@@ -15,7 +15,9 @@ import latice.model.Tile;
 
 public class DnDController {
 
-	
+	public DnDController() {
+		
+	}
 	
 	public static void menageSourceDragAndDrop(ImageView source, Integer positionTile) {
 

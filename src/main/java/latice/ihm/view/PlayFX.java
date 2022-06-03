@@ -33,7 +33,6 @@ public class PlayFX extends BorderPane {
 	private RackFX rackJ1;
 	private RackFX rackJ2;
 	private HBox hBrack;
-	private Game game;
 	private Button btnEndTurn;
 	private Button btnChangeRack;
 	
@@ -170,14 +169,6 @@ public class PlayFX extends BorderPane {
 
 	public void setLblPointJ2(Label lblPointJ2) {
 		this.lblPointJ2 = lblPointJ2;
-	}
-
-	public Game getGame() {
-		return game;
-	}
-
-	public void setGame(Game game) {
-		this.game = game;
 	}
 
 	public RackFX getRackJ1() {

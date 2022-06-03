@@ -2,6 +2,7 @@ package latice.application;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import javafx.scene.media.AudioClip;
@@ -38,8 +39,8 @@ public class Game {
 
 		Collections.shuffle(tileList);
 		
-		ArrayList<Tile> stackJ1 = stackCreation(tileList);
-		ArrayList<Tile> stackJ2 = stackCreation(tileList);
+		List<Tile> stackJ1 = stackCreation(tileList);
+		List<Tile> stackJ2 = stackCreation(tileList);
 		
 	
 		this.player1 = new Player("Joueur 1", stackJ1, pointJ1);
@@ -69,7 +70,7 @@ public class Game {
 		return tileList;
 	}
 	
-	public ArrayList<Tile> stackCreation(ArrayList<Tile> tileList) {
+	public List<Tile> stackCreation(List<Tile> tileList) {
 		
 		ArrayList<Tile> stack = new ArrayList<>();
 		for (int i = 0; i < 36; i++) {

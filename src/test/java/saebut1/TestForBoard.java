@@ -96,8 +96,9 @@ class TestForBoard {
 		Boolean secondTileWellPut = board.put(new Position(6, 6), new Tile(Symbol.ASIA, Color.RED));
 		Boolean thirdTileWellPut = board.put(new Position(5, 4), new Tile(Symbol.KONEKO, Color.RED));
 		Boolean lastTileWellPut = board.put(new Position(6, 5), new Tile(Symbol.KONEKO, Color.RED));
+		Boolean wellPut = true;
 		
-		assertThat(true).isEqualTo(firstTileWellPut)
+		assertThat(wellPut).isEqualTo(firstTileWellPut)
 		.isEqualTo(secondTileWellPut)
 		.isEqualTo(thirdTileWellPut)
 		.isEqualTo(lastTileWellPut);
@@ -145,14 +146,6 @@ class TestForBoard {
 		assertFalse(wellPutTileOne);
 		assertFalse(wellPutTileTwo);
 	}
-
-	private Board createABoardWithThreeTileOneIt() {
-		Board board = new Board();
-		board.put(new Position(5, 5), new Tile(Symbol.RIAS, Color.GREEN));
-		board.put(new Position(5, 6), new Tile(Symbol.RIAS, Color.GREY));
-		board.put(new Position(6, 6), new Tile(Symbol.AKENO, Color.GREY));
-		return board;
-	}
 	
 	@Test
 	void shouldPutAtileIfAllTheTileAroundMatch() {
@@ -179,6 +172,16 @@ class TestForBoard {
 		
 	}
 	
+	//TODO other test for 1, 2, 3 pts
+	
+	private Board createABoardWithThreeTileOneIt() {
+		Board board = new Board();
+		board.put(new Position(5, 5), new Tile(Symbol.RIAS, Color.GREEN));
+		board.put(new Position(5, 6), new Tile(Symbol.RIAS, Color.GREY));
+		board.put(new Position(6, 6), new Tile(Symbol.AKENO, Color.GREY));
+		return board;
+	}
+	
 	private Board createABoardWithAEmptyEmplacementWhereATileCanBePut() {
 		
 		Board board = new Board();
@@ -193,9 +196,4 @@ class TestForBoard {
 		return board;
 		
 	}
-	//TODO faire tout les test avec tuiles a cotée 
-	//@Test
-	//void should
-	
-	//TODO faire tout les test pour calcul des points
 }
