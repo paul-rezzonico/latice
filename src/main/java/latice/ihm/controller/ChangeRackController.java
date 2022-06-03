@@ -30,7 +30,7 @@ public class ChangeRackController implements EventHandler<MouseEvent>{
 			
 			if(!game.getPlayer2().getPtsFree()) {
 				game.getPlayer2().setPoint(game.getPlayer2().getPoint()-2);
-				game.getPlayFX().getLblPointJ2().setText("Vous avez actuellement " + game.getPlayer1().getPoint() + " points");
+				game.getPlayFX().getLblPointJ2().setText("Vous avez actuellement " + game.getPlayer2().getPoint() + " points");
 			} 
 			
 			game.getPlayer2().clearRack();

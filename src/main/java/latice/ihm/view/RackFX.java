@@ -1,6 +1,6 @@
 package latice.ihm.view;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
@@ -16,7 +16,7 @@ public class RackFX extends HBox{
 
 	private ImageView image;
 	
-	public RackFX(ArrayList<Tile> list) {
+	public RackFX(List<Tile> list) {
 		
 		this.fillRackFX(list);
 		this.setSpacing(12);
@@ -25,7 +25,7 @@ public class RackFX extends HBox{
 		this.setPrefWidth(450);
 	}
 	
-	public void fillRackFX(ArrayList<Tile> rack) {
+	public void fillRackFX(List<Tile> list) {
 		
 		int i = 0;
 
@@ -33,7 +33,7 @@ public class RackFX extends HBox{
 		
 		String url;
 		
-		for (Tile tile : rack) {
+		for (Tile tile : list) {
 			
 			if(tile != null) {
 				url = "/tiles/" + tile.toString() + ".png";

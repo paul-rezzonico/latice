@@ -13,6 +13,7 @@ public class Board {
 		this.gameBoard = new HashMap<>();
 
 		for (int i = 1; i <= ROWS; i++) {
+			
 			for (int j = 1; j <= COLUMNS; j++) {
 
 				if ((i == j || i + j == 10) && i != 4 && i != 5 && i != 6) {

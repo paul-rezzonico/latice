@@ -3,6 +3,7 @@ package saebut1;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -71,7 +72,7 @@ class TestForPlayer {
 
 		ArrayList<Tile> stack = createASTackWithFiveTile();
 		Player player = new Player("Player", stack, 0);
-		ArrayList<Tile> rack = player.getRack();
+		List<Tile> rack = player.getRack();
 		int startSize = player.sizeRack();
 
 		player.fillRack();
@@ -88,7 +89,7 @@ class TestForPlayer {
 		ArrayList<Tile> stack = createASTackWithFiveTile();
 		Player player = new Player("Player", stack, 0);
 		fillRackWithOnlyThreeTiles(player);
-		ArrayList<Tile> rack = player.getRack();
+		List<Tile> rack = player.getRack();
 
 		int startSize = player.sizeRack();
 

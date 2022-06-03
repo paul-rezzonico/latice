@@ -64,7 +64,7 @@ public class Player {
 		return name;
 	}
 
-	public ArrayList<Tile> getRack() {
+	public List<Tile> getRack() {
 		return rack;
 	}
 

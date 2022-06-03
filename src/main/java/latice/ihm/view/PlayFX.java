@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
@@ -19,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import latice.application.Game;
 
@@ -29,16 +31,21 @@ public class PlayFX extends BorderPane {
 	private Label lblPointJ2;
 	private Label tileInStackJ1;
 	private Label tileInStackJ2;
-	private Label turn;
+	
 	private RackFX rackJ1;
 	private RackFX rackJ2;
 	private HBox hBrack;
+	
+	private Label turn;
 	private Button btnEndTurn;
 	private Button btnChangeRack;
+	private VBox vbBtn;
 	
 	private VBox hbptsJ1;
 	private VBox hbptsJ2;
-	private VBox vbBtn;
+	
+	private HBox hbRight; 
+	private HBox hbLeft; 
 	
 	private AudioClip song;
 	
@@ -49,50 +56,79 @@ public class PlayFX extends BorderPane {
 		
 		this.rackJ1 = new RackFX(game.getPlayer1().getRack());
 		this.rackJ2 = new RackFX(game.getPlayer2().getRack());
-		this.hBrack =  new HBox(40);
+		
 		
 		this.vbBtn = new VBox(15);
+		
+		this.turn = new Label("Tour " + game.getTurn());
+		this.turn.setFont(Font.font("Times New Roman", 25));
+		this.turn.setTextFill(Color.RED);
+		this.turn.setPrefWidth(150);
+		this.turn.setAlignment(Pos.CENTER);
 		
 		this.btnChangeRack = new Button("Changer le rack");
 		this.btnChangeRack.setPrefWidth(150);
 		this.btnChangeRack.setAlignment(Pos.CENTER);
+		
 		this.btnEndTurn = new Button("Finir le tour");
 		this.btnEndTurn.setPrefWidth(150);
 		this.btnEndTurn.setAlignment(Pos.CENTER);
-		this.vbBtn.getChildren().addAll(btnEndTurn, btnChangeRack);
+		
+		this.vbBtn.getChildren().addAll(turn, btnEndTurn, btnChangeRack);
 		this.vbBtn.setAlignment(Pos.CENTER);
 		
+		this.hBrack =  new HBox(40);
 		this.hBrack.getChildren().addAll(rackJ1, vbBtn, rackJ2);
 		this.hBrack.setAlignment(Pos.CENTER);
 		this.hBrack.setMaxHeight(300);
 		this.hBrack.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, getInsets())));
 		this.setBottom(hBrack);
 		
+		
 		this.hbptsJ1 = new VBox(10);
 		
-		this.tileInStackJ1 = new Label(game.getPlayer1().getName() + ",Il reste : " + game.getPlayer1().getStack().size() + " tuile dans votre stack ");
+		this.tileInStackJ1 = new Label(game.getPlayer1().getName() + ", il vous reste " + game.getPlayer1().getStack().size() + " tuiles dans votre stack ");
+		this.tileInStackJ1.setAlignment(Pos.CENTER);
+		this.tileInStackJ1.setFont(Font.font("System", 12));
+		this.tileInStackJ1.setTextFill(Color.RED);
+		
 		this.lblPointJ1 = new Label("Vous avez actuellement " + game.getPlayer1().getPoint() + " points");
-		this.lblPointJ1.setMaxWidth(200);
 		this.lblPointJ1.setAlignment(Pos.CENTER);
-		this.lblPointJ1.setTextAlignment(TextAlignment.CENTER);
-		this.lblPointJ1.setPadding(new Insets(20, 20, 20, 20));
+		this.lblPointJ1.setFont(Font.font("System", 12));
+		this.lblPointJ1.setTextFill(Color.WHITE);
 		
-		this.turn = new Label("Tour : " + game.getTurn());
+		this.hbLeft = new HBox();
+		this.hbptsJ1.getChildren().addAll(lblPointJ1, tileInStackJ1);
+		this.hbptsJ1.setPrefSize(300, 100);
+		this.hbptsJ1.setMaxHeight(200);
+		this.hbptsJ1.setBackground(new Background(new BackgroundFill(Color.BLACK, null, getInsets())));
+		this.hbptsJ1.setAlignment(Pos.CENTER);
+		this.hbLeft.getChildren().add(hbptsJ1);
+		this.hbLeft.setPadding(new Insets(50, 50, 50, 50));
+		this.setLeft(hbLeft);
 		
-		this.hbptsJ1.getChildren().addAll(lblPointJ1, tileInStackJ1, turn);
 		
+		this.hbRight = new HBox();
 		this.hbptsJ2 = new VBox(10);
 		
-		this.tileInStackJ2 = new Label(game.getPlayer2().getName() + ", il reste : " + game.getPlayer2().getStack().size() + " tuile dans votre stack ");
-		this.lblPointJ2 = new Label("Vous avez actuellement " + game.getPlayer2().getPoint() + " points");
-		this.lblPointJ2.setMaxWidth(200);
-		this.lblPointJ2.setAlignment(Pos.CENTER);
-		this.lblPointJ2.setTextAlignment(TextAlignment.CENTER);
-		this.lblPointJ2.setPadding(new Insets(20, 20, 20, 20));
-		this.hbptsJ2.getChildren().addAll(lblPointJ2, tileInStackJ2);
+		this.tileInStackJ2 = new Label(game.getPlayer2().getName() + ", il vous reste " + game.getPlayer2().getStack().size() + " tuiles dans votre stack ");
+		this.tileInStackJ2.setAlignment(Pos.CENTER);
+		this.tileInStackJ2.setFont(Font.font("System", 12));
+		this.tileInStackJ2.setTextFill(Color.RED);
 		
-		this.setLeft(hbptsJ1);
-		this.setRight(hbptsJ2);
+		this.lblPointJ2 = new Label("Vous avez actuellement " + game.getPlayer2().getPoint() + " points");
+		this.lblPointJ2.setAlignment(Pos.CENTER);
+		this.lblPointJ2.setFont(Font.font("System", 12));
+		this.lblPointJ2.setTextFill(Color.WHITE);
+		
+		this.hbptsJ2.getChildren().addAll(lblPointJ2, tileInStackJ2);
+		this.hbptsJ2.setPrefSize(300, 100);
+		this.hbptsJ2.setMaxHeight(200);
+		this.hbptsJ2.setBackground(new Background(new BackgroundFill(Color.BLACK, null, getInsets())));
+		this.hbptsJ2.setAlignment(Pos.CENTER);
+		this.hbRight.getChildren().add(hbptsJ2);
+		this.hbRight.setPadding(new Insets(50, 50, 50, 50));
+		this.setRight(hbRight);
 		
 		BackgroundSize backgroundSize = new BackgroundSize(100, 100, false, false, false, true);
 		BackgroundImage bck  = new BackgroundImage(new Image("/Fond.png"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
@@ -101,12 +137,11 @@ public class PlayFX extends BorderPane {
 		
 		this.song = listOfSong();
 		this.song.play(0.1);
-		
 	}
 	
 	public AudioClip listOfSong() {
 		
-		ArrayList<AudioClip> audioList = new ArrayList<AudioClip>();
+		ArrayList<AudioClip> audioList = new ArrayList<>();
 		audioList.add(new AudioClip(getClass().getResource("/music/AmbianceMusic1.mp3").toExternalForm()));
 		audioList.add(new AudioClip(getClass().getResource("/music/AmbianceMusic2.mp3").toExternalForm()));
 		
