@@ -1,4 +1,4 @@
-package latice.model;
+package latice.model.tile;
 
 import java.util.Objects;
 

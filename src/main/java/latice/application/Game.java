@@ -10,11 +10,11 @@ import javafx.stage.Stage;
 import latice.ihm.controller.ChangeRackController;
 import latice.ihm.controller.EndTurnController;
 import latice.ihm.view.PlayFX;
-import latice.model.Board;
-import latice.model.Color;
+import latice.model.board.Board;
+import latice.model.tile.Color;
 import latice.model.Player;
-import latice.model.Symbol;
-import latice.model.Tile;
+import latice.model.tile.Symbol;
+import latice.model.tile.Tile;
 
 public class Game {
 	

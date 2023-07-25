@@ -10,7 +10,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import latice.ihm.controller.DnDController;
-import latice.model.Tile;
+import latice.model.tile.Tile;
 
 public class RackFX extends HBox{
 

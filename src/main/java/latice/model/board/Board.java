@@ -1,4 +1,7 @@
-package latice.model;
+package latice.model.board;
+
+import latice.model.tile.Position;
+import latice.model.tile.Tile;
 
 import java.util.HashMap;
 import java.util.Map;

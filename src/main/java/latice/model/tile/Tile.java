@@ -1,4 +1,7 @@
-package latice.model;
+package latice.model.tile;
+
+import latice.model.tile.Color;
+import latice.model.tile.Symbol;
 
 public class Tile {
 	private final Symbol symbol;

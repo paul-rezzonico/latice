@@ -1,86 +1,76 @@
-package saebut1;
+package latice;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import static org.assertj.core.api.Assertions.*;
-
+import latice.model.tile.Color;
+import latice.model.tile.Position;
+import latice.model.tile.Symbol;
+import latice.model.tile.Tile;
+import latice.model.board.Board;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import latice.model.Board;
-import latice.model.Color;
-import latice.model.Position;
-import latice.model.Symbol;
-import latice.model.Tile;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class TestForBoard {
-	
+	private Board board;
+	private static final Tile RIAS_RED = new Tile(Symbol.RIAS, Color.RED);
+	private static final Position CENTER= new Position(5, 5);
 
 	@Test
-	void ShouldVerifyIfTheBoardIsEmpty() {
-		Board board = new Board();
-
+	void boardShouldBeEmptyWhenCreated() {
 		assertTrue(board.isEmpty());
 	}
 	
 	@Test 
-	void ShouldVerifyIfTheBoardIsNotEmpty() {
-		Board board = new Board();
-		board.put(new Position(5, 5), new Tile(Symbol.RIAS, Color.RED));
+	void BoardShouldNotBeEmptyAfterPuttingATile() {
+		board.put(CENTER, RIAS_RED);
 		
 		assertFalse(board.isEmpty());
-	
 	}
 
 	@Test
-	void shouldTakeATileInTheBoard() {
-		Board board = new Board();
-		Tile tile = new Tile(Symbol.RIAS, Color.RED);
-		board.put(new Position(5, 5), tile);
+	void itShouldTakeATileInTheBoard() {
+		board.put(CENTER, RIAS_RED);
 
-		Tile ti = board.tileAt(new Position(5, 5));
+		Tile tile = board.tileAt(CENTER);
 
-		assertThat(tile).usingRecursiveComparison().isEqualTo(ti);
-
+		assertThat(RIAS_RED).usingRecursiveComparison().isEqualTo(tile);
 	}
 	
 	@Test
 	void shouldVerifyIfATileIsAtAPosition() {
-		Board board = new Board();
-		Tile tile = new Tile(Symbol.RIAS, Color.RED);
-		board.put(new Position(5, 5), tile);
-		
-		Boolean tileAt = board.isTileAt(new Position(5, 5));
-		Boolean otherTileAt = board.isTileAt(new Position(8, 4));
-		
-		assertTrue(tileAt);
-		assertFalse(otherTileAt);
-		
+		Position emptyPosition = new Position(8, 4);
+
+		board.put(CENTER, RIAS_RED);
+		boolean tileAtCenter = board.isTileAt(CENTER);
+		boolean otherTileNotInCenter = board.isTileAt(emptyPosition);
+
+		assertThat(tileAtCenter).isTrue();
+		assertThat(otherTileNotInCenter).isFalse();
 	} 
 	
 	@Test
-	void shouldNotTakeATileInTheBoardIfPositionAlreadyOccuped() {
-		
-		Board board = new Board();
+	void shouldNotTakeATileInTheBoardIfPositionAlreadyOccupied() {
+
 		Tile tile = new Tile(Symbol.RIAS, Color.RED);
 		Tile tileTwo = new Tile(Symbol.IRINA, Color.GREEN);
 		
-		Boolean firstTileWellPut = board.put(new Position(5, 5), tile);
-		Boolean secondTileWellPut = board.put(new Position(5, 5), tileTwo);
+		boolean firstTileWellPut = board.put(CENTER, tile);
+		boolean secondTileWellPut = board.put(CENTER, tileTwo);
 
 		assertTrue(firstTileWellPut);
 		assertFalse(secondTileWellPut);
-		
 	}
 	
 	@Test
 	void shouldNotPutATileIfNotPutInTheCenterAtFirst() {
-		
-		Board board = new Board();
+
 		Tile tile = new Tile(Symbol.RIAS, Color.RED);
 		
-		Boolean tilePutNotCenter = board.put(new Position(4, 5), tile);
-		Boolean tilePutCenter = board.put(new Position(5, 5), tile);
+		boolean tilePutNotCenter = board.put(new Position(4, 5), tile);
+		boolean tilePutCenter = board.put(CENTER, tile);
 		
 		assertFalse(tilePutNotCenter);
 		assertTrue(tilePutCenter);
@@ -114,25 +104,25 @@ class TestForBoard {
 		Tile tile = new Tile(Symbol.RIAS, Color.GREY);
 		Position pos = new Position(6, 5);
 		
-		Boolean wellPut = board.put(pos, tile);
+		boolean wellPut = board.put(pos, tile);
 		
 		assertTrue(wellPut);
 	}
 	
 	@Test
-	void shouldPutAtileIfThereAreOneOrMoreShapeAndColorMatching() {
+	void shouldPutATileIfThereAreOneOrMoreShapeAndColorMatching() {
 		
 		Board board = createABoardWithThreeTileOneIt();
 		Tile tile = new Tile(Symbol.AKENO, Color.GREEN);
 		Position pos = new Position(6, 5);
 		
-		Boolean wellPut = board.put(pos, tile);
+		boolean wellPut = board.put(pos, tile);
 		
 		assertTrue(wellPut);
 	}
 	
 	@Test
-	void shouldNotPutAtileIfThereAreOneOrMoreShapeNotMatching() {
+	void shouldNotPutATileIfThereAreOneOrMoreShapeNotMatching() {
 		
 		Board board = createABoardWithThreeTileOneIt();
 		Tile tileOne = new Tile(Symbol.XENOVIA, Color.GREEN);
@@ -140,20 +130,20 @@ class TestForBoard {
 		Tile tileTwo = new Tile(Symbol.XENOVIA, Color.GREEN);
 		Position posTwo = new Position(6, 7);
 		
-		Boolean wellPutTileOne = board.put(posOne, tileOne);
-		Boolean wellPutTileTwo = board.put(posTwo, tileTwo);
+		boolean wellPutTileOne = board.put(posOne, tileOne);
+		boolean wellPutTileTwo = board.put(posTwo, tileTwo);
 		
 		assertFalse(wellPutTileOne);
 		assertFalse(wellPutTileTwo);
 	}
 	
 	@Test
-	void shouldPutAtileIfAllTheTileAroundMatch() {
+	void shouldPutATileIfAllTheTileAroundMatch() {
 		
 		Board board = createABoardWithAEmptyEmplacementWhereATileCanBePut();
 		Tile tile = new Tile(Symbol.RIAS, Color.RED);
 		Position pos = new Position(6, 5);
-		Boolean wellPut = board.put(pos, tile);
+		boolean wellPut = board.put(pos, tile);
 		
 		assertTrue(wellPut);
 	}
@@ -171,8 +161,12 @@ class TestForBoard {
 		assertThat(pts).isEqualTo(4);
 		
 	}
-	
 	//TODO other test for 1, 2, 3 pts
+
+	@BeforeEach
+	void initBoard() {
+		this.board = new Board();
+	}
 	
 	private Board createABoardWithThreeTileOneIt() {
 		Board board = new Board();
@@ -194,6 +188,5 @@ class TestForBoard {
 		board.put(new Position(7, 4), new Tile(Symbol.XENOVIA, Color.RED));
 		board.put(new Position(7, 5), new Tile(Symbol.AKENO, Color.RED));
 		return board;
-		
 	}
 }

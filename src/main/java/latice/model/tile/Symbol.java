@@ -1,4 +1,4 @@
-package latice.model;
+package latice.model.tile;
 
 public enum Symbol {
 	RIAS("Rias"),

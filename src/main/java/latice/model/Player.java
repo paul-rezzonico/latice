@@ -1,5 +1,7 @@
 package latice.model;
 
+import latice.model.tile.Tile;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +11,7 @@ public class Player {
 	private final ArrayList<Tile> rack;
 	private final List<Tile> stack;
 	private Integer point;
-	private Boolean ptsFree;
+	private boolean ptsFree;
 	
 	public Player(String name, List<Tile> stackJ1, Integer point) {
 		
@@ -80,7 +82,7 @@ public class Player {
 		this.point = point;
 	}
 
-	public Boolean getPtsFree() {
+	public boolean getPtsFree() {
 		return ptsFree;
 	}
 

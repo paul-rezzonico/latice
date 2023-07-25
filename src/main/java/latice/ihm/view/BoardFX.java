@@ -8,9 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import latice.ihm.controller.DnDController;
-import latice.model.Board;
-import latice.model.Box;
-import latice.model.Position;
+import latice.model.board.Board;
+import latice.model.board.Box;
+import latice.model.tile.Position;
 
 public class BoardFX extends GridPane{
 	

@@ -10,14 +10,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import latice.application.Game;
 import latice.model.Player;
-import latice.model.Position;
-import latice.model.Tile;
+import latice.model.tile.Position;
+import latice.model.tile.Tile;
 
 public class DnDController {
-
-	public DnDController() {
-		
-	}
 	
 	public static void menageSourceDragAndDrop(ImageView source, Integer positionTile) {
 

@@ -14,7 +14,7 @@ import latice.ihm.view.MenuFX;
 
 public class ChangeRackController implements EventHandler<MouseEvent>{
 
-	private Stage primaryStage;
+	private final Stage primaryStage;
 	
 	public ChangeRackController(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -70,18 +70,18 @@ public class ChangeRackController implements EventHandler<MouseEvent>{
 		if(game.getPlayer1().getStack().isEmpty() || game.getPlayer2().getStack().isEmpty() || game.getTurn() > 20) {
 			
 			game.getPlayFX().getSong().stop();
-			String victorie;
+			String victory;
 			if(game.isATie()) {
-				victorie = "C'est une égalité !";
+				victory = "C'est une égalité !";
 			} else {
-				victorie = game.calculateWinner().getName() + " à gagné, bravo !";
+				victory = game.calculateWinner().getName() + " à gagné, bravo !";
 			}
 			
 			//TODO personnalisé la fenetre ?
 			Alert dialog = new Alert(AlertType.INFORMATION);
 			dialog.setTitle("Fin de partie !");
 			dialog.setHeaderText("La partie est fini !");
-			dialog.setContentText(victorie);
+			dialog.setContentText(victory);
 			dialog.initOwner(primaryStage.getScene().getWindow() );
 			//dialog.setGraphic(img);
 			dialog.showAndWait();

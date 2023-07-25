@@ -1,4 +1,4 @@
-package saebut1;
+package latice;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -7,10 +7,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import latice.model.Color;
+import latice.model.tile.Color;
 import latice.model.Player;
-import latice.model.Symbol;
-import latice.model.Tile;
+import latice.model.tile.Symbol;
+import latice.model.tile.Tile;
 
 class TestForPlayer {
 
@@ -152,7 +152,7 @@ class TestForPlayer {
 		stack.add(new Tile(Symbol.RIAS, Color.YELLOW));
 		stack.add(new Tile(Symbol.XENOVIA, Color.BLUE));
 		stack.add(new Tile(Symbol.ASIA, Color.GREEN));
-		;
+
 		return stack;
 	}
 

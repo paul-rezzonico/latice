@@ -1,4 +1,6 @@
-package latice.model;
+package latice.model.board;
+
+import latice.model.tile.Tile;
 
 public class Box {
     private final Shape shape;
