@@ -9,6 +9,8 @@ import latice.ihm.controller.ParametersController;
 import latice.ihm.controller.PlayController;
 import latice.ihm.view.MenuFX;
 
+import java.util.Objects;
+
 public class Latice extends Application {
 
 	@Override
@@ -21,7 +23,7 @@ public class Latice extends Application {
 		
 		primaryStage.setScene(scene);
 		primaryStage.setFullScreen(true);
-		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Logo.png")));
+		primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Logo.png"))));
 		primaryStage.setTitle("Latice Game DxD edition");
 		primaryStage.setFullScreenExitHint("");
 		primaryStage.show();
