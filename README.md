@@ -1,5 +1,7 @@
 # Latice
 
+![Menu](https://drive.google.com/uc?export=view&id=1eEhpY4uhoM5DM_dPJw9PFr-cGupAwAMp)
+
 ## Overview
 Latice is a Java-based application that showcases a board game with interactive elements. The project is structured to demonstrate various aspects of Java programming, including object-oriented design, GUI development with JavaFX, and handling game logic.
 
@@ -30,6 +32,6 @@ To run the project:
 
 ## Screenshots
 
-![Menu]()
+![Menu](https://drive.google.com/uc?export=view&id=1eEhpY4uhoM5DM_dPJw9PFr-cGupAwAMp)
 ![Gameplay]()
 ![Endgame](
