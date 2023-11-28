@@ -74,10 +74,12 @@ The game ends when a player has no more tiles left in their hand. The winner is 
 
 ## RNCP referential
 
-- RNCP35475BC01 - Réaliser un développement d’application
-- RNCP35475BC02 - Optimiser des applications informatiques
-- RNCP35475BC05 - Conduire un projet
-- RNCP35475BC06 - Travailler dans une équipe informatique
+| Skill | Description |
+| :---: | :---------: |
+| **![RNCP35475BC01](https://img.shields.io/badge/RNCP35475BC01-2-00BFFF?style=flat)** | Réaliser un développement d’application | 
+| **![RNCP35475BC02](https://img.shields.io/badge/RNCP35475BC02-2-00BFFF?style=flat)** | Optimiser des applications informatiques | 
+| **![RNCP35475BC05](https://img.shields.io/badge/RNCP35475BC03-2-00BFFF?style=flat)** | Conduire un projet
+| **![RNCP35475BC06](https://img.shields.io/badge/RNCP35475BC04-2-00BFFF?style=flat)** | Travailler dans une équipe informatique
 
 ----
 
