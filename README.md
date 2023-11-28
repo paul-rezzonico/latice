@@ -59,6 +59,7 @@ There are other rules to the game such as changing the rack of tiles, instead of
 <p align="center">
   <img src="https://drive.google.com/uc?export=view&id=1L6L9VlzdaG3m6Dg9lxODjBcTE69DA05D" width="700" >
 </p>
+
 ----
 
 The game ends when a player has no more tiles left in their hand. The winner is the player with the lowest score.
