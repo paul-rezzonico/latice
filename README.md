@@ -76,10 +76,10 @@ The game ends when a player has no more tiles left in their hand or if the time 
 
 | Skill | Description | How it's used in the project |
 | :---: | :---------: | :--------------------------: |
-| **![RNCP35475BC01](https://img.shields.io/badge/RNCP35475BC01-2-00BFFF?style=flat)** | Perform an application development | With this project, I was able to develop a Java application from scratch. I used the JavaFX library to create the GUI and implemented the game logic in Java. |
-| **![RNCP35475BC02](https://img.shields.io/badge/RNCP35475BC02-2-00BFFF?style=flat)** | Optimize IT applications | I used Test and Debugging techniques to ensure the application runs smoothly. |
-| **![RNCP35475BC05](https://img.shields.io/badge/RNCP35475BC05-2-00BFFF?style=flat)** | Conduct a project | We start the project by defining the requirements and the specifications. We then planned developed the application and tested it. |
-| **![RNCP35475BC06](https://img.shields.io/badge/RNCP35475BC06-2-00BFFF?style=flat)** | Working in an IT team | I worked with a partner to develop this project. We used Git to manage the project. |
+| **![RNCP35475BC01](https://img.shields.io/badge/RNCP35475BC01-1-00BFFF?style=flat)** | Perform an application development | With this project, I was able to develop a Java application from scratch. I used the JavaFX library to create the GUI and implemented the game logic in Java. |
+| **![RNCP35475BC02](https://img.shields.io/badge/RNCP35475BC02-1-00BFFF?style=flat)** | Optimize IT applications | I used Test and Debugging techniques to ensure the application runs smoothly. |
+| **![RNCP35475BC05](https://img.shields.io/badge/RNCP35475BC05-1-00BFFF?style=flat)** | Conduct a project | We start the project by defining the requirements and the specifications. We then planned developed the application and tested it. |
+| **![RNCP35475BC06](https://img.shields.io/badge/RNCP35475BC06-1-00BFFF?style=flat)** | Working in an IT team | I worked with a partner to develop this project. We used Git to manage the project. |
 
 ----
 
