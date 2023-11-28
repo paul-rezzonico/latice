@@ -67,10 +67,10 @@ The game ends when a player has no more tiles left in their hand. The winner is 
 ## Technologies used
 - Java 8 ![Java](https://img.shields.io/badge/Java-8-blue)
 - JavaFX ![JavaFX](https://img.shields.io/badge/JavaFX-8-blue)
-- Maven ![Maven](https://img.shields.io/badge/Maven-3.6.3-blue)
-- JUnit ![JUnit](https://img.shields.io/badge/JUnit-4.12-blue)
-- Git ![Git](https://img.shields.io/badge/Git-2.30.0-blue)
-- IntelliJ IDEA ![IntelliJ](https://img.shields.io/badge/IntelliJ-2020.3.2-blue)
+- Maven ![Maven](https://img.shields.io/badge/Maven-0C7D9D?style=flat&logo=apache-maven&logoColor=white)
+- JUnit ![JUnit](https://img.shields.io/badge/JUnit-02303A?style=flat&logo=junit5&logoColor=white)
+- Git ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
+- IntelliJ IDEA ![IntelliJ](https://img.shields.io/badge/IntelliJ-000000?style=flat&logo=intellij-idea&logoColor=white)
 
 ## RNCP referential
 
