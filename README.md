@@ -62,7 +62,7 @@ There are other rules to the game such as changing the rack of tiles, instead of
 
 ----
 
-The game ends when a player has no more tiles left in their hand. The winner is the player with the lowest score.
+The game ends when a player has no more tiles left in their hand or if the time runs out. The player with the lower tile left in their hand wins the game.
 
 ## Technologies used
 - Java 8 ![Java](https://img.shields.io/badge/Java-8-blue)
