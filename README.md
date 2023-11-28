@@ -3,7 +3,7 @@
 ![Menu](https://drive.google.com/uc?export=view&id=1eEhpY4uhoM5DM_dPJw9PFr-cGupAwAMp)
 
 ## Overview
-Latice is a Java-based application that showcases a board game with interactive elements. The project is structured to demonstrate various aspects of Java programming, including object-oriented design, GUI development with JavaFX, and handling game logic.
+Latice is a Java-based application that showcases a board game with interactive elements. The project is structured to demonstrate various aspects of Java programming, including object-oriented design, GUI development with JavaFX, and handling game logic. This Latice is based on the DxD anime series.
 
 ## Key Components
 - **Game Logic**: Core game functionalities are implemented in Java, focusing on the rules and mechanics of the board game.
@@ -21,7 +21,7 @@ Latice is a Java-based application that showcases a board game with interactive 
 
 ## Resources
 The project includes various resources such as images and music to enhance the user experience.
-- Images: Tiles, board backgrounds, and other graphical elements.
+- Images: Tiles, board backgrounds, and other graphical elements based on DxD Characters.
 - Music: Background music and sound effects for different game scenarios.
 
 ## Getting Started
@@ -32,6 +32,52 @@ To run the project:
 
 ## Screenshots
 
-![Menu](https://drive.google.com/uc?export=view&id=1eEhpY4uhoM5DM_dPJw9PFr-cGupAwAMp)
-![Gameplay]()
-![Endgame](
+The main menu of the application allows the user to start a new game, change the game parameters, or exit the application.
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1tFANLzBuUfeicgTjfzuUDCRSsVoTWRM-" width="700" >
+</p>
+
+----
+
+This is the starting screen of the game. The user can drag and drop tiles onto the board to make a move.
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1V1qH5NkXLE7ABwu66QpSiOsdvheNIWiS" width="700" >
+</p>
+
+----
+
+You can put tile alongside other tiles if they match the color or shape of the adjacent tiles.
+
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1QKyg1SlyK5zd6VHH7rWclm9LXnH52VO4" width="700" >
+  <img src="https://drive.google.com/uc?export=view&id=1kHP8lZpqUiqap3fU-8vLwgSXOlxfk3cC" width="700" >
+</p>
+
+---- 
+
+There are other rules to the game such as changing the rack of tiles, instead of placing a tile on the board. 
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1L6L9VlzdaG3m6Dg9lxODjBcTE69DA05D" width="700" >
+</p>
+----
+
+The game ends when a player has no more tiles left in their hand. The winner is the player with the lowest score.
+
+## Technologies used
+- Java 8 ![Java](https://img.shields.io/badge/Java-8-blue)
+- JavaFX ![JavaFX](https://img.shields.io/badge/JavaFX-8-blue)
+- Maven ![Maven](https://img.shields.io/badge/Maven-3.6.3-blue)
+- JUnit ![JUnit](https://img.shields.io/badge/JUnit-4.12-blue)
+- Git ![Git](https://img.shields.io/badge/Git-2.30.0-blue)
+- IntelliJ IDEA ![IntelliJ](https://img.shields.io/badge/IntelliJ-2020.3.2-blue)
+
+## RNCP referential
+
+- RNCP35475BC01 - Réaliser un développement d’application
+- RNCP35475BC02 - Optimiser des applications informatiques
+- RNCP35475BC05 - Conduire un projet
+- RNCP35475BC06 - Travailler dans une équipe informatique
+
+----
+
+Thank you for reading this far. I hope you enjoyed the game.
