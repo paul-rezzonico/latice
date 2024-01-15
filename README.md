@@ -5,7 +5,7 @@
 <table>
   <tr>
     <td>
-      <img alt="Latice DxD Logo" src="src/main/resources/Logo-RD.png" width="200px"/>
+      <img alt="Latice DxD Logo" src="src/main/resources/Logo.png" width="200px"/>
     </td>
     <td>
       <p>Latice is a Java-based application that showcases a board game with interactive elements. The project is structured to demonstrate various aspects of Java programming, including object-oriented design, GUI development with JavaFX, and handling game logic. This Latice is based on the DxD anime series.
