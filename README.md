@@ -1,9 +1,19 @@
 # Latice
 
-![Menu](https://drive.google.com/uc?export=view&id=1eEhpY4uhoM5DM_dPJw9PFr-cGupAwAMp)
-
 ## Overview
-Latice is a Java-based application that showcases a board game with interactive elements. The project is structured to demonstrate various aspects of Java programming, including object-oriented design, GUI development with JavaFX, and handling game logic. This Latice is based on the DxD anime series.
+
+<table>
+  <tr>
+    <td>
+      <img alt="Latice DxD Logo" src="src/main/resources/Logo-RD.png" width="200px"/>
+    </td>
+    <td>
+      <p>Latice is a Java-based application that showcases a board game with interactive elements. The project is structured to demonstrate various aspects of Java programming, including object-oriented design, GUI development with JavaFX, and handling game logic. This Latice is based on the DxD anime series.
+    </td>
+  </tr>
+</table>
+
+![Menu](https://drive.google.com/uc?export=view&id=1eEhpY4uhoM5DM_dPJw9PFr-cGupAwAMp)
 
 ## Key Components
 - **Game Logic**: Core game functionalities are implemented in Java, focusing on the rules and mechanics of the board game.
