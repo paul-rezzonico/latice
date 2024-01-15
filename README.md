@@ -13,8 +13,6 @@
   </tr>
 </table>
 
-![Menu](https://drive.google.com/uc?export=view&id=1eEhpY4uhoM5DM_dPJw9PFr-cGupAwAMp)
-
 ## Key Components
 - **Game Logic**: Core game functionalities are implemented in Java, focusing on the rules and mechanics of the board game.
   - [`Game.java`](https://github.com/paul-rezzonico/latice/blob/main/src/main/java/latice/application/Game.java)
