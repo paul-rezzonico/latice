@@ -1,34 +1,68 @@
 plugins {
     java
-    id("org.openjfx.javafxplugin") version "0.1.0"
+    application
+    id("org.javamodularity.moduleplugin") version "1.8.12"
+    id("org.openjfx.javafxplugin") version "0.0.13"
+    id("org.beryx.jlink") version "2.25.0"
+    kotlin("jvm") version "1.9.23"
 }
 
 group = "com.paulrezzonico"
-version = "0.0.1-SNAPSHOT"
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-}
+version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
 }
 
+val junitVersion = "5.10.2"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
+application {
+    mainModule.set("latice")
+    mainClass.set("latice.Latice")
+}
+
 javafx {
-    version = "24"
-    modules("javafx.controls", "javafx.fxml", "javafx.graphics", "javafx.base")
+    version = "21"
+    modules = listOf("javafx.controls", "javafx.fxml", "javafx.media")
 }
 
 dependencies {
-    implementation("org.openjfx:javafx-controls:24.0.1")
-    implementation("org.openjfx:javafx-fxml:24.0.1")
-    implementation("org.openjfx:javafx-base:24.0.1")
-    implementation("org.openjfx:javafx-graphics:24.0.1")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.13.3")
-    testImplementation("org.assertj:assertj-core:3.27.3")
+    implementation(kotlin("stdlib"))
+    implementation("org.controlsfx:controlsfx:11.2.1")
+    implementation("com.dlsc.formsfx:formsfx-core:11.6.0") {
+        exclude(group = "org.openjfx")
+    }
+    implementation("net.synedra:validatorfx:0.5.0") {
+        exclude(group = "org.openjfx")
+    }
+    implementation("org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0")
+    implementation("com.github.almasb:fxgl:17.3") {
+        exclude(group = "org.openjfx")
+        exclude(group = "org.jetbrains.kotlin")
+    }
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testImplementation("org.assertj:assertj-core:3.24.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
-tasks.test {
+tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+jlink {
+    imageZip.set(layout.buildDirectory.file("/distributions/app-${javafx.platform.classifier}.zip"))
+    options.set(listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages"))
+    launcher {
+        name = "app"
+    }
 }
